@@ -12,7 +12,7 @@ export default class GameScreen extends React.Component {
                 style={styles.backgroundImage}
                 source={require('../assets/images/gameBackground.png')}>
                 <StatusBar hidden={true}/>
-                <View style={{flex:5, justifyContent:'center',backgroundColor:'white', alignItems:'center'}}>
+                <View style={{flex:5, paddingTop:20, justifyContent:'center', alignItems:'center'}}>
                     {/* <Image 
                         style={{flex:1, width:undefined}}
                         source={require('../assets/images/rimpimpamtournament.png')}/> */}
@@ -20,11 +20,12 @@ export default class GameScreen extends React.Component {
                         style={{flex:1, width:'100%', height: '100%', resizeMode:'contain'}}
                         source={require('../assets/images/gameboard.png')}/>
                 </View>
-                <View style={{flex:1, flexDirection:'row',backgroundColor:'blue', justifyContent:'center', alignItems:'center'}}>
+                <View style={{flex:1, flexDirection:'row', justifyContent:'center', alignItems:'center'}}>
                     <Button
                         title="Bet All"
                         type="outline"
                         raise={true}
+                        containerStyle={{padding:5}}
                         buttonStyle={{borderRadius:15, borderColor:'white', width:100}}
                         titleStyle={{color:'white'}}
                         // onPress={() => navigate('Game')}
@@ -33,6 +34,16 @@ export default class GameScreen extends React.Component {
                         title="Jackpot"
                         type="outline"
                         raise={true}
+                        containerStyle={{padding:5}}
+                        buttonStyle={{borderRadius:15, borderColor:'white', width:100}}
+                        titleStyle={{color:'white'}}
+                        // onPress={() => navigate('Game')}
+                        />
+                    <Button
+                        title="Deal"
+                        type="outline"
+                        raise={true}
+                        containerStyle={{padding:5}}
                         buttonStyle={{borderRadius:15, borderColor:'white', width:100}}
                         titleStyle={{color:'white'}}
                         // onPress={() => navigate('Game')}
