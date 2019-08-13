@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
 import { ImageBackground, StyleSheet, View, StatusBar, Text, Image } from 'react-native';
 import { Button } from 'react-native-elements';
+import ActionBar from '../components/ActionBar';
 
 export default class GameScreen extends React.Component {
     static navigationOptions = {
-        header: null
+        headerTitle:<ActionBar/>,
+        headerStyle:{
+            backgroundColor:'#0f2636'
+        },
+        headerLeft: null
+
     }
     render() {
         return (
