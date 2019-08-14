@@ -16,7 +16,7 @@ export default class ActionBar extends Component {
         <View style={{flex:1, justifyContent:'center', alignItems:'center'}}>
             <TimerBox/>
         </View>
-        <View style={{flex:1,  alignItems:'flex-end', marginRight:20}}>
+        <View style={{flex:1,  alignItems:'flex-end'}}>
             <ScoreBox/>
         </View>
       </View>

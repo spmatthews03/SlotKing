@@ -18,12 +18,12 @@ export default class GameScreen extends React.Component {
                 style={styles.backgroundImage}
                 source={require('../assets/images/gameBackground.png')}>
                 <StatusBar hidden={true}/>
-                <View style={{flex:1, flexDirection:'row'}}> 
+                <View style={{flex:5, flexDirection:'row'}}> 
                     <View style={{flex:2}}/>                
                     <View style={{flex:4}}>
                         <View style={{flex:1}}>
                             <Image 
-                                style={{flex:6, width:'100%', height: '100%', resizeMode:'contain'}}
+                                style={{flex:5, width:'100%', height: '100%', resizeMode:'contain'}}
                                 source={require('../assets/images/gameboard.png')}/>
                             <View style={{flex:1, flexDirection:'row', justifyContent:'center', padding:5}}>
                                 <Image 
@@ -76,6 +76,12 @@ export default class GameScreen extends React.Component {
                             // onPress={() => navigate('Game')}
                             />
                     </View>
+                </View>
+                <View style={{flex:1, backgroundColor:'#0f2636', flexDirection:'row', padding:8}}>
+                    <Image 
+                        style={{flex:5, width:'100%', height: '100%', resizeMode:'contain'}}
+                        source={require('../assets/images/rimpimpamsingle_logo.png')}/>
+                    <View style={{flex:5}}></View>
                 </View>
             </ImageBackground>
         );

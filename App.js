@@ -13,6 +13,7 @@ import {
 import React, {Fragment} from 'react';
 import HomeScreen from './screens/HomeScreen';
 import GameScreen from './screens/GameScreen';
+import RimPimPamScreen from './screens/RimPimPamScreen';
 import {
   SafeAreaView,
   StyleSheet,
@@ -36,9 +37,9 @@ const stackNavigator = createStackNavigator(
     Home:{
       screen: HomeScreen
     },
-    // Game:{
-    //   screen: GameScreen
-    // }
+    Game:{
+      screen: RimPimPamScreen
+    }
   }
 );
 
