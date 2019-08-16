@@ -33,8 +33,8 @@ export default class TimerBox extends Component {
     this.setState({ timer });
    }
 
-  componentWillMount(){
-    this
+  componentDidMount(){
+    this.timerStart();
   }
 
 

@@ -13,6 +13,14 @@ export default class RimPimPamScreen extends React.Component {
         headerLeft: null
 
     }
+
+    constructor(props){
+        super(props);
+        this.state = {
+            //
+        }
+    }
+
     render() {
         return (
             <ImageBackground
