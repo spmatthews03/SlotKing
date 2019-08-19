@@ -35,29 +35,24 @@ export default class RimPimPamScreen extends React.Component {
                                 style={{flex:5, width:'100%', height: '100%', resizeMode:'contain'}}
                                 source={require('../assets/images/gameboard.png')}/>
                             <View style={{flex:2, flexDirection:'row', justifyContent:'center', padding:2}}>
-                                <View style={{flex:2,flexDirection:'row', justifyContent:'center'}}>
-                                    <View styles={{flex:1}}>
-                                        <Text style={{color:'white'}}>Discards</Text>
-                                        <CardPlacer/>
-                                    </View>
-                                    <View styles={{flex:1}}>
-                                        <Text style={{color:'white'}}>Collected</Text>
-                                        <CardPlacer/>
-                                    </View>
+                                <View style={{flex:2,flexDirection:'row', justifyContent:'center',paddingRight:10}}>
+                                    <Image 
+                                        style={{flex:1, width:'100%', height: '100%', resizeMode:'contain',margin:5}}
+                                        source={require('../assets/images/blue_card.png')}/>
+                                    <Image 
+                                        style={{flex:1, width:'100%', height: '100%', resizeMode:'contain',margin:5}}
+                                        source={require('../assets/images/bar_card.png')}/>
                                 </View>
-                                <View style={{flex:3, flexDirection:'row', justifyContent:'center'}}>
-                                    <View styles={{flex:1}}>
-                                        <Text> a</Text>
-                                        <CardPlacer/>
-                                    </View>
-                                    <View styles={{flex:1}}>
-                                        <Text>a </Text>
-                                        <CardPlacer/>
-                                    </View>
-                                    <View styles={{flex:1}}>
-                                        <Text> a</Text>
-                                        <CardPlacer/>
-                                    </View>
+                                <View style={{flex:3, flexDirection:'row',paddingLeft:10}}>
+                                    <Image 
+                                        style={{flex:1, width:'100%', height: '100%', resizeMode:'contain',margin:5}}
+                                        source={require('../assets/images/blue_card.png')}/>
+                                    <Image 
+                                        style={{flex:1, width:'100%', height: '100%', resizeMode:'contain',margin:5}}
+                                        source={require('../assets/images/wild_card.png')}/>
+                                    <Image 
+                                        style={{flex:1, width:'100%', height: '100%', resizeMode:'contain',margin:5}}
+                                        source={require('../assets/images/crown_card.png')}/>
                                 </View>
                             </View>
                         </View>
