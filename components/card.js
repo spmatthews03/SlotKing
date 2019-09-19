@@ -1,20 +1,29 @@
 import React, { Component } from 'react';
- 
-import { StyleSheet, View, Text, Image } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons'; 
+
+import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
 
 export default class Card extends Component {
   constructor(props){
     super(props);
+    this.state = {
+      in_playerhand = false;
+      discarded = false;
+    }
   }
-
 
   render() {
     return (
-        <View style={{flex:1, justifyContent:'center', alignItems:'center'}}>
-            <Text style={styles.timeTitle}>Time</Text>   
-            <Text style={styles.timerText}>{this.state.minutes_Counter}:{this.state.seconds_Counter}</Text>   
-        </View>
+      <
+      <TouchableOpacity>
+        <Image
+          source={require('../assets/card/cherry.png')}
+          style={[
+            commonStyle.card,
+            this.props.style,
+            { transform: [{ rotate: this.props.rotation + 'deg'}]},
+          ]}
+        />
+      </TouchableOpacity>
     );
   }
 }
