@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
  
 import { StyleSheet, View, Text, Image } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons'; 
+import Icon from '../../../../.cache/typescript/2.9/node_modules/@types/react-native-vector-icons/MaterialIcons'; 
 
 export default class Deck extends Component {
   constructor(props){

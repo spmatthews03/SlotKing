@@ -6,14 +6,13 @@ export default class Card extends Component {
   constructor(props){
     super(props);
     this.state = {
-      in_playerhand = false;
-      discarded = false;
+      in_playerhand = false,
+      discarded = false,
     }
   }
 
   render() {
     return (
-      <
       <TouchableOpacity>
         <Image
           source={require('../assets/card/cherry.png')}
