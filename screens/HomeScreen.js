@@ -14,7 +14,7 @@ export default class HomeScreen extends React.Component {
         return (
             <ImageBackground
                 style={styles.backgroundImage}
-                source={require('../assets/images/background.png')}>
+                source={require('../assets/images/main_menu_background.png')}>
                 <StatusBar hidden={true}/>
                 <View style={{flex:1, justifyContent:'center', alignItems:'center'}}>
                     <View style={{position:'absolute', bottom:50}}>

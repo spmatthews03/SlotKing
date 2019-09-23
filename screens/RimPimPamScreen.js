@@ -3,6 +3,8 @@ import { ImageBackground, StyleSheet, View, StatusBar, Text, Image } from 'react
 import { Button } from 'react-native-elements';
 import ActionBar from '../components/ActionBar';
 import CardPlacer from '../components/CardPlacer';
+import Cards, { CARDS } from '../constants/cards';
+import shuffle from '../helpers/cards';
 
 export default class RimPimPamScreen extends React.Component {
     static navigationOptions = {
@@ -18,8 +20,20 @@ export default class RimPimPamScreen extends React.Component {
         super(props);
         this.state = {
             //
+            deck: null,
         }
     }
+
+    getRimPimPamDeck = () => {
+        // get deck
+        this.setState({
+            deck: shuffle(CARDS)
+        })
+    }
+
+    componentDidMount(){
+        this.getRimPimPamDeck();
+      }
 
     render() {
         return (

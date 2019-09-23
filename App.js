@@ -38,7 +38,7 @@ const stackNavigator = createStackNavigator(
       screen: HomeScreen
     },
     Game:{
-      screen: RimPimPamScreen
+      screen: GameScreen
     }
   }
 );

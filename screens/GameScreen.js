@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { ImageBackground, StyleSheet, View, StatusBar, Text, Image } from 'react-native';
+import { ImageBackground, StyleSheet, View, StatusBar, Text, Image, TouchableOpacity } from 'react-native';
 import { Button } from 'react-native-elements';
 import ActionBar from '../components/ActionBar';
+// import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default class GameScreen extends React.Component {
     static navigationOptions = {
@@ -16,7 +17,7 @@ export default class GameScreen extends React.Component {
         return (
             <ImageBackground
                 style={styles.backgroundImage}
-                source={require('../assets/images/gameBackground.png')}>
+                source={require('../assets/images/background.png')}>
                 <StatusBar hidden={true}/>
                 <View style={{flex:5, flexDirection:'row'}}> 
                     <View style={{flex:2}}/>                
@@ -28,19 +29,19 @@ export default class GameScreen extends React.Component {
                             <View style={{flex:1, flexDirection:'row', justifyContent:'center', padding:5}}>
                                 <Image 
                                     style={{flex:1, width:'100%', height: '100%', resizeMode:'contain'}}
-                                    source={require('../assets/images/gold_chip.png')}/>
+                                    source={require('../assets/images/chip_one.png')}/>
                                 <Image 
                                     style={{flex:1, width:'100%', height: '100%', resizeMode:'contain'}}
-                                    source={require('../assets/images/gold_chip.png')}/>
+                                    source={require('../assets/images/chip_five.png')}/>
                                 <Image 
                                     style={{flex:1, width:'100%', height: '100%', resizeMode:'contain'}}
-                                    source={require('../assets/images/gold_chip.png')}/>
+                                    source={require('../assets/images/chip_ten.png')}/>
                                 <Image 
                                     style={{flex:1, width:'100%', height: '100%', resizeMode:'contain'}}
-                                    source={require('../assets/images/gold_chip.png')}/>
+                                    source={require('../assets/images/chip_twenty.png')}/>
                                 <Image 
                                     style={{flex:1, width:'100%', height: '100%', resizeMode:'contain'}}
-                                    source={require('../assets/images/gold_chip.png')}/>
+                                    source={require('../assets/images/chip_hundred.png')}/>
                             </View>
                         </View>
                     </View>
@@ -79,9 +80,20 @@ export default class GameScreen extends React.Component {
                 </View>
                 <View style={{flex:1, backgroundColor:'#0f2636', flexDirection:'row', padding:8}}>
                     <Image 
-                        style={{flex:5, width:'100%', height: '100%', resizeMode:'contain'}}
-                        source={require('../assets/images/rimpimpamsingle_logo.png')}/>
-                    <View style={{flex:5}}></View>
+                        style={{flex:1, width:'100%', height: '100%', resizeMode:'cover'}}
+                        source={require('../assets/images/game_logos/jackpot.png')}/>
+                    <View style={{flex:2,flexDirection:'row'}}>
+                        {/* <TouchableOpacity> */}
+                            <Image
+                                style={{flex:1, width:'100%', height:'100%', resizeMode:'contain'}}
+                                source={require('../assets/images/button_priceboard.png')}/>
+                        {/* </TouchableOpacity> */}
+                        {/* <TouchableOpacity> */}
+                            <Image
+                                style={{flex:1, width:'100%', height:'100%', resizeMode:'contain'}}
+                                source={require('../assets/images/best_players_score.png')}/>
+                        {/* </TouchableOpacity> */}
+                    </View>
                 </View>
             </ImageBackground>
         );
