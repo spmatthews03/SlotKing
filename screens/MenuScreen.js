@@ -20,25 +20,28 @@ export default class MenuScreen extends React.Component {
                 <View style={{flex:6, flexDirection:'row', flexWrap:'wrap', justifyContent:'space-between', alignItems:'center', padding:20}}>
                     <View style={{justifyContent:'center', alignItems:'center'}}>
                         <TouchableOpacity
+                            disabled={true}
                             onPress={()=> navigate('Game')}>
                             <Image
-                                style={{width:170, height:170}}
+                                style={{width:170, height:170, opacity:.5}}
                                 source={require('../assets/images/game_logos/rimpimpam_tournament.png')}/>
                         </TouchableOpacity>
                     </View>
                     <View style={{justifyContent:'center', alignItems:'center'}}>
                         <TouchableOpacity
+                            disabled={true}
                             onPress={()=> navigate('Game')}>
                             <Image
-                                style={{width:170, height:170}}
+                                style={{width:170, height:170, opacity:.5}}
                                 source={require('../assets/images/game_logos/rimpimpam_single.png')}/>
                         </TouchableOpacity>
                     </View>
                     <View style={{justifyContent:'center', alignItems:'center'}}>
                         <TouchableOpacity
+                            disabled={true}
                             onPress={()=> navigate('Game')}>
                             <Image
-                                style={{width:170, height:170}}
+                                style={{width:170, height:170, opacity:.5}}
                                 source={require('../assets/images/game_logos/wild.png')}/>
                         </TouchableOpacity>
                     </View>
@@ -52,25 +55,28 @@ export default class MenuScreen extends React.Component {
                     </View>
                     <View style={{justifyContent:'center', alignItems:'center'}}>
                         <TouchableOpacity
+                            disabled={true}
                             onPress={()=> navigate('Game')}>
                             <Image
-                                style={{width:170, height:170}}
+                                style={{width:170, height:170, opacity:.5}}
                                 source={require('../assets/images/game_logos/bonusbonus.png')}/>
                         </TouchableOpacity>
                     </View>
                     <View style={{justifyContent:'center', alignItems:'center'}}>
                         <TouchableOpacity
+                            disabled={true}
                             onPress={()=> navigate('Game')}>
                             <Image
-                                style={{width:170, height:170}}
+                                style={{width:170, height:170, opacity:.5}}
                                 source={require('../assets/images/game_logos/paynplay.png')}/>
                         </TouchableOpacity>
                     </View>
                     <View style={{justifyContent:'center', alignItems:'center'}}>
                         <TouchableOpacity
+                            disabled={true}
                             onPress={()=> navigate('Game')}>
                             <Image
-                                style={{width:170, height:170}}
+                                style={{width:170, height:170, opacity:.5}}
                                 source={require('../assets/images/game_logos/skill_meter.png')}/>
                         </TouchableOpacity>
                     </View>

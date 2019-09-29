@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { ImageBackground, StyleSheet, View, StatusBar, Text, Image, TouchableOpacity } from 'react-native';
-import { Button } from 'react-native-elements';
 import JackpotBar from '../components/JackpotBar';
 
 export default class GameScreen extends React.Component {
@@ -12,7 +11,10 @@ export default class GameScreen extends React.Component {
         headerLeft: null
 
     }
+
     render() {
+        const{navigate} = this.props.navigation;
+
         return (
             <ImageBackground
                 style={styles.backgroundImage}
@@ -111,7 +113,7 @@ export default class GameScreen extends React.Component {
                                 source={require('../assets/images/button_options.png')}/>
                         </TouchableOpacity>
                         <TouchableOpacity
-                            onPress={()=> alert('image clicked')}
+                            onPress={()=> navigate('JackpotDealerPriceboard')}
                             style={{flex:2, width:'100%', padding:2, alignItems:'center', justifyContent:'center'}}>
                             <Image
                                 style={{width:'100%', resizeMode:'contain'}}

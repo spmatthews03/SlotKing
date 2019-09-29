@@ -14,6 +14,7 @@ import React, {Fragment} from 'react';
 import HomeScreen from './screens/HomeScreen';
 import GameScreen from './screens/GameScreen';
 import MenuScreen from './screens/MenuScreen';
+import JackpotDealerPriceboard from './screens/JackpotDealerPriceboard';
 import RimPimPamScreen from './screens/RimPimPamScreen';
 import {
   SafeAreaView,
@@ -43,8 +44,10 @@ const stackNavigator = createStackNavigator(
     },
     Game:{
       screen: GameScreen
+    },
+    JackpotDealerPriceboard:{
+      screen: JackpotDealerPriceboard
     }
-
   }
 );
 
