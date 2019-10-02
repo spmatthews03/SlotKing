@@ -12,10 +12,10 @@ import {
 } from 'react-navigation';
 import React, {Fragment} from 'react';
 import HomeScreen from './screens/HomeScreen';
-import GameScreen from './screens/GameScreen';
+import GameScreen from './screens/games/GameScreen';
 import MenuScreen from './screens/MenuScreen';
 import JackpotDealerPriceboard from './screens/JackpotDealerPriceboard';
-import RimPimPamScreen from './screens/RimPimPamScreen';
+import RimPimPamScreen from './screens/games/RimPimPamScreen';
 import {
   SafeAreaView,
   StyleSheet,

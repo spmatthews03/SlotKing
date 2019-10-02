@@ -24,7 +24,7 @@ export default class MenuScreen extends React.Component {
                             onPress={()=> navigate('Game')}>
                             <Image
                                 style={{width:170, height:170, opacity:.5}}
-                                source={require('../assets/images/game_logos/rimpimpam_tournament.png')}/>
+                                source={require('../assets/images/buttons/button_rimpim_tournament.png')}/>
                         </TouchableOpacity>
                     </View>
                     <View style={{justifyContent:'center', alignItems:'center'}}>
@@ -33,7 +33,7 @@ export default class MenuScreen extends React.Component {
                             onPress={()=> navigate('Game')}>
                             <Image
                                 style={{width:170, height:170, opacity:.5}}
-                                source={require('../assets/images/game_logos/rimpimpam_single.png')}/>
+                                source={require('../assets/images/buttons/button_rimpim_single.png')}/>
                         </TouchableOpacity>
                     </View>
                     <View style={{justifyContent:'center', alignItems:'center'}}>
@@ -42,7 +42,7 @@ export default class MenuScreen extends React.Component {
                             onPress={()=> navigate('Game')}>
                             <Image
                                 style={{width:170, height:170, opacity:.5}}
-                                source={require('../assets/images/game_logos/wild.png')}/>
+                                source={require('../assets/images/buttons/button_wild.png')}/>
                         </TouchableOpacity>
                     </View>
                     <View style={{justifyContent:'center', alignItems:'center'}}>
@@ -50,7 +50,7 @@ export default class MenuScreen extends React.Component {
                             onPress={()=> navigate('Game')}>
                             <Image
                                 style={{width:170, height:170}}
-                                source={require('../assets/images/game_logos/jackpot.png')}/>
+                                source={require('../assets/images/buttons/button_jackpot.png')}/>
                         </TouchableOpacity>
                     </View>
                     <View style={{justifyContent:'center', alignItems:'center'}}>
@@ -59,7 +59,7 @@ export default class MenuScreen extends React.Component {
                             onPress={()=> navigate('Game')}>
                             <Image
                                 style={{width:170, height:170, opacity:.5}}
-                                source={require('../assets/images/game_logos/bonusbonus.png')}/>
+                                source={require('../assets/images/buttons/button_bonus.png')}/>
                         </TouchableOpacity>
                     </View>
                     <View style={{justifyContent:'center', alignItems:'center'}}>
@@ -68,7 +68,7 @@ export default class MenuScreen extends React.Component {
                             onPress={()=> navigate('Game')}>
                             <Image
                                 style={{width:170, height:170, opacity:.5}}
-                                source={require('../assets/images/game_logos/paynplay.png')}/>
+                                source={require('../assets/images/buttons/button_play.png')}/>
                         </TouchableOpacity>
                     </View>
                     <View style={{justifyContent:'center', alignItems:'center'}}>
@@ -77,7 +77,7 @@ export default class MenuScreen extends React.Component {
                             onPress={()=> navigate('Game')}>
                             <Image
                                 style={{width:170, height:170, opacity:.5}}
-                                source={require('../assets/images/game_logos/skill_meter.png')}/>
+                                source={require('../assets/images/buttons/button_skill.png')}/>
                         </TouchableOpacity>
                     </View>
                 </View>

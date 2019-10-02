@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { ImageBackground, StyleSheet, View, StatusBar, Text, Image, TouchableOpacity } from 'react-native';
-import JackpotBar from '../components/JackpotBar';
+import JackpotBar from '../../components/JackpotBar';
 
 export default class GameScreen extends React.Component {
     static navigationOptions = {
@@ -44,27 +44,27 @@ export default class GameScreen extends React.Component {
                                     <TouchableOpacity style={{flex:1,width:'100%', padding:5}}>
                                         <Image 
                                             style={{flex:1, width:'100%', height: '100%', resizeMode:'contain'}}
-                                            source={require('../assets/images/chip_one.png')}/>
+                                            source={require('../assets/images/chips/chip_one.png')}/>
                                     </TouchableOpacity>
                                     <TouchableOpacity style={{flex:1,width:'100%', padding:5}}>
                                         <Image 
                                             style={{flex:1, width:'100%', height: '100%', resizeMode:'contain'}}
-                                            source={require('../assets/images/chip_five.png')}/>
+                                            source={require('../assets/images/chips/chip_five.png')}/>
                                     </TouchableOpacity>
                                     <TouchableOpacity style={{flex:1,width:'100%', padding:5}}>
                                         <Image 
                                             style={{flex:1, width:'100%', height: '100%', resizeMode:'contain'}}
-                                            source={require('../assets/images/chip_ten.png')}/>
+                                            source={require('../assets/images/chips/chip_ten.png')}/>
                                     </TouchableOpacity>
                                     <TouchableOpacity style={{flex:1,width:'100%', padding:5}}>
                                         <Image 
                                             style={{flex:1, width:'100%', height: '100%', resizeMode:'contain'}}
-                                            source={require('../assets/images/chip_twenty.png')}/>
+                                            source={require('../assets/images/chips/chip_twenty.png')}/>
                                     </TouchableOpacity>
                                     <TouchableOpacity style={{flex:1,width:'100%', padding:5}}>
                                         <Image 
                                             style={{flex:1, width:'100%', height: '100%', resizeMode:'contain'}}
-                                            source={require('../assets/images/chip_hundred.png')}/>
+                                            source={require('../assets/images/chips/chip_hundred.png')}/>
                                     </TouchableOpacity>
                                 </View>
                                 <View style={{flex:1, flexDirection:'row', justifyContent:'center', padding:5}}>
