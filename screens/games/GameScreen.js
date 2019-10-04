@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import JackpotBar from '../../components/JackpotBar';
+import MenuFooter from '../../components/MenuFooter';
 
 export default class GameScreen extends React.Component {
   static navigationOptions = {
@@ -80,30 +81,13 @@ export default class GameScreen extends React.Component {
       >
         <StatusBar hidden={true} />
         <View style={{ flex: 5, flexDirection: 'row' }}>
-          {/* <View style={{flex:2}}/>                 */}
           <View style={{ flex: 4 }}>
             <View style={{ flex: 1, paddingTop: 10 }}>
-              <Image
-                style={{
-                  flex: 3,
-                  width: '100%',
-                  height: '100%',
-                  resizeMode: 'contain',
-                }}
-                source={require('../../assets/images/canvas.png')}
-              />
+              <Image style={{flex: 3, width: '100%',  height: '100%', resizeMode: 'contain'}}
+                source={require('../../assets/images/canvas.png')}/>
               <View style={{ flex: 2, justifyContent: 'center', padding: 5 }}>
-                <View
-                  style={{
-                    flex: 1,
-                    flexDirection: 'row',
-                    justifyContent: 'center',
-                    paddingHorizontal: 50,
-                  }}
-                >
-                  <TouchableOpacity
-                    style={{ flex: 1, width: '100%', padding: 10 }}
-                  >
+                <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', paddingHorizontal: 50}}>
+                  <TouchableOpacity style={{ flex: 1, width: '100%', padding: 10 }}>
                     <Image
                       style={{
                         flex: 1,
@@ -138,76 +122,53 @@ export default class GameScreen extends React.Component {
                 >
                   <TouchableOpacity
                     onPress={() => this.setHighlightedChip('yellow')}
-                    style={{ flex: 1, width: '100%', padding: 5 }}
+                    style={styles.flexOneStyles}
                   >
                     <Image
-                      style={{
-                        flex: 1,
-                        width: '100%',
-                        height: '100%',
-                        resizeMode: 'contain',
-                        opacity: this.state.opacities.yellow,
-                      }}
+                      style={[
+                        styles.chipStyle, {opacity: this.state.opacities.yellow}
+                      ]}
                       source={require('../../assets/images/chips/chip_one.png')}
                     />
                   </TouchableOpacity>
                   <TouchableOpacity
                     onPress={() => this.setHighlightedChip('purple')}
-                    style={{ flex: 1, width: '100%', padding: 5 }}
+                    style={styles.flexOneStyles}
                   >
                     <Image
-                      style={{
-                        flex: 1,
-                        width: '100%',
-                        height: '100%',
-                        resizeMode: 'contain',
-                        opacity: this.state.opacities.purple,
-                      }}
+                      style={[
+                        styles.chipStyle, {opacity: this.state.opacities.purple}
+                      ]}
                       source={require('../../assets/images/chips/chip_five.png')}
                     />
                   </TouchableOpacity>
                   <TouchableOpacity
                     onPress={() => this.setHighlightedChip('green')}
-                    style={{ flex: 1, width: '100%', padding: 5 }}
+                    style={styles.flexOneStyles}
                   >
                     <Image
-                      style={{
-                        flex: 1,
-                        width: '100%',
-                        height: '100%',
-                        resizeMode: 'contain',
-                        opacity: this.state.opacities.green,
-                      }}
+                      style={[
+                        styles.chipStyle, {opacity: this.state.opacities.green}
+                      ]}
                       source={require('../../assets/images/chips/chip_ten.png')}
                     />
                   </TouchableOpacity>
                   <TouchableOpacity
                     onPress={() => this.setHighlightedChip('red')}
-                    style={{ flex: 1, width: '100%', padding: 5 }}
-                  >
+                    style={styles.flexOneStyles}>
                     <Image
-                      style={{
-                        flex: 1,
-                        width: '100%',
-                        height: '100%',
-                        resizeMode: 'contain',
-                        opacity: this.state.opacities.red,
-                      }}
-                      source={require('../../assets/images/chips/chip_twenty.png')}
-                    />
+                      style={[
+                        styles.chipStyle, {opacity: this.state.opacities.red}
+                      ]}
+                      source={require('../../assets/images/chips/chip_twenty.png')}/>
                   </TouchableOpacity>
                   <TouchableOpacity
                     onPress={() => this.setHighlightedChip('gold')}
-                    style={{ flex: 1, width: '100%', padding: 5 }}
-                  >
+                    style={styles.flexOneStyles}>
                     <Image
-                      style={{
-                        flex: 1,
-                        width: '100%',
-                        height: '100%',
-                        resizeMode: 'contain',
-                        opacity: this.state.opacities.gold,
-                      }}
+                      style={[
+                        styles.chipStyle, {opacity: this.state.opacities.gold}
+                      ]}
                       source={require('../../assets/images/chips/chip_hundred.png')}
                     />
                   </TouchableOpacity>
@@ -218,46 +179,21 @@ export default class GameScreen extends React.Component {
                     flexDirection: 'row',
                     justifyContent: 'center',
                     paddingHorizontal: 5,
-                  }}
-                >
+                  }}>
                   <TouchableOpacity
-                    style={{ flex: 1, width: '100%', padding: 5 }}
-                  >
-                    <Image
-                      style={{
-                        flex: 1,
-                        width: '100%',
-                        height: '100%',
-                        resizeMode: 'contain',
-                      }}
-                      source={require('../../assets/images/reset_bets.png')}
-                    />
+                    style={styles.flexOneStyles}>
+                    <Image style={styles.bottomButtonsStyle}
+                      source={require('../../assets/images/reset_bets.png')}/>
                   </TouchableOpacity>
                   <TouchableOpacity
-                    style={{ flex: 1, width: '100%', padding: 5 }}
-                  >
-                    <Image
-                      style={{
-                        flex: 1,
-                        width: '100%',
-                        height: '100%',
-                        resizeMode: 'contain',
-                      }}
-                      source={require('../../assets/images/bet_repeat.png')}
-                    />
+                    style={styles.flexOneStyles}>
+                    <Image style={styles.bottomButtonsStyle}
+                      source={require('../../assets/images/bet_repeat.png')}/>
                   </TouchableOpacity>
                   <TouchableOpacity
-                    style={{ flex: 1, width: '100%', padding: 5 }}
-                  >
-                    <Image
-                      style={{
-                        flex: 1,
-                        width: '100%',
-                        height: '100%',
-                        resizeMode: 'contain',
-                      }}
-                      source={require('../../assets/images/total_bet.png')}
-                    />
+                    style={styles.flexOneStyles}>
+                    <Image style={styles.bottomButtonsStyle}
+                      source={require('../../assets/images/total_bet.png')}/>
                     <View
                       style={{
                         position: 'absolute',
@@ -267,107 +203,22 @@ export default class GameScreen extends React.Component {
                         bottom: 0,
                         justifyContent: 'center',
                         alignItems: 'center',
-                      }}
-                    >
+                      }}>
                       <Text>{this.state.total_bet}</Text>
                     </View>
                   </TouchableOpacity>
                   <TouchableOpacity
-                    style={{ flex: 1, width: '100%', padding: 5 }}
-                  >
+                    style={styles.flexOneStyles}>
                     <Image
-                      style={{
-                        flex: 1,
-                        width: '100%',
-                        height: '100%',
-                        resizeMode: 'contain',
-                      }}
-                      source={require('../../assets/images/gold_play.png')}
-                    />
+                      style={styles.bottomButtonsStyle}
+                      source={require('../../assets/images/gold_play.png')}/>
                   </TouchableOpacity>
                 </View>
               </View>
             </View>
           </View>
         </View>
-        <View
-          style={{
-            flex: 1,
-            backgroundColor: '#0f2636',
-            flexDirection: 'row',
-            padding: 8,
-          }}
-        >
-          <Image
-            style={{
-              flex: 1,
-              width: '100%',
-              height: '100%',
-              resizeMode: 'cover',
-            }}
-            source={require('../../assets/images/game_logos/jackpot.png')}
-          />
-          <View style={{ flex: 2, flexDirection: 'row' }}>
-            <TouchableOpacity
-              onPress={() => alert('image clicked')}
-              style={{
-                flex: 1,
-                width: '100%',
-                padding: 2,
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
-              <Image
-                style={{ width: '100%', resizeMode: 'contain' }}
-                source={require('../../assets/images/buttons/button_friends.png')}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => alert('image clicked')}
-              style={{
-                flex: 1,
-                width: '100%',
-                padding: 2,
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
-              <Image
-                style={{ width: '100%', resizeMode: 'contain' }}
-                source={require('../../assets/images/buttons/button_options.png')}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => navigate('JackpotDealerPriceboard')}
-              style={{
-                flex: 2,
-                width: '100%',
-                padding: 2,
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
-              <Image
-                style={{ width: '100%', resizeMode: 'contain' }}
-                source={require('../../assets/images/buttons/button_priceboard.png')}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{
-                flex: 2,
-                padding: 2,
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
-              <Image
-                style={{ width: '100%', resizeMode: 'contain' }}
-                source={require('../../assets/images/buttons/best_players_score.png')}
-              />
-            </TouchableOpacity>
-          </View>
-        </View>
+        <MenuFooter/>
       </ImageBackground>
     );
   }
@@ -386,5 +237,22 @@ const styles = StyleSheet.create({
     flex: 1,
     width: undefined,
     height: undefined
+  },
+  chipStyle:{
+    flex: 1,
+    width: '100%',
+    height: '100%',
+    resizeMode: 'contain'
+  },
+  bottomButtonsStyle:{
+    flex: 1,
+    width: '100%',
+    height: '100%',
+    resizeMode: 'contain',
+  },
+  flexOneStyles:{
+    flex: 1,
+    width: '100%',
+    padding: 5
   }
 });
