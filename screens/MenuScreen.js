@@ -27,7 +27,7 @@ export default class MenuScreen extends React.Component {
                                 source={require('../assets/images/buttons/button_rimpim_tournament.png')}/>
                         </TouchableOpacity>
                     </View>
-                    <View style={{justifyContent:'center', alignItems:'center'}}>
+                    <View style={{justifyContent:'center', alignItems:'center', padding:5}}>
                         <TouchableOpacity
                             disabled={true}
                             onPress={()=> navigate('Game')}>
@@ -36,7 +36,7 @@ export default class MenuScreen extends React.Component {
                                 source={require('../assets/images/buttons/button_rimpim_single.png')}/>
                         </TouchableOpacity>
                     </View>
-                    <View style={{justifyContent:'center', alignItems:'center'}}>
+                    <View style={{justifyContent:'center', alignItems:'center', padding:5}}>
                         <TouchableOpacity
                             disabled={true}
                             onPress={()=> navigate('Game')}>
@@ -45,7 +45,7 @@ export default class MenuScreen extends React.Component {
                                 source={require('../assets/images/buttons/button_wild.png')}/>
                         </TouchableOpacity>
                     </View>
-                    <View style={{justifyContent:'center', alignItems:'center'}}>
+                    <View style={{justifyContent:'center', alignItems:'center', padding:5}}>
                         <TouchableOpacity
                             onPress={()=> navigate('Game')}>
                             <Image
@@ -53,7 +53,7 @@ export default class MenuScreen extends React.Component {
                                 source={require('../assets/images/buttons/button_jackpot.png')}/>
                         </TouchableOpacity>
                     </View>
-                    <View style={{justifyContent:'center', alignItems:'center'}}>
+                    <View style={{justifyContent:'center', alignItems:'center', padding:5}}>
                         <TouchableOpacity
                             disabled={true}
                             onPress={()=> navigate('Game')}>
@@ -62,16 +62,16 @@ export default class MenuScreen extends React.Component {
                                 source={require('../assets/images/buttons/button_bonus.png')}/>
                         </TouchableOpacity>
                     </View>
-                    <View style={{justifyContent:'center', alignItems:'center'}}>
+                    <View style={{justifyContent:'center', alignItems:'center', padding:5}}>
                         <TouchableOpacity
                             disabled={true}
                             onPress={()=> navigate('Game')}>
                             <Image
                                 style={{width:170, height:170, opacity:.5}}
-                                source={require('../assets/images/buttons/button_play.png')}/>
+                                source={require('../assets/images/buttons/button_pay.png')}/>
                         </TouchableOpacity>
                     </View>
-                    <View style={{justifyContent:'center', alignItems:'center'}}>
+                    <View style={{justifyContent:'center', alignItems:'center', padding:5}}>
                         <TouchableOpacity
                             disabled={true}
                             onPress={()=> navigate('Game')}>

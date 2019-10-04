@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { ImageBackground, StyleSheet, View, StatusBar, Text, Image } from 'react-native';
-import { Button } from 'react-native-elements';
 import ActionBar from '../components/ActionBar';
-import CardPlacer from '../components/CardPlacer';
 import Cards, { CARDS } from '../constants/cards';
 import shuffle from '../helpers/cards';
 
@@ -39,7 +37,7 @@ export default class RimPimPamScreen extends React.Component {
         return (
             <ImageBackground
                 style={styles.backgroundImage}
-                source={require('../assets/images/gameBackground.png')}>
+                source={require('../../assets/images/gameBackground.png')}>
                 <StatusBar hidden={true}/>
                 <View style={{flex:5}}> 
                     {/* <View style={{flex:2}}/>                 */}
@@ -47,26 +45,26 @@ export default class RimPimPamScreen extends React.Component {
                         <View style={{flex:1, padding:10}}>
                             <Image 
                                 style={{flex:5, width:'100%', height: '100%', resizeMode:'contain'}}
-                                source={require('../assets/images/gameboard.png')}/>
+                                source={require('../../assets/images/canvas.png')}/>
                             <View style={{flex:2, flexDirection:'row', justifyContent:'center', padding:2}}>
                                 <View style={{flex:2,flexDirection:'row', justifyContent:'center',paddingRight:10}}>
                                     <Image 
                                         style={{flex:1, width:'100%', height: '100%', resizeMode:'contain',margin:5}}
-                                        source={require('../assets/images/blue_card.png')}/>
+                                        source={require('../../assets/images/blue_card.png')}/>
                                     <Image 
                                         style={{flex:1, width:'100%', height: '100%', resizeMode:'contain',margin:5}}
-                                        source={require('../assets/images/bar_card.png')}/>
+                                        source={require('../../assets/images/bar_card.png')}/>
                                 </View>
                                 <View style={{flex:3, flexDirection:'row',paddingLeft:10}}>
                                     <Image 
                                         style={{flex:1, width:'100%', height: '100%', resizeMode:'contain',margin:5}}
-                                        source={require('../assets/images/blue_card.png')}/>
+                                        source={require('../../assets/images/blue_card.png')}/>
                                     <Image 
                                         style={{flex:1, width:'100%', height: '100%', resizeMode:'contain',margin:5}}
-                                        source={require('../assets/images/wild_card.png')}/>
+                                        source={require('../../assets/images/wild_card.png')}/>
                                     <Image 
                                         style={{flex:1, width:'100%', height: '100%', resizeMode:'contain',margin:5}}
-                                        source={require('../assets/images/crown_card.png')}/>
+                                        source={require('../../assets/images/crown_card.png')}/>
                                 </View>
                             </View>
                         </View>
@@ -75,7 +73,7 @@ export default class RimPimPamScreen extends React.Component {
                 <View style={{flex:1, backgroundColor:'#0f2636', flexDirection:'row', padding:5}}>
                     <Image 
                         style={{flex:1, width:'100%', height: '100%', resizeMode:'contain'}}
-                        source={require('../assets/images/rimpimpamsingle_logo.png')}/>
+                        source={require('../../assets/images/rimpimpamsingle_logo.png')}/>
                     <View style={{flex:3}}></View>
                 </View>
             </ImageBackground>

@@ -15,7 +15,7 @@ export default class MenuFooter extends Component {
                     <TouchableOpacity style={{padding:2, justifyContent:'center'}}>
                         <Image
                             style={{width:139, height:38}}
-                            source={require('../assets/images/button_invite.png')}/>
+                            source={require('../assets/images/buttons/button_invite.png')}/>
                     </TouchableOpacity>
                 </View>
                 <View style={{justifyContent:'center', alignItems:'center'}}>
@@ -24,7 +24,7 @@ export default class MenuFooter extends Component {
                         style={{padding :2, justifyContent:'center'}}>
                         <Image
                             style={{width:52, height:38}}
-                            source={require('../assets/images/button_friends.png')}/>
+                            source={require('../assets/images/buttons/button_friends.png')}/>
                     </TouchableOpacity>
                 </View>
                 <View style={{justifyContent:'center', alignItems:'center'}}>
@@ -33,7 +33,7 @@ export default class MenuFooter extends Component {
                     style={{padding:2, justifyContent:'center'}}>
                     <Image
                         style={{width:52, height: 38}}
-                        source={require('../assets/images/button_options.png')}/>
+                        source={require('../assets/images/buttons/button_options.png')}/>
                 </TouchableOpacity>
                 </View>
             </View>
