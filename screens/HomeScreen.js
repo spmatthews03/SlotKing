@@ -24,13 +24,13 @@ export default class HomeScreen extends React.Component {
                             style={{flex:1, width:'100%', height:'100%', resizeMode:'contain'}}
                             source={require('../assets/images/tableslotking.png')}/>
                     </View>
-                    <View style={{flex:1,  paddingHorizontal:20, paddingTop:50, justifyContent:'center', alignItems:'center'}}>
+                    <View style={{flex:1,  paddingHorizontal:10, paddingTop:50, justifyContent:'center', alignItems:'center'}}>
                         <View style={{justifyContent:'center', alignItems:'center'}}>
                             <TouchableOpacity
                                 onPress={()=> navigate('Menu')}>
                                 <Image
-                                    style={{width:130, height:60}}
-                                    source={require('../assets/images/play.png')}/>
+                                    style={{width:191, height:51}}
+                                    source={require('../assets/images/buttons/button_play.png')}/>
                             </TouchableOpacity>
                         </View>
                     </View>

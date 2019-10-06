@@ -1,75 +1,74 @@
-import React, { Component } from 'react';
-import {
-  ImageBackground,
-  StyleSheet,
-  View,
-  StatusBar,
-  Text,
-  Image,
-  TouchableOpacity,
-} from 'react-native';
+import React from 'react';
+import { Image, ImageBackground, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import ChipBar from '../../components/ChipBar';
 import JackpotBar from '../../components/JackpotBar';
 import MenuFooter from '../../components/MenuFooter';
+import Canvas from '../../components/canvas/Canvas';
 
 export default class GameScreen extends React.Component {
-  static navigationOptions = {
-    headerTitle: <JackpotBar />,
-    headerStyle: {
-      backgroundColor: '#0f2636'
-    },
-    headerLeft: null
+  static navigationOptions = ({navigation}) => {
+    return{
+      headerTitle: <JackpotBar gameCredit={navigation.getParam('credit')}/>,
+        headerStyle: {
+          backgroundColor: '#0f2636'
+        },
+        headerLeft: null
+    };
   };
 
   constructor(props) {
     super(props);
 
     this.state = {
-      highlighted_chip: 1,
+      credit: 0,
+      highlighted_chip: 0,
       total_bet: 0,
-      opacities: {
-        yellow: 0.2,
-        purple: 0.2,
-        green: 0.2,
-        red: 0.2,
-        gold: 0.2
-      }
+      jackpotDisable: false,
+      playDisable: true,
+      previous_bet: 0,
     };
   }
 
-  setHighlightedChip = color => {
-    this.state.opacities.yellow = 0.2;
-    this.state.opacities.purple = 0.2;
-    this.state.opacities.green = 0.2;
-    this.state.opacities.red = 0.2;
-    this.state.opacities.gold = 0.2;
+  _getCredit = () => {
+    this.setState({ credit: 10})
+  }
 
-    if (color == 'yellow') {
-      this.state.opacities.yellow = 1;
-      this.state.highlighted_chip = 1;
-    }
-    if (color == 'purple') {
-      this.state.opacities.purple = 1;
-      this.state.highlighted_chip = 5;
-    }
-    if (color == 'green') {
-      this.state.opacities.green = 1;
-      this.state.highlighted_chip = 10;
-    }
-    if (color == 'red') {
-      this.state.opacities.red = 1;
-      this.state.highlighted_chip = 25;
-    }
-    if (color == 'gold') {
-      this.state.opacities.gold = 1;
-      this.state.highlighted_chip = 100;
-    }
+  componentDidMount(){
+    this.props.navigation.setParams({ credit: this._getCredit});
+  }
 
+  betAll = () => {
     this.setState({
-      highlighted_chip: this.state.highlighted_chip,
-      opacities: this.state.opacities,
-      total_bet: this.state.total_bet + this.state.highlighted_chip,
-    });
-  };
+      total_bet: this.state.total_bet + this.state.highlighted_chip * 16,
+    })
+  }
+
+  betRepeat = () => {
+    this.setState({
+      total_bet: this.state.previous_bet,
+    })
+  }
+
+  play = () => {
+    this.setState({
+      previous_bet: this.state.total_bet,
+      total_bet: 0,
+    })
+  }
+
+  betJackpot = () => {
+    this.setState({
+      total_bet: this.state.total_bet + this.state.highlighted_chip * 16,
+      jackpotDisable: true
+    })
+  }
+
+  chipBarCallback = (data) => {
+    this.setState({
+      highlighted_chip: data
+    })
+  }
+
 
   render() {
     const { navigate } = this.props.navigation;
@@ -80,14 +79,15 @@ export default class GameScreen extends React.Component {
         source={require("../../assets/images/background.png")}
       >
         <StatusBar hidden={true} />
-        <View style={{ flex: 5, flexDirection: 'row' }}>
-          <View style={{ flex: 4 }}>
-            <View style={{ flex: 1, paddingTop: 10 }}>
-              <Image style={{flex: 3, width: '100%',  height: '100%', resizeMode: 'contain'}}
-                source={require('../../assets/images/canvas.png')}/>
+        <View style={{ flex: 6, flexDirection: 'row' }}>
+          <View style={{ flex: 4, paddingVertical:10}}>
+            <View style={{ flex: 1}}>
+              <Canvas/>
               <View style={{ flex: 2, justifyContent: 'center', padding: 5 }}>
                 <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', paddingHorizontal: 50}}>
-                  <TouchableOpacity style={{ flex: 1, width: '100%', padding: 10 }}>
+                  <TouchableOpacity
+                    onPress={() => this.betAll()}
+                    style={{ flex: 1, width: '100%', padding: 10 }}>
                     <Image
                       style={{
                         flex: 1,
@@ -99,8 +99,9 @@ export default class GameScreen extends React.Component {
                     />
                   </TouchableOpacity>
                   <TouchableOpacity
-                    style={{ flex: 1, width: '100%', padding: 10 }}
-                  >
+                    onPress={() => this.betJackpot()}
+                    disabled={this.state.highlighted_chip == 0 ? true : false}
+                    style={{ flex: 1, width: '100%', padding: 10, opacity:this.state.highlighted_chip == 0 ? 0.2 : 1 }}>
                     <Image
                       style={{
                         flex: 1,
@@ -112,67 +113,7 @@ export default class GameScreen extends React.Component {
                     />
                   </TouchableOpacity>
                 </View>
-                <View
-                  style={{
-                    flex: 1,
-                    flexDirection: 'row',
-                    justifyContent: 'center',
-                    paddingHorizontal: 35,
-                  }}
-                >
-                  <TouchableOpacity
-                    onPress={() => this.setHighlightedChip('yellow')}
-                    style={styles.flexOneStyles}
-                  >
-                    <Image
-                      style={[
-                        styles.chipStyle, {opacity: this.state.opacities.yellow}
-                      ]}
-                      source={require('../../assets/images/chips/chip_one.png')}
-                    />
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    onPress={() => this.setHighlightedChip('purple')}
-                    style={styles.flexOneStyles}
-                  >
-                    <Image
-                      style={[
-                        styles.chipStyle, {opacity: this.state.opacities.purple}
-                      ]}
-                      source={require('../../assets/images/chips/chip_five.png')}
-                    />
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    onPress={() => this.setHighlightedChip('green')}
-                    style={styles.flexOneStyles}
-                  >
-                    <Image
-                      style={[
-                        styles.chipStyle, {opacity: this.state.opacities.green}
-                      ]}
-                      source={require('../../assets/images/chips/chip_ten.png')}
-                    />
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    onPress={() => this.setHighlightedChip('red')}
-                    style={styles.flexOneStyles}>
-                    <Image
-                      style={[
-                        styles.chipStyle, {opacity: this.state.opacities.red}
-                      ]}
-                      source={require('../../assets/images/chips/chip_twenty.png')}/>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    onPress={() => this.setHighlightedChip('gold')}
-                    style={styles.flexOneStyles}>
-                    <Image
-                      style={[
-                        styles.chipStyle, {opacity: this.state.opacities.gold}
-                      ]}
-                      source={require('../../assets/images/chips/chip_hundred.png')}
-                    />
-                  </TouchableOpacity>
-                </View>
+                <ChipBar parentCallback={this.chipBarCallback}/>
                 <View
                   style={{
                     flex: 1,
@@ -181,11 +122,13 @@ export default class GameScreen extends React.Component {
                     paddingHorizontal: 5,
                   }}>
                   <TouchableOpacity
+                    onPress={() => this.setState({total_bet: 0})}
                     style={styles.flexOneStyles}>
                     <Image style={styles.bottomButtonsStyle}
                       source={require('../../assets/images/reset_bets.png')}/>
                   </TouchableOpacity>
                   <TouchableOpacity
+                    onPress={() => this.betRepeat()}
                     style={styles.flexOneStyles}>
                     <Image style={styles.bottomButtonsStyle}
                       source={require('../../assets/images/bet_repeat.png')}/>
@@ -208,7 +151,9 @@ export default class GameScreen extends React.Component {
                     </View>
                   </TouchableOpacity>
                   <TouchableOpacity
-                    style={styles.flexOneStyles}>
+                    onPress={() => this.play()}
+                    disabled={this.state.total_bet == 0 ? true : false}
+                    style={[styles.flexOneStyles, {opacity:this.state.total_bet == 0 ? 0.2 : 1} ]}>
                     <Image
                       style={styles.bottomButtonsStyle}
                       source={require('../../assets/images/gold_play.png')}/>
@@ -237,12 +182,6 @@ const styles = StyleSheet.create({
     flex: 1,
     width: undefined,
     height: undefined
-  },
-  chipStyle:{
-    flex: 1,
-    width: '100%',
-    height: '100%',
-    resizeMode: 'contain'
   },
   bottomButtonsStyle:{
     flex: 1,
