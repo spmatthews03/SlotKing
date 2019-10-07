@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Animated, View, Image, StyleSheet, Easing, TouchableOpacity, ImageBackground } from 'react-native';
+import LeftBets from './LeftBets';
 
 
 export default class Canvas extends Component {
@@ -81,6 +82,7 @@ export default class Canvas extends Component {
                       </View>
                     </View>
                   </View>
+                  <LeftBets/>
                 </ImageBackground>
               </View>
             </View>
