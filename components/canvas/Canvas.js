@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Animated, View, Image, StyleSheet, Easing, TouchableOpacity, ImageBackground } from 'react-native';
 import LeftBets from './LeftBets';
+import BetMarker from './BetMarker';
 
 
 export default class Canvas extends Component {
@@ -30,59 +31,84 @@ export default class Canvas extends Component {
                 <ImageBackground style={{height:'100%',resizeMode:'contain'}}
                   source={require('../../assets/images/canvas/canvas_frame_complete.png')}>
                   <View style={{flex:1, paddingVertical:30, paddingHorizontal:15}}>
+                  <View style={{flex:1}}>
+                    {/* top row of the red bet markers */}
                     <View style={{flex:1, flexDirection:'row',}}>
-                      <View style={{flex:1, alignItems:'center',paddingVertical:5}}>
-                            <Image
-                                style={{height:'100%', resizeMode:'contain'}}
-                                source={require('../../assets/images/canvas/card_holder.png')}/>
-                      </View>
-                      <View style={{flex:1, alignItems:'center',paddingVertical:5}}>
-                            <Image
-                                style={{height:'100%', resizeMode:'contain'}}
-                                source={require('../../assets/images/canvas/card_holder.png')}/>
-                      </View>
-                      <View style={{flex:1, alignItems:'center',paddingVertical:5}}>
-                            <Image
-                                style={{height:'100%', resizeMode:'contain'}}
-                                source={require('../../assets/images/canvas/card_holder.png')}/>
-                      </View>
+                      <BetMarker direction='down'/>
+                      <BetMarker direction='down'/>
+                      <BetMarker direction='down'/>
+                      <BetMarker direction='down'/>
+                      <BetMarker direction='down'/>
                     </View>
-                    <View style={{flex:1, flexDirection:'row'}}>
+                    {/* top row of card placers markers */}
+                    <View style={{flex:1, flexDirection:'row',}}>
+                      <BetMarker direction='right'/>
                       <View style={{flex:1, alignItems:'center',paddingVertical:5}}>
                             <Image
-                                style={{height:'100%', resizeMode:'contain'}}
+                                style={{width:'100%', height:'100%', resizeMode:'contain'}}
                                 source={require('../../assets/images/canvas/card_holder.png')}/>
                       </View>
                       <View style={{flex:1, alignItems:'center',paddingVertical:5}}>
                             <Image
-                                style={{height:'100%', resizeMode:'contain'}}
+                                style={{width:'100%', height:'100%', resizeMode:'contain'}}
                                 source={require('../../assets/images/canvas/card_holder.png')}/>
                       </View>
                       <View style={{flex:1, alignItems:'center',paddingVertical:5}}>
                             <Image
-                                style={{height:'100%', resizeMode:'contain'}}
+                                style={{width:'100%', height:'100%', resizeMode:'contain'}}
                                 source={require('../../assets/images/canvas/card_holder.png')}/>
                       </View>
+                      <BetMarker direction='left'/>
                     </View>
-                    <View style={{flex:1, flexDirection:'row'}}>
+                    {/* top row of card placers markers */}
+                    <View style={{flex:1, flexDirection:'row',}}>
+                    <BetMarker direction='right'/>
                       <View style={{flex:1, alignItems:'center',paddingVertical:5}}>
                             <Image
-                                style={{height:'100%', resizeMode:'contain'}}
+                                style={{width:'100%', height:'100%', resizeMode:'contain'}}
                                 source={require('../../assets/images/canvas/card_holder.png')}/>
                       </View>
                       <View style={{flex:1, alignItems:'center',paddingVertical:5}}>
                             <Image
-                                style={{height:'100%', resizeMode:'contain'}}
+                                style={{width:'100%', height:'100%', resizeMode:'contain'}}
                                 source={require('../../assets/images/canvas/card_holder.png')}/>
                       </View>
                       <View style={{flex:1, alignItems:'center',paddingVertical:5}}>
                             <Image
-                                style={{height:'100%', resizeMode:'contain'}}
+                                style={{width:'100%', height:'100%', resizeMode:'contain'}}
                                 source={require('../../assets/images/canvas/card_holder.png')}/>
                       </View>
+                      <BetMarker direction='left'/>
+                    </View>
+                    {/* top row of card placers markers */}
+                    <View style={{flex:1, flexDirection:'row',}}>
+                      <BetMarker direction='right'/>
+                      <View style={{flex:1, alignItems:'center',paddingVertical:5}}>
+                            <Image
+                                style={{width:'100%', height:'100%', resizeMode:'contain'}}
+                                source={require('../../assets/images/canvas/card_holder.png')}/>
+                      </View>
+                      <View style={{flex:1, alignItems:'center',paddingVertical:5}}>
+                            <Image
+                                style={{width:'100%', height:'100%', resizeMode:'contain'}}
+                                source={require('../../assets/images/canvas/card_holder.png')}/>
+                      </View>
+                      <View style={{flex:1, alignItems:'center',paddingVertical:5}}>
+                            <Image
+                                style={{width:'100%', height:'100%', resizeMode:'contain'}}
+                                source={require('../../assets/images/canvas/card_holder.png')}/>
+                      </View>
+                      <BetMarker direction='left'/>
+                    </View>
+                    <View style={{flex:1, flexDirection:'row',}}>
+                      <BetMarker direction='up'/>
+                      <BetMarker direction='up'/>
+                      <BetMarker direction='up'/>
+                      <BetMarker direction='up'/>
+                      <BetMarker direction='up'/>
+                    </View>
                     </View>
                   </View>
-                  <LeftBets/>
                 </ImageBackground>
               </View>
             </View>
