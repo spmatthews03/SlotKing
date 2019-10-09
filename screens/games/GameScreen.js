@@ -82,7 +82,7 @@ export default class GameScreen extends React.Component {
         <View style={{ flex: 6, flexDirection: 'row' }}>
           <View style={{ flex: 4, paddingVertical:10}}>
             <View style={{ flex: 1}}>
-              <Canvas/>
+              <Canvas chip={this.state.highlighted_chip}/>
               <View style={{ flex: 2, justifyContent: 'center', padding: 5 }}>
                 <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', paddingHorizontal: 50}}>
                   <TouchableOpacity

@@ -10,18 +10,21 @@ export default class Canvas extends Component {
 
         this.state = {
             highlighted_chip: 0,
-            total_bet: 0,
-            opacities: {
-                yellow: 0.2,
-                purple: 0.2,
-                green: 0.2,
-                red: 0.2,
-                gold: 0.2
-            }
         };
     }
 
 
+    componentDidMount(){
+      this.setState({
+        highlighted_chip: this.props.chip,
+      });
+    }
+
+    // betMarkerCallback = (data) => {
+    //   this.setState({
+    //     highlighted_chip: data
+    //   })
+    // }
 
     render() {
         return (
@@ -34,15 +37,15 @@ export default class Canvas extends Component {
                   <View style={{flex:1}}>
                     {/* top row of the red bet markers */}
                     <View style={{flex:1, flexDirection:'row',}}>
-                      <BetMarker direction='down'/>
-                      <BetMarker direction='down'/>
-                      <BetMarker direction='down'/>
-                      <BetMarker direction='down'/>
-                      <BetMarker direction='down'/>
+                      <BetMarker chip={this.props.chip} direction='down'/>
+                      <BetMarker chip={this.props.chip} direction='down'/>
+                      <BetMarker chip={this.props.chip} direction='down'/>
+                      <BetMarker chip={this.props.chip} direction='down'/>
+                      <BetMarker chip={this.props.chip} direction='down'/>
                     </View>
                     {/* top row of card placers markers */}
                     <View style={{flex:1, flexDirection:'row',}}>
-                      <BetMarker direction='right'/>
+                      <BetMarker chip={this.props.chip} direction='right'/>
                       <View style={{flex:1, alignItems:'center',paddingVertical:5}}>
                             <Image
                                 style={{width:'100%', height:'100%', resizeMode:'contain'}}
@@ -58,11 +61,11 @@ export default class Canvas extends Component {
                                 style={{width:'100%', height:'100%', resizeMode:'contain'}}
                                 source={require('../../assets/images/canvas/card_holder.png')}/>
                       </View>
-                      <BetMarker direction='left'/>
+                      <BetMarker chip={this.props.chip} direction='left'/>
                     </View>
                     {/* top row of card placers markers */}
                     <View style={{flex:1, flexDirection:'row',}}>
-                    <BetMarker direction='right'/>
+                    <BetMarker chip={this.props.chip} direction='right'/>
                       <View style={{flex:1, alignItems:'center',paddingVertical:5}}>
                             <Image
                                 style={{width:'100%', height:'100%', resizeMode:'contain'}}
@@ -78,11 +81,11 @@ export default class Canvas extends Component {
                                 style={{width:'100%', height:'100%', resizeMode:'contain'}}
                                 source={require('../../assets/images/canvas/card_holder.png')}/>
                       </View>
-                      <BetMarker direction='left'/>
+                      <BetMarker chip={this.props.chip} direction='left'/>
                     </View>
                     {/* top row of card placers markers */}
                     <View style={{flex:1, flexDirection:'row',}}>
-                      <BetMarker direction='right'/>
+                      <BetMarker chip={this.props.chip} direction='right'/>
                       <View style={{flex:1, alignItems:'center',paddingVertical:5}}>
                             <Image
                                 style={{width:'100%', height:'100%', resizeMode:'contain'}}
@@ -98,14 +101,14 @@ export default class Canvas extends Component {
                                 style={{width:'100%', height:'100%', resizeMode:'contain'}}
                                 source={require('../../assets/images/canvas/card_holder.png')}/>
                       </View>
-                      <BetMarker direction='left'/>
+                      <BetMarker chip={this.props.chip} direction='left'/>
                     </View>
                     <View style={{flex:1, flexDirection:'row',}}>
-                      <BetMarker direction='up'/>
-                      <BetMarker direction='up'/>
-                      <BetMarker direction='up'/>
-                      <BetMarker direction='up'/>
-                      <BetMarker direction='up'/>
+                      <BetMarker chip={this.props.chip} direction='up'/>
+                      <BetMarker chip={this.props.chip} direction='up'/>
+                      <BetMarker chip={this.props.chip} direction='up'/>
+                      <BetMarker chip={this.props.chip} direction='up'/>
+                      <BetMarker chip={this.props.chip} direction='up'/>
                     </View>
                     </View>
                   </View>
