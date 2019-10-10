@@ -30,7 +30,10 @@ const stackNavigator = createStackNavigator({
     screen: MenuScreen
   },
   Game: {
-    screen: GameScreen
+    screen: GameScreen,
+    navigationOptions: {
+      header: null,
+    },
   },
   JackpotDealerPriceboard: {
     screen: JackpotDealerPriceboard

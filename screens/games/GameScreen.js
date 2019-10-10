@@ -4,27 +4,19 @@ import ChipBar from '../../components/ChipBar';
 import JackpotBar from '../../components/JackpotBar';
 import MenuFooter from '../../components/MenuFooter';
 import Canvas from '../../components/canvas/Canvas';
+import shuffle from '../../helpers/dealer';
+import CARDS from '../../constants/cards';
 
 export default class GameScreen extends React.Component {
-  static navigationOptions = ({navigation}) => {
-    return{
-      headerTitle: <JackpotBar gameCredit={navigation.getParam('credit')}/>,
-        headerStyle: {
-          backgroundColor: '#0f2636'
-        },
-        headerLeft: null
-    };
-  };
-
   constructor(props) {
     super(props);
 
     this.state = {
-      credit: 0,
+      credit: 1000,
       highlighted_chip: 0,
       total_bet: 0,
+      jackpot: 100,
       jackpotDisable: false,
-      playDisable: true,
       previous_bet: 0,
     };
   }
@@ -50,8 +42,11 @@ export default class GameScreen extends React.Component {
   }
 
   play = () => {
+    // var deck = shuffle(CARDS);
+
     this.setState({
       previous_bet: this.state.total_bet,
+      credit: this.state.credit - this.state.total_bet,
       total_bet: 0,
     })
   }
@@ -61,6 +56,10 @@ export default class GameScreen extends React.Component {
       total_bet: this.state.total_bet + this.state.highlighted_chip * 16,
       jackpotDisable: true
     })
+  }
+
+  betMarkerCallback = () => {
+    this.setState({})
   }
 
   chipBarCallback = (data) => {
@@ -79,6 +78,7 @@ export default class GameScreen extends React.Component {
         source={require("../../assets/images/background.png")}
       >
         <StatusBar hidden={true} />
+        <JackpotBar credit={this.state.credit} jackpot={this.state.jackpot}/>
         <View style={{ flex: 6, flexDirection: 'row' }}>
           <View style={{ flex: 4, paddingVertical:10}}>
             <View style={{ flex: 1}}>
@@ -136,7 +136,7 @@ export default class GameScreen extends React.Component {
                   <TouchableOpacity
                     style={styles.flexOneStyles}>
                     <Image style={styles.bottomButtonsStyle}
-                      source={require('../../assets/images/total_bet.png')}/>
+                      source={require('../../assets/images/buttons/button_totalbet.png')}/>
                     <View
                       style={{
                         position: 'absolute',
@@ -147,7 +147,7 @@ export default class GameScreen extends React.Component {
                         justifyContent: 'center',
                         alignItems: 'center',
                       }}>
-                      <Text>{this.state.total_bet}</Text>
+                      <Text style={styles.totalBetText}>{"TOTAL BET\n" + this.state.total_bet}</Text>
                     </View>
                   </TouchableOpacity>
                   <TouchableOpacity
@@ -193,5 +193,12 @@ const styles = StyleSheet.create({
     flex: 1,
     width: '100%',
     padding: 5
+  },
+  totalBetText: {
+    fontWeight: 'bold',
+    fontSize: 13,
+    fontFamily: 'Roboto-Bold',
+    color: 'white',
+    textAlign: 'center'
   }
 });

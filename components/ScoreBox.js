@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
  
 import { StyleSheet, View, Text, Image } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons'; 
 
 export default class ScoreBox extends Component {
   constructor(props){

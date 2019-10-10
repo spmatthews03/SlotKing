@@ -8,7 +8,7 @@ export default class MenuFooter extends Component {
         <View style={{flex:1, backgroundColor:'#0f2636', flexDirection:'row', padding:8, justifyContent:'center'}}>
         <Image 
             style={{flex:1, width:'100%', height: '100%', resizeMode:'contain'}}
-            source={require('../assets/images/game_logos/jackpot.png')}/>
+            source={require('../assets/images/game_logos/flyindream.png')}/>
         <View style={{flex:3, justifyContent:'center'}}>
             <View style={{flex:1,flexDirection:'row', justifyContent:'flex-end'}}>
                 <View style={{justifyContent:'center', alignItems:'center'}}>

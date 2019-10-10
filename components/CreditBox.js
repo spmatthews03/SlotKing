@@ -15,7 +15,7 @@ export default class CreditBox extends Component {
   render() {
     return (
         <View style={{flex:1, justifyContent:'center', alignItems:'center'}}>
-            <Text style={{fontSize:12, color:'goldenrod'}}>CREDIT</Text>   
+            <Text style={{fontSize:14, color:'goldenrod'}}>CREDIT</Text>   
             <Text style={{fontSize:18, fontWeight:'bold', color:'white'}}>{this.props.credit}</Text>      
         </View>
     );
