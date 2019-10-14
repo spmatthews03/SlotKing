@@ -12,6 +12,8 @@ export default class CardHolder extends Component {
         };
     }
 
+    
+
 
   render() {
     return (

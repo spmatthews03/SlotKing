@@ -47,25 +47,25 @@ export default class Canvas extends Component {
                     {/* top row of card placers markers */}
                     <View style={{flex:1, flexDirection:'row',}}>
                       <BetMarker chip={this.props.chip} direction='right'/>
-                      <CardHolder card={require('../../assets/images/cards/card_back_blue.png')}/>
-                      <CardHolder card={require('../../assets/images/cards/card_back_blue.png')}/>
-                      <CardHolder card={require('../../assets/images/cards/card_back_blue.png')}/>
+                      <CardHolder card={this.props.cards.card1}/>
+                      <CardHolder card={this.props.cards.card2}/>
+                      <CardHolder card={this.props.cards.card3}/>
                       <BetMarker chip={this.props.chip} direction='left'/>
                     </View>
                     {/* top row of card placers markers */}
                     <View style={{flex:1, flexDirection:'row',}}>
                     <BetMarker chip={this.props.chip} direction='right'/>
-                      <CardHolder card={require('../../assets/images/cards/card_back_blue.png')}/>
-                      <CardHolder card={require('../../assets/images/cards/card_back_blue.png')}/>
-                      <CardHolder card={require('../../assets/images/cards/card_back_blue.png')}/>
+                      <CardHolder card={this.props.cards.card4}/>
+                      <CardHolder card={this.props.cards.card5}/>
+                      <CardHolder card={this.props.cards.card6}/>
                       <BetMarker chip={this.props.chip} direction='left'/>
                     </View>
                     {/* top row of card placers markers */}
                     <View style={{flex:1, flexDirection:'row',}}>
                       <BetMarker chip={this.props.chip} direction='right'/>
-                      <CardHolder card={require('../../assets/images/cards/card_back_blue.png')}/>
-                      <CardHolder card={require('../../assets/images/cards/card_back_blue.png')}/>
-                      <CardHolder card={require('../../assets/images/cards/card_back_blue.png')}/>
+                      <CardHolder card={this.props.cards.card7}/>
+                      <CardHolder card={this.props.cards.card8}/>
+                      <CardHolder card={this.props.cards.card9}/>
                       <BetMarker chip={this.props.chip} direction='left'/>
                     </View>
                     <View style={{flex:1, flexDirection:'row',}}>

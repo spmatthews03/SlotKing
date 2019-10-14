@@ -18,6 +18,17 @@ export default class GameScreen extends React.Component {
       jackpot: 100,
       jackpotDisable: false,
       previous_bet: 0,
+      cards: {
+        card1: require('../../assets/images/canvas/card_holder.png'),
+        card2: require('../../assets/images/canvas/card_holder.png'),
+        card3: require('../../assets/images/canvas/card_holder.png'),
+        card4: require('../../assets/images/canvas/card_holder.png'),
+        card5: require('../../assets/images/canvas/card_holder.png'),
+        card6: require('../../assets/images/canvas/card_holder.png'),
+        card7: require('../../assets/images/canvas/card_holder.png'),
+        card8: require('../../assets/images/canvas/card_holder.png'),
+        card9: require('../../assets/images/canvas/card_holder.png'),
+      }
     };
   }
 
@@ -40,6 +51,18 @@ export default class GameScreen extends React.Component {
       total_bet: this.state.previous_bet,
     })
   }
+
+  // dealNine = (cards) => {
+  //   var deckOfNine = {};
+
+  //   for( int i = 0; i < 3; i++){
+  //     if(cards[i] == 'BAR'){
+  //       deckOfNine.
+  //     }
+  //   }
+  // }
+
+
 
   play = () => {
     // var deck = shuffle(CARDS);
@@ -82,7 +105,7 @@ export default class GameScreen extends React.Component {
         <View style={{ flex: 6, flexDirection: 'row' }}>
           <View style={{ flex: 4, paddingVertical:10}}>
             <View style={{ flex: 1}}>
-              <Canvas chip={this.state.highlighted_chip}/>
+              <Canvas cards={this.state.cards} chip={this.state.highlighted_chip}/>
               <View style={{ flex: 2, justifyContent: 'center', padding: 5 }}>
                 <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', paddingHorizontal: 50}}>
                   <TouchableOpacity

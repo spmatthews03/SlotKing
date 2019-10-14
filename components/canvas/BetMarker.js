@@ -8,8 +8,8 @@ export default class BetMarker extends Component {
 
         this.state={
             direction: require('../../assets/images/canvas/red_right.png'),
-            text: 0,
-        };
+            bet: 0,
+        }
     }
 
     
@@ -37,13 +37,13 @@ export default class BetMarker extends Component {
     return (
         <View style={{flex:1, alignItems:'center',paddingVertical:5}}>
             <TouchableOpacity 
-                onPress={() => this.setState({text: this.props.chip})}
+                onPress={() => this.setState({bet: this.props.chip + this.state.bet})}
                 style={{flex:1, width:'100%'}}>  
                 <Image
                     style={{width:'100%', height:'100%', resizeMode:'contain'}}
                     source={this.state.direction}/>
                 <View style={styles.textView}>
-                    <Text style={styles.text}>{this.state.text}</Text>
+                    <Text style={styles.text}>{this.state.bet == 0 ? '' : this.state.bet}</Text>
                 </View>
             </TouchableOpacity>
         </View>
