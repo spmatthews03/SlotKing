@@ -179,7 +179,19 @@ export default class GameScreen extends React.Component {
                     style={[styles.flexOneStyles, {opacity:this.state.total_bet == 0 ? 0.2 : 1} ]}>
                     <Image
                       style={styles.bottomButtonsStyle}
-                      source={require('../../assets/images/gold_play.png')}/>
+                      source={require('../../assets/images/buttons/button_play__button_play_2.png')}/>
+                    <View
+                      style={{
+                        position: 'absolute',
+                        left: 0,
+                        right: 0,
+                        top: 0,
+                        bottom: 0,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                      }}>
+                      <Text style={styles.dealText}>{"DEAL"}</Text>
+                    </View>
                   </TouchableOpacity>
                 </View>
               </View>
@@ -220,6 +232,13 @@ const styles = StyleSheet.create({
   totalBetText: {
     fontWeight: 'bold',
     fontSize: 13,
+    fontFamily: 'Roboto-Bold',
+    color: 'white',
+    textAlign: 'center'
+  },
+  dealText: {
+    fontWeight: 'bold',
+    fontSize: 20,
     fontFamily: 'Roboto-Bold',
     color: 'white',
     textAlign: 'center'

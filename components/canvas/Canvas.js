@@ -29,8 +29,8 @@ export default class Canvas extends Component {
 
     render() {
         return (
-          <View style={{flex:3}}>
-            <View style={{flex:1, paddingHorizontal:45}}>
+          <View style={{flex:4}}>
+            <View style={{flex:1, paddingHorizontal:35}}>
               <View style={{flex:1}}>
                 <ImageBackground style={{height:'100%',resizeMode:'contain'}}
                   source={require('../../assets/images/canvas/canvas_frame_complete.png')}>
@@ -38,42 +38,42 @@ export default class Canvas extends Component {
                   <View style={{flex:1}}>
                     {/* top row of the red bet markers */}
                     <View style={{flex:1, flexDirection:'row',}}>
-                      <BetMarker chip={this.props.chip} direction='down'/>
-                      <BetMarker chip={this.props.chip} direction='down'/>
-                      <BetMarker chip={this.props.chip} direction='down'/>
-                      <BetMarker chip={this.props.chip} direction='down'/>
-                      <BetMarker chip={this.props.chip} direction='down'/>
+                      <BetMarker chip={this.props.chip} style={{alignItems:'flex-start'}} direction='down'/>
+                      <BetMarker chip={this.props.chip} style={{alignItems:'center'}} direction='down'/>
+                      <BetMarker chip={this.props.chip} style={{alignItems:'center'}} direction='down'/>
+                      <BetMarker chip={this.props.chip} style={{alignItems:'center'}} direction='down'/>
+                      <BetMarker chip={this.props.chip} style={{alignItems:'flex-end'}} direction='down'/>
                     </View>
                     {/* top row of card placers markers */}
-                    <View style={{flex:1, flexDirection:'row',}}>
-                      <BetMarker chip={this.props.chip} direction='right'/>
+                    <View style={{flex:1.5, flexDirection:'row',}}>
+                      <BetMarker chip={this.props.chip} style={{justifyContent:'center'}} direction='right'/>
                       <CardHolder card={this.props.cards.card1}/>
                       <CardHolder card={this.props.cards.card2}/>
                       <CardHolder card={this.props.cards.card3}/>
-                      <BetMarker chip={this.props.chip} direction='left'/>
+                      <BetMarker chip={this.props.chip} style={{justifyContent:'center', alignItems:'flex-end'}} direction='left'/>
                     </View>
                     {/* top row of card placers markers */}
-                    <View style={{flex:1, flexDirection:'row',}}>
-                    <BetMarker chip={this.props.chip} direction='right'/>
+                    <View style={{flex:1.5, flexDirection:'row',}}>
+                    <BetMarker chip={this.props.chip} style={{justifyContent:'center'}} direction='right'/>
                       <CardHolder card={this.props.cards.card4}/>
                       <CardHolder card={this.props.cards.card5}/>
                       <CardHolder card={this.props.cards.card6}/>
-                      <BetMarker chip={this.props.chip} direction='left'/>
+                      <BetMarker chip={this.props.chip} style={{justifyContent:'center', alignItems:'flex-end'}} direction='left'/>
                     </View>
                     {/* top row of card placers markers */}
-                    <View style={{flex:1, flexDirection:'row',}}>
-                      <BetMarker chip={this.props.chip} direction='right'/>
+                    <View style={{flex:1.5, flexDirection:'row',}}>
+                      <BetMarker chip={this.props.chip} style={{justifyContent:'center'}} direction='right'/>
                       <CardHolder card={this.props.cards.card7}/>
                       <CardHolder card={this.props.cards.card8}/>
                       <CardHolder card={this.props.cards.card9}/>
-                      <BetMarker chip={this.props.chip} direction='left'/>
+                      <BetMarker chip={this.props.chip} style={{justifyContent:'center', alignItems:'flex-end'}} direction='left'/>
                     </View>
                     <View style={{flex:1, flexDirection:'row',}}>
-                      <BetMarker chip={this.props.chip} direction='up'/>
-                      <BetMarker chip={this.props.chip} direction='up'/>
-                      <BetMarker chip={this.props.chip} direction='up'/>
-                      <BetMarker chip={this.props.chip} direction='up'/>
-                      <BetMarker chip={this.props.chip} direction='up'/>
+                      <BetMarker chip={this.props.chip} style={{justifyContent:'flex-end', alignItems:'flex-start'}} direction='up'/>
+                      <BetMarker chip={this.props.chip} style={{justifyContent:'flex-end', alignItems:'center'}} direction='up'/>
+                      <BetMarker chip={this.props.chip} style={{justifyContent:'flex-end', alignItems:'center'}} direction='up'/>
+                      <BetMarker chip={this.props.chip} style={{justifyContent:'flex-end', alignItems:'center'}} direction='up'/>
+                      <BetMarker chip={this.props.chip} style={{justifyContent:'flex-end', alignItems:'flex-end'}} direction='up'/>
                     </View>
                     </View>
                   </View>

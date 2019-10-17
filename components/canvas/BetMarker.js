@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native';
 
 
 export default class BetMarker extends Component {
@@ -7,7 +7,7 @@ export default class BetMarker extends Component {
         super(props);
 
         this.state={
-            direction: require('../../assets/images/canvas/red_right.png'),
+            direction: require('../../assets/images/canvas/red_circle.png'),
             bet: 0,
         }
     }
@@ -16,16 +16,16 @@ export default class BetMarker extends Component {
     componentDidMount(){
         var passedDirection;
         if(this.props.direction == 'left'){
-            passedDirection = require('../../assets/images/canvas/red_right.png');
+            passedDirection = require('../../assets/images/canvas/red_circle.png');
         }
         else if(this.props.direction == 'right'){
-            passedDirection = require('../../assets/images/canvas/red_left.png');
+            passedDirection = require('../../assets/images/canvas/red_circle.png');
         }
         else if(this.props.direction == 'down'){
-            passedDirection = require('../../assets/images/canvas/red_upper.png');
+            passedDirection = require('../../assets/images/canvas/red_circle.png');
         }
         else{
-            passedDirection = require('../../assets/images/canvas/red_bottom.png');
+            passedDirection = require('../../assets/images/canvas/red_circle.png');
         }
 
         this.setState({
@@ -38,13 +38,15 @@ export default class BetMarker extends Component {
         <View style={{flex:1, alignItems:'center',paddingVertical:5}}>
             <TouchableOpacity 
                 onPress={() => this.setState({bet: this.props.chip + this.state.bet})}
-                style={{flex:1, width:'100%'}}>  
-                <Image
-                    style={{width:'100%', height:'100%', resizeMode:'contain'}}
-                    source={this.state.direction}/>
-                <View style={styles.textView}>
-                    <Text style={styles.text}>{this.state.bet == 0 ? '' : this.state.bet}</Text>
-                </View>
+                style={[{flex:1, width:'100%'}, this.props.style]}>  
+                <ImageBackground
+                    // style={{width:'100%', height:'100%', resizeMode:'contain'}}
+                    style={{width:45, height:45}}
+                    source={this.state.direction}>
+                    <View style={styles.textView}>
+                        <Text style={styles.text}>{this.state.bet == 0 ? '' : this.state.bet}</Text>
+                    </View>
+                </ImageBackground>
             </TouchableOpacity>
         </View>
     );
@@ -66,6 +68,6 @@ const styles = StyleSheet.create({
         fontWeight:'bold',
         color:'white',
         textAlign:'center',
-        fontSize: 24
+        fontSize: 18
     },
   });

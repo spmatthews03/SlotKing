@@ -5,7 +5,7 @@ import { View, Image, TouchableOpacity } from 'react-native';
 export default class MenuFooter extends Component {
   render() {
     return (
-        <View style={{flex:1, backgroundColor:'#0f2636', flexDirection:'row', padding:8, justifyContent:'center'}}>
+        <View style={{flex:.7, backgroundColor:'#0f2636', flexDirection:'row', padding:8, justifyContent:'center'}}>
         <Image 
             style={{flex:1, width:'100%', height: '100%', resizeMode:'contain'}}
             source={require('../assets/images/game_logos/flyindream.png')}/>
