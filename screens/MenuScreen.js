@@ -17,7 +17,10 @@ export default class MenuScreen extends React.Component {
                 style={styles.backgroundImage}
                 source={require('../assets/images/background.png')}>
                 <StatusBar hidden={true}/>
-                <View style={{flex:6, flexDirection:'row', flexWrap:'wrap', justifyContent:'space-between', alignItems:'center', padding:20}}>
+                <View style={{flex:.8, justifyContent:'center', alignItems:'center'}}>
+                    <Text style={{color:'gold', fontSize:24, fontWeight:'bold'}}>SELECT A GAME</Text>
+                </View>
+                <View style={{flex:10, flexDirection:'row', flexWrap:'wrap', justifyContent:'space-between', alignItems:'center', paddingHorizontal:20}}>
                     <View style={{justifyContent:'center', alignItems:'center'}}>
                         <TouchableOpacity
                             disabled={true}
@@ -81,7 +84,7 @@ export default class MenuScreen extends React.Component {
                         </TouchableOpacity>
                     </View>
                 </View>
-                <MenuFooter/>
+                {/* <MenuFooter/> */}
             </ImageBackground>
         );
     };

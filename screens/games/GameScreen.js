@@ -14,10 +14,28 @@ export default class GameScreen extends React.Component {
     this.state = {
       credit: 1000,
       highlighted_chip: 0,
-      total_bet: 0,
+      total_bet: '',
       jackpot: 100,
       jackpotDisable: false,
-      previous_bet: 0,
+      bets:{
+        bet1: 0,
+        bet2: 0,
+        bet3: 0,
+        bet4: 0,
+        bet5: 0,
+        bet6: 0,
+        bet7: 0,
+        bet8: 0,
+        bet9: 0,
+        bet10: 0,
+        bet11: 0,
+        bet12: 0,
+        bet13: 0,
+        bet14: 0,
+        bet15: 0,
+        bet16: 0,
+      },
+      previous_bets: {},
       cards: {
         card1: require('../../assets/images/canvas/card_holder.png'),
         card2: require('../../assets/images/canvas/card_holder.png'),
@@ -30,6 +48,8 @@ export default class GameScreen extends React.Component {
         card9: require('../../assets/images/canvas/card_holder.png'),
       }
     };
+
+    this.getTotalBet = this.getTotalBet.bind(this);
   }
 
   _getCredit = () => {
@@ -38,6 +58,7 @@ export default class GameScreen extends React.Component {
 
   componentDidMount(){
     this.props.navigation.setParams({ credit: this._getCredit});
+    this.setState({total_bet: this.getTotalBet()})
   }
 
   betAll = () => {
@@ -62,15 +83,20 @@ export default class GameScreen extends React.Component {
   //   }
   // }
 
-
+  getTotalBet = () => {
+    let bets = this.state.bets;
+    return bets.bet1 + bets.bet2 + bets.bet3 + bets.bet4 + bets.bet5 + bets.bet6 +
+           bets.bet7 + bets.bet8 + bets.bet9 + bets.bet10 + bets.bet11 + bets.bet12 +
+           bets.bet13 + bets.bet14 + bets.bet15 + bets.bet16;
+  }
 
   play = () => {
     // var deck = shuffle(CARDS);
 
     this.setState({
-      previous_bet: this.state.total_bet,
+      previous_bets: this.state.bets,
       credit: this.state.credit - this.state.total_bet,
-      total_bet: 0,
+      bets: this.resetBets()
     })
   }
 
@@ -81,8 +107,11 @@ export default class GameScreen extends React.Component {
     })
   }
 
-  betMarkerCallback = () => {
-    this.setState({})
+  canvasCallback = (bets) => {
+    this.setState({
+      bets: bets,
+      total_bet: this.getTotalBet(),
+    })
   }
 
   chipBarCallback = (data) => {
@@ -90,6 +119,27 @@ export default class GameScreen extends React.Component {
       highlighted_chip: data
     })
   }
+
+  // resetBets = () => {
+  //   let bets = {
+  //     bet1: 0,
+  //     bet2: 0,
+  //     bet3: 0,
+  //     bet4: 0,
+  //     bet5: 0,
+  //     bet6: 0,
+  //     bet7: 0,
+  //     bet8: 0,
+  //     bet9: 0,
+  //     bet10: 0,
+  //     bet11: 0,
+  //     bet12: 0,
+  //     bet13: 0,
+  //     bet14: 0,
+  //     bet15: 0,
+  //     bet16: 0,
+  //   }
+  // }
 
 
   render() {
@@ -105,7 +155,7 @@ export default class GameScreen extends React.Component {
         <View style={{ flex: 6, flexDirection: 'row' }}>
           <View style={{ flex: 4, paddingVertical:10}}>
             <View style={{ flex: 1}}>
-              <Canvas cards={this.state.cards} chip={this.state.highlighted_chip}/>
+              <Canvas cards={this.state.cards} bets={this.state.bets} chip={this.state.highlighted_chip} callback={this.canvasCallback}/>
               <View style={{ flex: 2, justifyContent: 'center', padding: 5 }}>
                 <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', paddingHorizontal: 50}}>
                   <TouchableOpacity

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native';
 
 
 export default class BetMarker extends Component {
@@ -8,7 +8,6 @@ export default class BetMarker extends Component {
 
         this.state={
             direction: require('../../assets/images/canvas/red_circle.png'),
-            bet: 0,
         }
     }
 
@@ -33,18 +32,18 @@ export default class BetMarker extends Component {
         });
     }
 
+
   render() {
     return (
         <View style={{flex:1, alignItems:'center',paddingVertical:5}}>
             <TouchableOpacity 
-                onPress={() => this.setState({bet: this.props.chip + this.state.bet})}
+                onPress={() => this.props.parentCallback(this.props.num)}
                 style={[{flex:1, width:'100%'}, this.props.style]}>  
                 <ImageBackground
-                    // style={{width:'100%', height:'100%', resizeMode:'contain'}}
                     style={{width:45, height:45}}
                     source={this.state.direction}>
                     <View style={styles.textView}>
-                        <Text style={styles.text}>{this.state.bet == 0 ? '' : this.state.bet}</Text>
+                        <Text style={styles.text}>{this.props.bet == 0 ? '' : this.props.bet}</Text>
                     </View>
                 </ImageBackground>
             </TouchableOpacity>

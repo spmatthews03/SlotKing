@@ -42,7 +42,7 @@ export default class ChipBar extends Component {
         }
         if (color == 'red') {
           this.state.opacities.red = 1;
-          this.state.highlighted_chip = 25;
+          this.state.highlighted_chip = 20;
         }
         if (color == 'gold') {
           this.state.opacities.gold = 1;
