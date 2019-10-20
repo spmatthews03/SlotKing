@@ -14,7 +14,7 @@ export default class GameScreen extends React.Component {
     this.state = {
       credit: 1000,
       highlighted_chip: 0,
-      total_bet: '',
+      total_bet: 0,
       jackpot: 100,
       jackpotDisable: false,
       bets:{
@@ -35,7 +35,7 @@ export default class GameScreen extends React.Component {
         bet15: 0,
         bet16: 0,
       },
-      previous_bets: {},
+      previous_bets: null,
       cards: {
         card1: require('../../assets/images/canvas/card_holder.png'),
         card2: require('../../assets/images/canvas/card_holder.png'),
@@ -49,6 +49,8 @@ export default class GameScreen extends React.Component {
       }
     };
 
+
+    this.baseState = this.state;
     this.getTotalBet = this.getTotalBet.bind(this);
   }
 
@@ -69,7 +71,9 @@ export default class GameScreen extends React.Component {
 
   betRepeat = () => {
     this.setState({
-      total_bet: this.state.previous_bet,
+      bets: this.state.previous_bets,
+    },() => {
+      this.setState({total_bet: this.getTotalBet()})
     })
   }
 
@@ -91,12 +95,11 @@ export default class GameScreen extends React.Component {
   }
 
   play = () => {
-    // var deck = shuffle(CARDS);
-
     this.setState({
+      bets: this.initialState.bets,
       previous_bets: this.state.bets,
       credit: this.state.credit - this.state.total_bet,
-      bets: this.resetBets()
+      total_bet: 0
     })
   }
 
@@ -107,9 +110,44 @@ export default class GameScreen extends React.Component {
     })
   }
 
-  canvasCallback = (bets) => {
+  canvasCallback = (num) => {
+
+      if(num === 1){
+        this.state.bets.bet1 = this.state.bets.bet1 + this.state.highlighted_chip
+      } else if(num === 2){
+        this.state.bets.bet2 = this.state.bets.bet2 + this.state.highlighted_chip
+      } else if(num === 3){
+        this.state.bets.bet3 = this.state.bets.bet3 + this.state.highlighted_chip
+      } else if(num === 4){
+        this.state.bets.bet4 = this.state.bets.bet4 + this.state.highlighted_chip
+      } else if(num === 5){
+        this.state.bets.bet5 = this.state.bets.bet5 + this.state.highlighted_chip
+      } else if(num === 6){
+        this.state.bets.bet6 = this.state.bets.bet6 + this.state.highlighted_chip
+      } else if(num === 7){
+        this.state.bets.bet7 = this.state.bets.bet7 + this.state.highlighted_chip
+      } else if(num === 8){
+        this.state.bets.bet8 = this.state.bets.bet8 + this.state.highlighted_chip
+      } else if(num === 9){
+        this.state.bets.bet9 = this.state.bets.bet9 + this.state.highlighted_chip
+      } else if(num === 10){
+        this.state.bets.bet10 = this.state.bets.bet10 + this.state.highlighted_chip
+      } else if(num === 11){
+        this.state.bets.bet11 = this.state.bets.bet11 + this.state.highlighted_chip
+      } else if(num === 12){
+        this.state.bets.bet12 = this.state.bets.bet12 + this.state.highlighted_chip
+      } else if(num === 13){
+        this.state.bets.bet13 = this.state.bets.bet13 + this.state.highlighted_chip
+      } else if(num === 14){
+        this.state.bets.bet14 = this.state.bets.bet14 + this.state.highlighted_chip
+      } else if(num === 15){    
+        this.state.bets.bet15 = this.state.bets.bet15 + this.state.highlighted_chip
+      } else if(num === 16){
+        this.state.bets.bet16 = this.state.bets.bet16 + this.state.highlighted_chip
+      }
+
     this.setState({
-      bets: bets,
+      bets: this.state.bets,
       total_bet: this.getTotalBet(),
     })
   }
@@ -120,26 +158,12 @@ export default class GameScreen extends React.Component {
     })
   }
 
-  // resetBets = () => {
-  //   let bets = {
-  //     bet1: 0,
-  //     bet2: 0,
-  //     bet3: 0,
-  //     bet4: 0,
-  //     bet5: 0,
-  //     bet6: 0,
-  //     bet7: 0,
-  //     bet8: 0,
-  //     bet9: 0,
-  //     bet10: 0,
-  //     bet11: 0,
-  //     bet12: 0,
-  //     bet13: 0,
-  //     bet14: 0,
-  //     bet15: 0,
-  //     bet16: 0,
-  //   }
-  // }
+  resetBets = () => {
+    this.setState({
+      bets: this.baseState.bets,
+      total_bet: 0
+    })
+  }
 
 
   render() {
@@ -195,18 +219,21 @@ export default class GameScreen extends React.Component {
                     paddingHorizontal: 5,
                   }}>
                   <TouchableOpacity
-                    onPress={() => this.setState({total_bet: 0})}
+                    disabled={this.state.bets == this.resettedBets ? true : false}
+                    onPress={() => this.resetBets()}
                     style={styles.flexOneStyles}>
                     <Image style={styles.bottomButtonsStyle}
                       source={require('../../assets/images/reset_bets.png')}/>
                   </TouchableOpacity>
                   <TouchableOpacity
                     onPress={() => this.betRepeat()}
-                    style={styles.flexOneStyles}>
+                    disabled={this.state.previous_bets === null ? true : false}
+                    style={[styles.flexOneStyles, {opacity:this.state.previous_bets === null ? 0.2 : 1}]}>
                     <Image style={styles.bottomButtonsStyle}
                       source={require('../../assets/images/bet_repeat.png')}/>
                   </TouchableOpacity>
                   <TouchableOpacity
+                    disabled={true}
                     style={styles.flexOneStyles}>
                     <Image style={styles.bottomButtonsStyle}
                       source={require('../../assets/images/buttons/button_totalbet.png')}/>

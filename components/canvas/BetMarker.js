@@ -10,8 +10,9 @@ export default class BetMarker extends Component {
             direction: require('../../assets/images/canvas/red_circle.png'),
         }
     }
-
     
+
+
     componentDidMount(){
         var passedDirection;
         if(this.props.direction == 'left'){
@@ -29,6 +30,7 @@ export default class BetMarker extends Component {
 
         this.setState({
             direction: passedDirection,
+            bet: this.props.bet,
         });
     }
 
