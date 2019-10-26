@@ -1,8 +1,20 @@
 import React, { Component } from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
 
 
-export default class CardHolder extends Component {
+const mapStateToProps = state => {
+    return{
+        cards: state.reducer.cards
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+    };
+};
+
+class CardHolder extends Component {
     constructor(props){
         super(props);
 
@@ -20,11 +32,13 @@ export default class CardHolder extends Component {
         <View style={{flex:1, alignItems:'center',paddingVertical:5}}>
             <Image
                 style={{width:'100%', height:'100%', resizeMode:'contain'}}
-                source={this.props.card}/>
+                source={this.state.card}/>
         </View>
     );
   }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(CardHolder);
 
 
 const styles = StyleSheet.create({

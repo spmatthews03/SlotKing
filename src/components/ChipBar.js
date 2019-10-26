@@ -1,8 +1,24 @@
 import React, { Component } from 'react';
 import { Animated, View, Image, StyleSheet, Easing, TouchableOpacity } from 'react-native';
+import { connect } from 'net';
 
 
-export default class ChipBar extends Component {
+
+const mapStateToProps = state => {
+  return{
+      opacities: state.reducer.opacities,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+      highlightChipFunction: (chipValue) => dispatch(highlightChip(chipValue)),
+  };
+};
+
+
+
+class ChipBar extends Component {
     constructor(props) {
         super(props);
 
@@ -71,7 +87,7 @@ export default class ChipBar extends Component {
                     }}
                     >
                     <TouchableOpacity
-                        onPress={() => this.setHighlightedChip('yellow')}
+                        onPress={() => this.props.highlightChipFunction('yellow')}
                         style={[styles.flexOneStyles]}
                     >
                         <Animated.Image
@@ -82,7 +98,7 @@ export default class ChipBar extends Component {
                         />
                     </TouchableOpacity>
                     <TouchableOpacity
-                        onPress={() => this.setHighlightedChip('purple')}
+                        onPress={() => this.props.highlightChipFunction('purple')}
                         style={styles.flexOneStyles}
                     >
                         <Image
@@ -93,7 +109,7 @@ export default class ChipBar extends Component {
                         />
                     </TouchableOpacity>
                     <TouchableOpacity
-                        onPress={() => this.setHighlightedChip('green')}
+                        onPress={() => this.props.highlightChipFunction('green')}
                         style={styles.flexOneStyles}
                     >
                         <Image
@@ -104,7 +120,7 @@ export default class ChipBar extends Component {
                         />
                     </TouchableOpacity>
                     <TouchableOpacity
-                        onPress={() => this.setHighlightedChip('red')}
+                        onPress={() => this.props.highlightChipFunction('red')}
                         style={styles.flexOneStyles}>
                         <Image
                         style={[
@@ -113,7 +129,7 @@ export default class ChipBar extends Component {
                         source={require('../assets/images/chips/chip_twenty.png')}/>
                     </TouchableOpacity>
                     <TouchableOpacity
-                        onPress={() => this.setHighlightedChip('gold')}
+                        onPress={() => this.props.highlightChipFunction('gold')}
                         style={styles.flexOneStyles}>
                         <Image
                         style={[
@@ -127,6 +143,8 @@ export default class ChipBar extends Component {
         );
     }
 }
+
+export default connect(mapStateToProps,mapDispatchToProps)(ChipBar);
 
 const styles = StyleSheet.create({
     imageContainer: {

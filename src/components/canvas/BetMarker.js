@@ -1,8 +1,24 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native';
+import { connect } from 'react-redux';
+import { addBet } from '../../store/actions/actions';
 
 
-export default class BetMarker extends Component {
+const mapStateToProps = state => {
+    return{
+        bets: state.reducer.bets
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        addBetFunction: (number) => dispatch(addBet(number)),
+    };
+};
+
+
+
+class BetMarker extends Component {
     constructor(props){
         super(props);
 
@@ -11,7 +27,6 @@ export default class BetMarker extends Component {
         }
     }
     
-
 
     componentDidMount(){
         var passedDirection;
@@ -30,7 +45,6 @@ export default class BetMarker extends Component {
 
         this.setState({
             direction: passedDirection,
-            bet: this.props.bet,
         });
     }
 
@@ -39,13 +53,13 @@ export default class BetMarker extends Component {
     return (
         <View style={{flex:1, alignItems:'center',paddingVertical:5}}>
             <TouchableOpacity 
-                onPress={() => this.props.parentCallback(this.props.num)}
+                onPress={() => this.props.addBetFunction(this.props.num)}
                 style={[{flex:1, width:'100%'}, this.props.style]}>  
                 <ImageBackground
                     style={{width:45, height:45}}
                     source={this.state.direction}>
                     <View style={styles.textView}>
-                        <Text style={styles.text}>{this.props.bet == 0 ? '' : this.props.bet}</Text>
+                        {/* <Text style={styles.text}>{this.props.bet == 0 ? '' : this.props.bets}</Text> */}
                     </View>
                 </ImageBackground>
             </TouchableOpacity>
@@ -53,6 +67,11 @@ export default class BetMarker extends Component {
     );
   }
 }
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(BetMarker);
+
 
 
 const styles = StyleSheet.create({

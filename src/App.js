@@ -9,9 +9,9 @@
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import React, { Fragment } from 'react';
 import HomeScreen from './screens/HomeScreen';
-import GameScreen from './screens/games/GameScreen';
+import GameScreen from './screens/games/JackpotDealer/GameScreen';
 import MenuScreen from './screens/MenuScreen';
-import JackpotDealerPriceboard from './screens/JackpotDealerPriceboard';
+// import JackpotDealerPriceboard from './screens/JackpotDealerPriceboard';
 import {
   SafeAreaView,
   StyleSheet,
@@ -35,9 +35,9 @@ const stackNavigator = createStackNavigator({
       header: null,
     },
   },
-  JackpotDealerPriceboard: {
-    screen: JackpotDealerPriceboard
-  }
+  // JackpotDealerPriceboard: {
+  //   screen: JackpotDealerPriceboard
+  // }
 });
 
 export default createAppContainer(stackNavigator);
