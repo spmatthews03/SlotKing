@@ -62,6 +62,7 @@ const reducer = (state = initialState, action) => {
         case HIGHLIGHT_CHIP:
             return{
                 ...state,
+                // highlighted_chip: 
             }
         default:
             return state;

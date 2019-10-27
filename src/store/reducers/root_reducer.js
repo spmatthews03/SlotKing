@@ -1,19 +1,22 @@
-import {createStore, combineReducers, compose } from 'redux';
+import {createStore, combineReducers, compose, applyMiddleware } from 'redux';
 import reducer from './reducer';
-import devToolsEnhancer from 'remote-redux-devtools';
+import { composeWithDevTools } from 'remote-redux-devtools';
 
 const rootReducer = combineReducers({
     reducer: reducer,
 });
 
-const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
-
+let composeEnhancers = composeWithDevTools({
+    realtime: true,
+    name: 'SlotKing',
+    hostname: 'localhost',
+    port: 8000, // the port your remotedev server is running at
+  });
 
 const configStore = () => {
     return createStore(
         rootReducer,
-        reducer.initialState,
-        devToolsEnhancer(),
+        composeEnhancers(),
         );
 };
 

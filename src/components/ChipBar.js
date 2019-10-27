@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Animated, View, Image, StyleSheet, Easing, TouchableOpacity } from 'react-native';
-import { connect } from 'net';
+import { connect } from 'react-redux';
 
 
 
