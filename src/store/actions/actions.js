@@ -3,13 +3,15 @@ export const RESET_BET = 'RESET_BET';
 export const DEAL = 'DEAL';
 export const REPEAT_BET = 'REPEAT_BET';
 export const HIGHLIGHT_CHIP = 'HIGHLIGHT_CHIP';
+export const SET_OPACITIES = 'SET_OPACITIES';
 
 
 
-export const addBet = (data) => {
+export const addBet = (num, chip) => {
     return{
         type: ADD_BET,
-        payload: data
+        betNum: num,
+        chip: chip
     }
 }
 
@@ -31,8 +33,16 @@ export const repeatBet = () => {
     }
 }
 
-export const highlightChip = () => {
+export const highlightChip = (chip) => {
     return{
-        type: HIGHLIGHT_CHIP
+        type: HIGHLIGHT_CHIP,
+        payload: chip
+    }
+}
+
+export const setOpacities = (opacities) => {
+    return{
+        type: SET_OPACITIES,
+        payload: opacities
     }
 }

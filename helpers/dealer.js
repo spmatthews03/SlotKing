@@ -12,6 +12,8 @@ import {
     NUM_TRIPLE_SEVEN,
     NUM_WILD } from '../constants/cards';
   
+
+  
   export const shuffle = (a) => {
     const b = [...a];
     let j, x, i;
@@ -25,3 +27,20 @@ import {
   }
   
   export const symbol = (name) => SYMBOLS[name] || name;
+
+  // export const getCards = (a) => {
+    
+    
+
+  //   return cards
+  // }
+
+  // "1": require('../../assets/images/cards/card_bonus.png'),
+  //           "2": require('../../assets/images/cards/card_heart.png'),
+  //           "3": require('../../assets/images/cards/card_jackpot.png'),
+  //           "4": require('../../assets/images/cards/card_cherry.png'),
+  //           "5": require('../../assets/images/cards/card_bar.png'),
+  //           "6": require('../../assets/images/cards/card_coin.png'),
+  //           "7": require('../../assets/images/cards/card_coin.png'),
+  //           "8": require('../../assets/images/cards/card_wild.png'),
+  //           "9": require('../../assets/images/cards/card_crown.png'),

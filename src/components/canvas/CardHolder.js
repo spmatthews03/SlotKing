@@ -18,10 +18,10 @@ class CardHolder extends Component {
     constructor(props){
         super(props);
 
-        this.state={
-            card: require('../../assets/images/canvas/card_holder.png'),
-            text: 0,
-        };
+        // this.state={
+        //     card: require('../../assets/images/canvas/card_holder.png'),
+        //     text: 0,
+        // };
     }
 
     
@@ -32,7 +32,7 @@ class CardHolder extends Component {
         <View style={{flex:1, alignItems:'center',paddingVertical:5}}>
             <Image
                 style={{width:'100%', height:'100%', resizeMode:'contain'}}
-                source={this.state.card}/>
+                source={this.props.cards[this.props.num]}/>
         </View>
     );
   }

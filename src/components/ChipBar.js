@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Animated, View, Image, StyleSheet, Easing, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
+import { highlightChip,setOpacities } from '../store/actions/actions';
 
 
 
@@ -13,6 +14,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
       highlightChipFunction: (chipValue) => dispatch(highlightChip(chipValue)),
+      setOpacitiesFunction: (opacities) => dispatch(setOpacities(opacities)),
   };
 };
 
@@ -22,54 +24,44 @@ class ChipBar extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            highlighted_chip: 0,
-            total_bet: 0,
-            opacities: {
-                yellow: 0.2,
-                purple: 0.2,
-                green: 0.2,
-                red: 0.2,
-                gold: 0.2
-            }
-        };
+        this.state = {}
+
     }
 
 
     setHighlightedChip = (color) => {
-
-        this.state.opacities.yellow = 0.2;
-        this.state.opacities.purple = 0.2;
-        this.state.opacities.green = 0.2;
-        this.state.opacities.red = 0.2;
-        this.state.opacities.gold = 0.2;
+        let newOpacities = {
+          yellow: 0.2,
+          purple: 0.2,
+          green: 0.2,
+          red: 0.2,
+          gold: 0.2
+      };
+      let newHighlightedChip;
     
         if (color == 'yellow') {
-          this.state.opacities.yellow = 1;
-          this.state.highlighted_chip = 1;
+          newOpacities.yellow = 1;
+          newHighlightedChip = 1;
         }
         if (color == 'purple') {
-          this.state.opacities.purple = 1;
-          this.state.highlighted_chip = 5;
+          newOpacities.purple = 1;
+          newHighlightedChip = 5;
         }
         if (color == 'green') {
-          this.state.opacities.green = 1;
-          this.state.highlighted_chip = 10;
+          newOpacities.green = 1;
+          newHighlightedChip = 10;
         }
         if (color == 'red') {
-          this.state.opacities.red = 1;
-          this.state.highlighted_chip = 20;
+          newOpacities.red = 1;
+          newHighlightedChip = 20;
         }
         if (color == 'gold') {
-          this.state.opacities.gold = 1;
-          this.state.highlighted_chip = 100;
+          newOpacities.gold = 1;
+          newHighlightedChip = 100;
         }
     
-        this.props.parentCallback(this.state.highlighted_chip);
-
-        this.setState({
-          opacities: this.state.opacities,
-        });
+        this.props.highlightChipFunction(newHighlightedChip);
+        this.props.setOpacitiesFunction(newOpacities);
       };
 
     
@@ -87,53 +79,53 @@ class ChipBar extends Component {
                     }}
                     >
                     <TouchableOpacity
-                        onPress={() => this.props.highlightChipFunction('yellow')}
+                        onPress={() => this.setHighlightedChip('yellow')}
                         style={[styles.flexOneStyles]}
                     >
                         <Animated.Image
                         style={[
-                            styles.chipStyle, {opacity: this.state.opacities.yellow}
+                            styles.chipStyle, {opacity: this.props.opacities.yellow}
                         ]}
                         source={require('../assets/images/chips/chip_one.png')}
                         />
                     </TouchableOpacity>
                     <TouchableOpacity
-                        onPress={() => this.props.highlightChipFunction('purple')}
+                        onPress={() => this.setHighlightedChip('purple')}
                         style={styles.flexOneStyles}
                     >
                         <Image
                         style={[
-                            styles.chipStyle, {opacity: this.state.opacities.purple}
+                            styles.chipStyle, {opacity: this.props.opacities.purple}
                         ]}
                         source={require('../assets/images/chips/chip_five.png')}
                         />
                     </TouchableOpacity>
                     <TouchableOpacity
-                        onPress={() => this.props.highlightChipFunction('green')}
+                        onPress={() => this.setHighlightedChip('green')}
                         style={styles.flexOneStyles}
                     >
                         <Image
                         style={[
-                            styles.chipStyle, {opacity: this.state.opacities.green}
+                            styles.chipStyle, {opacity: this.props.opacities.green}
                         ]}
                         source={require('../assets/images/chips/chip_ten.png')}
                         />
                     </TouchableOpacity>
                     <TouchableOpacity
-                        onPress={() => this.props.highlightChipFunction('red')}
+                        onPress={() => this.setHighlightedChip('red')}
                         style={styles.flexOneStyles}>
                         <Image
                         style={[
-                            styles.chipStyle, {opacity: this.state.opacities.red}
+                            styles.chipStyle, {opacity: this.props.opacities.red}
                         ]}
                         source={require('../assets/images/chips/chip_twenty.png')}/>
                     </TouchableOpacity>
                     <TouchableOpacity
-                        onPress={() => this.props.highlightChipFunction('gold')}
+                        onPress={() => this.setHighlightedChip('gold')}
                         style={styles.flexOneStyles}>
                         <Image
                         style={[
-                            styles.chipStyle, {opacity: this.state.opacities.gold}
+                            styles.chipStyle, {opacity: this.props.opacities.gold}
                         ]}
                         source={require('../assets/images/chips/chip_hundred.png')}
                         />
@@ -142,7 +134,7 @@ class ChipBar extends Component {
         </View>
         );
     }
-}
+  }
 
 export default connect(mapStateToProps,mapDispatchToProps)(ChipBar);
 

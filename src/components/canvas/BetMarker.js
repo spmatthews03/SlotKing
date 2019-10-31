@@ -12,7 +12,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        addBetFunction: (number) => dispatch(addBet(number)),
+        addBetFunction: (number, chip) => dispatch(addBet(number,chip)),
     };
 };
 
@@ -59,7 +59,7 @@ class BetMarker extends Component {
                     style={{width:45, height:45}}
                     source={this.state.direction}>
                     <View style={styles.textView}>
-                        {/* <Text style={styles.text}>{this.props.bet == 0 ? '' : this.props.bets}</Text> */}
+                        <Text style={styles.text}>{this.props.bets[this.props.num] == 0 ? '' : this.props.bets[this.props.num]}</Text>
                     </View>
                 </ImageBackground>
             </TouchableOpacity>

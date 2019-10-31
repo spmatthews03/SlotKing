@@ -1,18 +1,11 @@
 import React, { Component } from 'react';
-import { Animated, View, Image, StyleSheet, Easing, TouchableOpacity, ImageBackground } from 'react-native';
-import LeftBets from './LeftBets';
+import { View, StyleSheet, ImageBackground } from 'react-native';
 import BetMarker from './BetMarker';
 import CardHolder from './CardHolder';
 
 
-export default class Canvas extends Component {
-  // static getDerivedStateFromProps(props, state){
-  //   if (props.bets !== state.bets) {
-  //     return { bets: props.bets};
-  //   }
-  //   return null;
-  // }
 
+export default class Canvas extends Component {
     constructor(props) {
         super(props);
 

@@ -5,7 +5,7 @@
   "scripts": {
     "start": "react-native start",
     "test": "jest",
-    "remotedev": "remotedev --hostname=localhost --port=8084"
+    "remotedev": "remotedev --hostname=localhost --port=8000"
   },
   "dependencies": {
     "react": "16.9.0",
