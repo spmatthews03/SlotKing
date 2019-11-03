@@ -1,16 +1,6 @@
 import { 
     CARDS,
-    NUM_BAR,
-    NUM_CHERRY,
-    NUM_COIN,
-    NUM_CROWN,
-    NUM_DOUBLE_BAR,
-    NUM_DOUBLE_HEART,
-    NUM_HEART,
-    NUM_JACKPOT,
-    NUM_SEVEN,
-    NUM_TRIPLE_SEVEN,
-    NUM_WILD } from '../constants/cards';
+    BAR, SEVEN, TRIPLE_SEVEN, CROWN, COIN, CHERRY, JACKPOT, DOUBLE_BAR, DOUBLE_HEART, HEART, BONUS } from '../constants/cards';
   
 
   
@@ -28,12 +18,50 @@ import {
   
   export const symbol = (name) => SYMBOLS[name] || name;
 
-  // export const getCards = (a) => {
-    
+  export const getCards = (a) => {
+    let newCards = {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 0,
+      "8": 0,
+      "9": 0,  
+    };
+    for(i=1; i <=9; i++){
+      let card = a[i];
+      if(card == BAR){
+        newCards[i] = require("../src/assets/images/cards/card_bar.png");
+      } else if(card == DOUBLE_BAR){
+        newCards[i] = require("../src/assets/images/cards/card_double_bar.png");
+      } else if(card == HEART){
+        newCards[i] = require("../src/assets/images/cards/card_heart.png");
+      } else if(card == DOUBLE_HEART){
+        newCards[i] = require("../src/assets/images/cards/card_double_heart.png");
+      } else if(card == CHERRY){
+        newCards[i] = require("../src/assets/images/cards/card_cherry.png");
+      } else if(card == COIN){
+        newCards[i] = require("../src/assets/images/cards/card_coin.png");
+      } else if(card == CROWN){
+        newCards[i] = require("../src/assets/images/cards/card_crown.png");
+      } else if(card == JACKPOT){
+        newCards[i] = require("../src/assets/images/cards/card_jackpot.png");
+      } else if(card == SEVEN){
+        newCards[i] = require("../src/assets/images/cards/card_seven.png");
+      } else if(card == TRIPLE_SEVEN){
+        newCards[i] = require("../src/assets/images/cards/card_tripleseven.png");
+      } else if(card == BONUS){
+        newCards[i] = require("../src/assets/images/cards/card_bonus.png");
+      } else {
+        newCards[i] = require("../src/assets/images/cards/card_back_blue.png");
+      }
+    }
     
 
-  //   return cards
-  // }
+    return newCards;
+  }
 
   // "1": require('../../assets/images/cards/card_bonus.png'),
   //           "2": require('../../assets/images/cards/card_heart.png'),

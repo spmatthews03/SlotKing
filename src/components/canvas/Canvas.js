@@ -8,30 +8,16 @@ import CardHolder from './CardHolder';
 export default class Canvas extends Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-        };
     }
-
-
-    componentDidMount(){
-      this.setState({
-        bets: this.props.bets,
-      });
-    }
-
-    betMarkerCallback = (num) => {
-      this.props.callback(num);
-    }
-
+ 
     render() {
         return (
           <View style={{flex:4}}>
-            <View style={{flex:1, paddingHorizontal:35}}>
+            <View style={{flex:1, paddingHorizontal:30}}>
               <View style={{flex:1}}>
                 <ImageBackground style={{height:'100%',resizeMode:'contain'}}
                   source={require('../../assets/images/canvas/canvas_frame_complete.png')}>
-                  <View style={{flex:1, paddingVertical:30, paddingHorizontal:15}}>
+                  <View style={{flex:1, paddingVertical:10, paddingHorizontal:10}}>
                   <View style={{flex:1}}>
                     {/* top row of the red bet markers */}
                     <View style={{flex:1, flexDirection:'row',}}>
@@ -44,25 +30,25 @@ export default class Canvas extends Component {
                     {/* top row of card placers markers */}
                     <View style={{flex:1.5, flexDirection:'row',}}>
                       <BetMarker num={1} style={{justifyContent:'center'}} direction='right'/>
-                      <CardHolder num={1}/>
-                      <CardHolder num={2}/>
-                      <CardHolder num={3}/>
+                      <CardHolder num="1" wait={200}/>
+                      <CardHolder num="2" wait={400}/>
+                      <CardHolder num="3" wait={600}/>
                       <BetMarker num={11} style={{justifyContent:'center', alignItems:'flex-end'}} direction='left'/>
                     </View>
                     {/* top row of card placers markers */}
                     <View style={{flex:1.5, flexDirection:'row',}}>
                       <BetMarker num={2} style={{justifyContent:'center'}} direction='right'/>
-                      <CardHolder num={4}/>
-                      <CardHolder num={5}/>
-                      <CardHolder num={6}/>
+                      <CardHolder num="4" wait={800}/>
+                      <CardHolder num="5" wait={1000}/>
+                      <CardHolder num="6" wait={1200}/>
                       <BetMarker num={10} style={{justifyContent:'center', alignItems:'flex-end'}} direction='left'/>
                     </View>
                     {/* top row of card placers markers */}
                     <View style={{flex:1.5, flexDirection:'row',}}>
                       <BetMarker num={3} style={{justifyContent:'center'}} direction='right'/>
-                      <CardHolder num={7}/>
-                      <CardHolder num={8}/>
-                      <CardHolder num={9}/>
+                      <CardHolder num="7" wait={1400}/>
+                      <CardHolder num="8" wait={1600}/>
+                      <CardHolder num="9" wait={1800}/>
                       <BetMarker num={9} style={{justifyContent:'center', alignItems:'flex-end'}} direction='left'/>
                     </View>
                     <View style={{flex:1, flexDirection:'row',}}>

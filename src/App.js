@@ -11,15 +11,7 @@ import React, { Fragment } from 'react';
 import HomeScreen from './screens/HomeScreen';
 import GameScreen from './screens/games/JackpotDealer/GameScreen';
 import MenuScreen from './screens/MenuScreen';
-// import JackpotDealerPriceboard from './screens/JackpotDealerPriceboard';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
+import JackpotDealerPriceboard from './screens/JackpotDealerPriceboard';
 
 
 const stackNavigator = createStackNavigator({
@@ -35,9 +27,12 @@ const stackNavigator = createStackNavigator({
       header: null,
     },
   },
-  // JackpotDealerPriceboard: {
-  //   screen: JackpotDealerPriceboard
-  // }
+  JackpotDealerPriceboard: {
+    screen: JackpotDealerPriceboard,
+    navigationOptions: {
+      header: null,
+    },
+  }
 });
 
 export default createAppContainer(stackNavigator);

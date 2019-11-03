@@ -4,8 +4,30 @@ export const DEAL = 'DEAL';
 export const REPEAT_BET = 'REPEAT_BET';
 export const HIGHLIGHT_CHIP = 'HIGHLIGHT_CHIP';
 export const SET_OPACITIES = 'SET_OPACITIES';
+export const BET_ALL = 'BET_ALL';
+export const DEALING = 'DEALING';
+export const FLIPPING = 'FLIPPING';
+export const BETTING = 'BETTING';
 
 
+export const dealFaceDown = (num) => {
+    return {
+        type: DEALING,
+        card: num
+    }
+}
+
+export const flipCards = () => {
+    return {
+        type: FLIPPING,
+    }
+}
+
+export const betting = () => {
+    return {
+        type: BETTING,
+    }
+}
 
 export const addBet = (num, chip) => {
     return{
@@ -30,6 +52,12 @@ export const deal = () => {
 export const repeatBet = () => {
     return{
         type: REPEAT_BET
+    }
+}
+
+export const betAll = () => {
+    return{
+        type: BET_ALL
     }
 }
 

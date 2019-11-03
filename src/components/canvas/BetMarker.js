@@ -56,7 +56,7 @@ class BetMarker extends Component {
                 onPress={() => this.props.addBetFunction(this.props.num)}
                 style={[{flex:1, width:'100%'}, this.props.style]}>  
                 <ImageBackground
-                    style={{width:45, height:45}}
+                    style={{width:40, height:40}}
                     source={this.state.direction}>
                     <View style={styles.textView}>
                         <Text style={styles.text}>{this.props.bets[this.props.num] == 0 ? '' : this.props.bets[this.props.num]}</Text>

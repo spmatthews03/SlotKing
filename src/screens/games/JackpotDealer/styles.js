@@ -38,6 +38,30 @@ const styles = StyleSheet.create({
       fontFamily: 'Roboto-Bold',
       color: 'white',
       textAlign: 'center'
+    },
+    dealButton: {
+      position: 'absolute',
+      left: 0,
+      right: 0,
+      top: 0,
+      bottom: 0,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    totalBet: {
+      position: 'absolute',
+      left: 0,
+      right: 0,
+      top: 0,
+      bottom: 0,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    buttonBar: {
+      flex: 1,
+      flexDirection: 'row',
+      justifyContent: 'center',
+      paddingHorizontal: 5,
     }
   });
 

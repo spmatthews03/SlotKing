@@ -9,9 +9,10 @@ export const CHERRY = 'CHERRY';
 export const HEART = 'HEART';
 export const WILD = 'WILD';
 export const JACKPOT = 'JACKPOT';
+export const BONUS = 'BONUS';
 
 export const CARDS = [TRIPLE_SEVEN, SEVEN, CROWN, DOUBLE_BAR, COIN,
-                        DOUBLE_HEART, BAR, CHERRY, HEART, WILD, JACKPOT];
+                        DOUBLE_HEART, BAR, CHERRY, HEART, WILD, JACKPOT, BONUS];
 
 
 export const JACKPOT_DEALER_CARDS = [TRIPLE_SEVEN, TRIPLE_SEVEN, TRIPLE_SEVEN, 
@@ -24,7 +25,8 @@ export const JACKPOT_DEALER_CARDS = [TRIPLE_SEVEN, TRIPLE_SEVEN, TRIPLE_SEVEN,
     CHERRY, CHERRY, CHERRY, CHERRY, CHERRY, CHERRY,
     HEART, HEART, HEART, HEART, HEART,
     WILD,
-    JACKPOT];
+    JACKPOT,
+    BONUS, BONUS];
 
 // export const NUM_TRIPLE_SEVEN = 3;
 // export const NUM_SEVEN = 4;

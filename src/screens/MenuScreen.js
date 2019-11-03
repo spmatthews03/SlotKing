@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { ImageBackground, StyleSheet, View, StatusBar, TouchableOpacity, Image, Text } from 'react-native';
-import { Button } from 'react-native-elements';
-import { NavigationEvents } from 'react-navigation';
 import MenuFooter from '../components/MenuFooter';
 
 export default class MenuScreen extends React.Component {
