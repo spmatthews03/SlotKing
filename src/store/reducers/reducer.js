@@ -59,7 +59,9 @@ const initialState = {
       "7": require('../../assets/images/canvas/card_holder.png'),
       "8": require('../../assets/images/canvas/card_holder.png'),
       "9": require('../../assets/images/canvas/card_holder.png'),
-    }
+    },
+    unflipped_cards: {},
+    flipped_cards: []
 }
 
 
@@ -77,8 +79,8 @@ const reducer = (state = initialState, action) => {
     }
 
     dealCards = () => {
-        newCards2 = getCards(shuffle(JACKPOT_DEALER_CARDS));
-        return newCards2;
+        cards = getCards(shuffle(JACKPOT_DEALER_CARDS));
+        return cards;
     }
 
 
@@ -93,10 +95,15 @@ const reducer = (state = initialState, action) => {
                 // dealing: true,
             };
         case FLIPPING:
+            // let card = state.unflipped_cards.pop();
             return{
                 ...state,
-                flipping: true
+                cards: {
+                    ...state.cards,
+                    [action.card]: state.unflipped_cards[action.card],
+                },
             }
+
         case BETTING:
             return{
                 ...state,
@@ -104,7 +111,6 @@ const reducer = (state = initialState, action) => {
 
             }
         case DEAL:
-            let prev_bets = state.bets;
             dealtCards = dealCards()
             let temp = {
                 "1": 0,
@@ -126,11 +132,13 @@ const reducer = (state = initialState, action) => {
             };
             return{
                 ...state,
-                previous_bets: prev_bets,
+                previous_bets: {...state.bets},
                 bets: temp,
                 credit: state.credit + calcTotalBet(state.bets),
-                cards: dealtCards,
-                total_bet: 0
+                unflipped_cards: dealtCards,
+                // cards: dealtCards,
+                total_bet: 0,
+                flipping: true
             };
         case RESET_BET:
             let temp2 = {
@@ -163,11 +171,12 @@ const reducer = (state = initialState, action) => {
                 total_bet: calcTotalBet(state.previous_bets)
             };
         case ADD_BET:
-            let newBets3 = state.bets;
-            newBets3[action.betNum] = state.bets[action.betNum] + state.highlighted_chip
             return{
                 ...state,
-                bets: newBets3,
+                bets: {
+                    ...state.bets,
+                    [action.betNum]: state.bets[action.betNum] + state.highlighted_chip
+                },
                 total_bet: state.total_bet + state.highlighted_chip
             };
         case BET_ALL:

@@ -19,6 +19,37 @@ import {
   export const symbol = (name) => SYMBOLS[name] || name;
 
   export const getCards = (a) => {
+    // let cards = [];
+    // for(i=1; i <=9; i++){
+    //   let card = a[i];
+    //   if(card == BAR){
+    //     cards.push(require("../src/assets/images/cards/card_bar.png"));
+    //   } else if(card == DOUBLE_BAR){
+    //     cards.push(require("../src/assets/images/cards/card_double_bar.png"));
+    //   } else if(card == HEART){
+    //     cards.push(require("../src/assets/images/cards/card_heart.png"));
+    //   } else if(card == DOUBLE_HEART){
+    //     cards.push(require("../src/assets/images/cards/card_double_heart.png"));
+    //   } else if(card == CHERRY){
+    //     cards.push(require("../src/assets/images/cards/card_cherry.png"));
+    //   } else if(card == COIN){
+    //     cards.push(require("../src/assets/images/cards/card_coin.png"));
+    //   } else if(card == CROWN){
+    //     cards.push(require("../src/assets/images/cards/card_crown.png"));
+    //   } else if(card == JACKPOT){
+    //     cards.push(require("../src/assets/images/cards/card_jackpot.png"));
+    //   } else if(card == SEVEN){
+    //     cards.push(require("../src/assets/images/cards/card_seven.png"));
+    //   } else if(card == TRIPLE_SEVEN){
+    //     cards.push(require("../src/assets/images/cards/card_tripleseven.png"));
+    //   } else if(card == BONUS){
+    //     cards.push(require("../src/assets/images/cards/card_bonus.png"));
+    //   } else {
+    //     cards.push(require("../src/assets/images/cards/card_back_blue.png"));
+    //   }
+    // }
+
+
     let newCards = {
       "1": 0,
       "2": 0,

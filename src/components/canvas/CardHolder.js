@@ -1,18 +1,20 @@
 import React, { Component, useEffect } from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
-import { dealFaceDown } from '../../store/actions/actions';
+import { dealFaceDown, flipCards } from '../../store/actions/actions';
 
 const mapDispatchToProps = dispatch => {
     return {
         dealFaceDownFunction: (card) => dispatch(dealFaceDown(card)),
+        flipCardsFunction: (card) => dispatch(flipCards(card))
     };
 };
 
 const mapStateToProps = state => {
     return{
         cards: state.reducer.cards,
-        // dealing: state.reducer.cards
+        flipping: state.reducer.flipping,
+        unflipped_cards : state.reducer.unflipped_cards
     };
 };
 
@@ -27,7 +29,18 @@ class CardHolder extends Component {
         }, this.props.wait);
     }
 
-    
+    componentDidUpdate(prevProps){
+        let tmp = this.props.cards[this.props.num];
+        let tmp2 = prevProps.cards[this.props.num];
+        let tmp3 = this.props.unflipped_cards[this.props.num];
+
+        if(this.props.flipping && tmp !== tmp3){
+            setTimeout(() => {
+                this.props.flipCardsFunction(this.props.num);
+            }, this.props.wait);
+        }
+    }
+
 
   render() { 
     return (

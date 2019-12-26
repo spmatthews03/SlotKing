@@ -17,9 +17,10 @@ export const dealFaceDown = (num) => {
     }
 }
 
-export const flipCards = () => {
+export const flipCards = (num) => {
     return {
         type: FLIPPING,
+        card:num
     }
 }
 

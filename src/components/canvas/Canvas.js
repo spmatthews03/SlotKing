@@ -30,25 +30,25 @@ export default class Canvas extends Component {
                     {/* top row of card placers markers */}
                     <View style={{flex:1.5, flexDirection:'row',}}>
                       <BetMarker num={1} style={{justifyContent:'center'}} direction='right'/>
-                      <CardHolder num="1" wait={200}/>
-                      <CardHolder num="2" wait={400}/>
-                      <CardHolder num="3" wait={600}/>
+                      <CardHolder num="1" wait={100}/>
+                      <CardHolder num="2" wait={200}/>
+                      <CardHolder num="3" wait={300}/>
                       <BetMarker num={11} style={{justifyContent:'center', alignItems:'flex-end'}} direction='left'/>
                     </View>
                     {/* top row of card placers markers */}
                     <View style={{flex:1.5, flexDirection:'row',}}>
                       <BetMarker num={2} style={{justifyContent:'center'}} direction='right'/>
-                      <CardHolder num="4" wait={800}/>
-                      <CardHolder num="5" wait={1000}/>
-                      <CardHolder num="6" wait={1200}/>
+                      <CardHolder num="4" wait={400}/>
+                      <CardHolder num="5" wait={500}/>
+                      <CardHolder num="6" wait={600}/>
                       <BetMarker num={10} style={{justifyContent:'center', alignItems:'flex-end'}} direction='left'/>
                     </View>
                     {/* top row of card placers markers */}
                     <View style={{flex:1.5, flexDirection:'row',}}>
                       <BetMarker num={3} style={{justifyContent:'center'}} direction='right'/>
-                      <CardHolder num="7" wait={1400}/>
-                      <CardHolder num="8" wait={1600}/>
-                      <CardHolder num="9" wait={1800}/>
+                      <CardHolder num="7" wait={700}/>
+                      <CardHolder num="8" wait={800}/>
+                      <CardHolder num="9" wait={900}/>
                       <BetMarker num={9} style={{justifyContent:'center', alignItems:'flex-end'}} direction='left'/>
                     </View>
                     <View style={{flex:1, flexDirection:'row',}}>
