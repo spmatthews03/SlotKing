@@ -17,7 +17,7 @@ const initialState = {
     gameStarted: false,
     dealing: false,
     flipping: false,
-    betting: false,
+    betting: true,
     credit: 1000,
     highlighted_chip: 1,
     total_bet: 0,
@@ -91,8 +91,9 @@ const reducer = (state = initialState, action) => {
                 cards: {
                     ...state.cards,
                     [action.card]:require('../../assets/images/cards/card_back_blue.png'),
-                }
-                // dealing: true,
+                },
+                betting: true,
+                dealing: false
             };
         case FLIPPING:
             // let card = state.unflipped_cards.pop();
@@ -102,6 +103,7 @@ const reducer = (state = initialState, action) => {
                     ...state.cards,
                     [action.card]: state.unflipped_cards[action.card],
                 },
+                flipping: true,
             }
 
         case BETTING:
@@ -136,9 +138,10 @@ const reducer = (state = initialState, action) => {
                 bets: temp,
                 credit: state.credit + calcTotalBet(state.bets),
                 unflipped_cards: dealtCards,
-                // cards: dealtCards,
+                cards: dealtCards,
                 total_bet: 0,
-                flipping: true
+                betting: false,
+                dealing: true
             };
         case RESET_BET:
             let temp2 = {
