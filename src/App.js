@@ -12,6 +12,7 @@ import HomeScreen from './screens/HomeScreen';
 import GameScreen from './screens/games/JackpotDealer/GameScreen';
 import MenuScreen from './screens/MenuScreen';
 import JackpotDealerPriceboard from './screens/JackpotDealerPriceboard';
+import HighScoreScreen from './screens/HighScoreScreen';
 
 
 const stackNavigator = createStackNavigator({
@@ -29,7 +30,13 @@ const stackNavigator = createStackNavigator({
   },
   JackpotDealerPriceboard: {
     screen: JackpotDealerPriceboard,
-    navigationOptions: {
+    // navigationOptions: {
+    //   header: null,
+    // },
+  },
+  HighScoreScreen: {
+    screen: HighScoreScreen,
+    navigationOptions:{
       header: null,
     },
   }

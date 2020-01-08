@@ -2,8 +2,14 @@ import React, { Component } from 'react';
 import { View, Image, TouchableOpacity } from 'react-native';
 
 
-export default class JackpotDealerFooter extends Component {
+export default class JackpotDealerFooter extends React.Component {
+    static navigationOptions = {
+        header: null
+    }
+
   render() {
+    const{navigate} = this.props.navigation;
+
     return (
         <View style={{flex:.7, backgroundColor:'#0f2636', flexDirection:'row', padding:8, justifyContent:'center'}}>
         <Image 
@@ -20,7 +26,7 @@ export default class JackpotDealerFooter extends Component {
                 </View>
                 <View style={{justifyContent:'center', alignItems:'center'}}>
                     <TouchableOpacity
-                        onPress={()=> alert('image clicked')}
+                        onPress={()=> navigate('HighScoreScreen')}
                         style={{padding :2, justifyContent:'center'}}>
                         <Image
                             style={{width:125, height:38}}

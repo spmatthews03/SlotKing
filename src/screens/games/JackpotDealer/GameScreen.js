@@ -155,7 +155,7 @@ class GameScreen extends React.Component {
             </View>
           </View>
         </View>
-        <JackpotDealerFooter/>
+        <JackpotDealerFooter navigation={this.props.navigation}/>
       </ImageBackground>
     );
   }
