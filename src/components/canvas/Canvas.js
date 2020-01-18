@@ -14,7 +14,6 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
   return{
       cards: state.reducer.cards,
-      betting: state.reducer.betting
   };
 };
 

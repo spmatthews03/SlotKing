@@ -1,12 +1,13 @@
 import React, { Component, useEffect } from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
-import { dealFaceDown,flipCards } from '../../store/actions/actions';
+import { dealFaceDown,flipCards, betting } from '../../store/actions/actions';
 
 const mapDispatchToProps = dispatch => {
     return {
         dealFaceDownFunction: (card) => dispatch(dealFaceDown(card)),
-        flipCardsFunction: (card) => dispatch(flipCards(card))
+        flipCardsFunction: (card) => dispatch(flipCards(card)),
+        // initiateBetting: () => dispatch(betting())
     };
 };
 
@@ -25,10 +26,10 @@ class CardHolder extends Component {
     }
 
     componentDidMount(){
-        if(this.props.betting){
+        if(this.props.dealing){
             setTimeout(() => {
                 this.props.dealFaceDownFunction(this.props.num);
-            }, this.props.wait);
+            }, this.props.wait);            
         }
     }
 
@@ -38,13 +39,9 @@ class CardHolder extends Component {
                 this.props.flipCardsFunction(this.props.num);
             }, this.props.wait);
         } else if(this.props.dealing){
-            // setTimeout(() => {
-            //     this.props.dealFaceDownFunction(this.props.num);
-            // }, 5000);
-
             setTimeout(() => {
                 this.props.dealFaceDownFunction(this.props.num);
-            }, this.props.wait+4000);
+            }, this.props.wait);    
         }
     }
 

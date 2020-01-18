@@ -8,6 +8,8 @@ export const BET_ALL = 'BET_ALL';
 export const DEALING = 'DEALING';
 export const FLIPPING = 'FLIPPING';
 export const BETTING = 'BETTING';
+export const FLIP = 'FLIP';
+export const CLEAR = 'CLEAR';
 
 
 export const dealFaceDown = (num) => {
@@ -21,6 +23,18 @@ export const flipCards = (num) => {
     return {
         type: FLIPPING,
         card:num
+    }
+}
+
+export const flip = () => {
+    return {
+        type: FLIP,
+    }
+}
+
+export const clearCards = () => {
+    return {
+        type: CLEAR,
     }
 }
 

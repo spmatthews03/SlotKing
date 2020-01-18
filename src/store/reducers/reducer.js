@@ -8,7 +8,9 @@ import {
     BET_ALL, 
     DEALING, 
     FLIPPING,
-    BETTING } from "../actions/actions";
+    BETTING,
+    FLIP, 
+    CLEAR} from "../actions/actions";
 import { JACKPOT_DEALER_CARDS } from "../../../constants/cards";
 import { shuffle, getCards } from "../../../helpers/dealer";
 
@@ -17,7 +19,7 @@ const initialState = {
     gameStarted: false,
     dealing: false,
     flipping: false,
-    betting: true,
+    betting: false,
     credit: 1000,
     highlighted_chip: 1,
     total_bet: 0,
@@ -92,28 +94,43 @@ const reducer = (state = initialState, action) => {
                     ...state.cards,
                     [action.card]:require('../../assets/images/cards/card_back_blue.png'),
                 },
-                betting: true,
-                dealing: false
+                dealing: true,
+                betting: true
             };
         case FLIPPING:
-            // let card = state.unflipped_cards.pop();
             return{
                 ...state,
                 cards: {
                     ...state.cards,
                     [action.card]: state.unflipped_cards[action.card],
                 },
-                flipping: true,
             }
+        case FLIP:
+            dealtCards = dealCards()
 
+            return{
+                ...state,
+                flipping: true,
+                dealing: false,
+                betting: false,
+                unflipped_cards: dealtCards,
+                cards: dealtCards
+            }
         case BETTING:
             return{
                 ...state,
-                betting: true,
-
+                dealing: false,
+                betting: true
             }
+        // case CLEAR:
+        //     return{
+        //         ...state,
+        //         cards: {
+        //             ...state.cards,
+        //             [action.card]:require('../../assets/images/cards/card_back_blue.png'),
+        //         }
+        //     }
         case DEAL:
-            dealtCards = dealCards()
             let temp = {
                 "1": 0,
                 "2": 0,
@@ -137,11 +154,14 @@ const reducer = (state = initialState, action) => {
                 previous_bets: {...state.bets},
                 bets: temp,
                 credit: state.credit + calcTotalBet(state.bets),
-                unflipped_cards: dealtCards,
-                cards: dealtCards,
+                // cards: {
+                //         ...state.cards,
+                //         [action.card]:require('../../assets/images/cards/card_back_blue.png'),
+                //     },
                 total_bet: 0,
-                betting: false,
-                dealing: true
+                betting: true,
+                dealing: true,
+                flipping: false,
             };
         case RESET_BET:
             let temp2 = {

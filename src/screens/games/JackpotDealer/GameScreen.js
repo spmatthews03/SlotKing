@@ -5,13 +5,14 @@ import JackpotBar from '../../../components/JackpotBar';
 import Canvas from '../../../components/canvas/Canvas';
 import { connect } from 'react-redux';
 import { styles } from './styles';
-import { deal, resetBet, repeatBet, betAll, dealFaceDown } from '../../../store/actions/actions';
+import { deal, resetBet, repeatBet, betAll, dealFaceDown, flipCards, flip } from '../../../store/actions/actions';
 import JackpotDealerFooter from '../../../components/JackpotDealerFooter';
 
 
 const mapStateToProps = state => {
   return{
     gameStarted: state.reducer.gameStarted,
+    betting: state.reducer.betting,
     credit: state.reducer.credit,
     highlighted_chip: state.reducer.highlighted_chip,
     total_bet: state.reducer.total_bet,
@@ -45,6 +46,7 @@ const mapDispatchToProps = dispatch => {
     repeatBetFunction: () => dispatch(repeatBet()),
     dealFunction: () => dispatch(deal()),
     betAllFunction: () => dispatch(betAll()),
+    flipFunction: () => dispatch(flip())
   };
 };
 
@@ -64,23 +66,9 @@ class GameScreen extends React.Component {
     })
   }
 
-
-  render() {
-    const { navigate } = this.props.navigation;
-
-    return (
-      
-      <ImageBackground
-        style={styles.backgroundImage}
-        source={require("../../../assets/images/background.png")}
-      >
-        <StatusBar hidden={true} />
-        <JackpotBar credit={this.props.credit} jackpot={this.props.jackpot}/>
-        <View style={{ flex: 6, flexDirection: 'row' }}>
-          <View style={{ flex: 4, paddingVertical:10}}>
-            <View style={{ flex: 1}}>
-              <Canvas/>
-              <View style={{ flex: 2, justifyContent: 'center', padding: 5 }}>
+  bettingButtons = () => {
+    return(
+              <View style={{flex:1}}>
                 <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', paddingHorizontal: 50}}>
                   <TouchableOpacity
                     disabled={this.props.highlighted_chip == 0 ? true : false}
@@ -139,9 +127,31 @@ class GameScreen extends React.Component {
                     </View>
                   </TouchableOpacity>
                   <TouchableOpacity
-                    onPress={() => this.props.dealFunction()}
+                    onPress={() => this.props.flipFunction()}
                     disabled={this.props.total_bet == 0 ? true : false}
                     style={[styles.flexOneStyles, {opacity:this.props.total_bet == 0 ? 0.2 : 1} ]}>
+                    <Image
+                      style={styles.bottomButtonsStyle}
+                      source={require('../../../assets/images/buttons/button_play__button_play_2.png')}/>
+                    <View
+                      style={styles.dealButton}>
+                      <Text style={styles.dealText}>{"FLIP"}</Text>
+                    </View>
+                  </TouchableOpacity>
+                </View>
+              </View>
+    )
+  }
+
+  dealButton = () => {
+    return(
+      <View style={{flex:1}}>
+                <View style={{flex:1.5}}></View>
+                <View
+                  style={styles.buttonBar}>
+                  <TouchableOpacity
+                    onPress={() => this.props.dealFunction()}
+                    style={[styles.flexOneStyles]}>
                     <Image
                       style={styles.bottomButtonsStyle}
                       source={require('../../../assets/images/buttons/button_play__button_play_2.png')}/>
@@ -151,6 +161,31 @@ class GameScreen extends React.Component {
                     </View>
                   </TouchableOpacity>
                 </View>
+              </View>
+    )
+
+  }
+
+  
+
+
+
+
+  render() {
+    return (
+      
+      <ImageBackground
+        style={styles.backgroundImage}
+        source={require("../../../assets/images/background.png")}
+      >
+        <StatusBar hidden={true} />
+        <JackpotBar credit={this.props.credit} jackpot={this.props.jackpot}/>
+        <View style={{ flex: 6, flexDirection: 'row' }}>
+          <View style={{ flex: 4, paddingVertical:10}}>
+            <View style={{ flex: 1}}>
+              <Canvas/>
+              <View style={{ flex: 2, justifyContent: 'center', padding: 5 }}>
+                {this.props.betting === false ? this.dealButton() : this.bettingButtons()}
               </View>
             </View>
           </View>
