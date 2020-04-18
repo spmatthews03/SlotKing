@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { ImageBackground, StyleSheet, View, StatusBar, TouchableOpacity, Image, Text } from 'react-native';
-import MenuFooter from '../components/MenuFooter';
+import MenuFooter from '../components/footers/MenuFooter';
 
 export default class HomeScreen extends React.Component {
     static navigationOptions = {

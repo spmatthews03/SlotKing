@@ -10,13 +10,15 @@ import {
     FLIPPING,
     BETTING,
     FLIP, 
-    CLEAR} from "../actions/actions";
+    CLEAR,
+    SET_GAME} from "../actions/actions";
 import { JACKPOT_DEALER_CARDS } from "../../../constants/cards";
 import { shuffle, getCards } from "../../../helpers/dealer";
 
 
 const initialState = {
     gameStarted: false,
+    game: null,
     dealing: false,
     flipping: false,
     betting: false,
@@ -154,10 +156,9 @@ const reducer = (state = initialState, action) => {
                 previous_bets: {...state.bets},
                 bets: temp,
                 credit: state.credit + calcTotalBet(state.bets),
-                // cards: {
-                //         ...state.cards,
-                //         [action.card]:require('../../assets/images/cards/card_back_blue.png'),
-                //     },
+                cards: {
+                        ...initialState.cards,
+                    },
                 total_bet: 0,
                 betting: true,
                 dealing: true,
@@ -235,6 +236,11 @@ const reducer = (state = initialState, action) => {
             return{
                 ...state,
                 opacities: action.payload
+            }
+        case SET_GAME:
+            return {
+                ...state,
+                game: action.game
             }
         default:
             return state;

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, ImageBackground } from 'react-native';
+import { View, StyleSheet, ImageBackground, Image } from 'react-native';
 import BetMarker from './BetMarker';
 import CardHolder from './CardHolder';
 import { connect } from 'react-redux';

@@ -5,10 +5,10 @@ import JackpotBar from '../../../components/JackpotBar';
 import Canvas from '../../../components/canvas/Canvas';
 import { connect } from 'react-redux';
 import { styles } from './styles';
-import { deal, resetBet, repeatBet, betAll, flip } from '../../../store/actions/actions';
-import JackpotDealerFooter from '../../../components/footers/JackpotDealerFooter';
+import { deal, resetBet, repeatBet, betAll, dealFaceDown, flipCards, flip } from '../../../store/actions/actions';
 import WinningsBar from '../../../components/WinningsBar';
 import ButtonBar from '../../../components/betting/ButtonBar';
+import StoppedDealerFooter from '../../../components/footers/StoppedDealerFooter';
 
 
 const mapStateToProps = state => {
@@ -54,7 +54,7 @@ const mapDispatchToProps = dispatch => {
 
 
 
-class GameScreen extends React.Component {
+class StoppedVersion extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -76,7 +76,13 @@ class GameScreen extends React.Component {
                     disabled={this.props.highlighted_chip == 0 ? true : false}
                     onPress={() => this.props.betAllFunction()}
                     style={{ flex: 1, width: '100%', padding: 10, opacity:this.props.highlighted_chip == 0 ? 0.2 : 1 }}>
-                    <Image style={styles.bottomButtonsStyle}
+                    <Image
+                      style={{
+                        flex: 1,
+                        width: '100%',
+                        height: '100%',
+                        resizeMode: 'contain',
+                      }}
                       source={require('../../../assets/images/bet_all.png')}
                     />
                   </TouchableOpacity>
@@ -84,7 +90,13 @@ class GameScreen extends React.Component {
                     onPress={() => this.betJackpot()}
                     disabled={this.props.highlighted_chip == 0 ? true : false}
                     style={{ flex: 1, width: '100%', padding: 10, opacity:this.props.highlighted_chip == 0 ? 0.2 : 1 }}>
-                    <Image style={styles.bottomButtonsStyle}
+                    <Image
+                      style={{
+                        flex: 1,
+                        width: '100%',
+                        height: '100%',
+                        resizeMode: 'contain',
+                      }}
                       source={require('../../../assets/images/bet_jackpot.png')}
                     />
                   </TouchableOpacity>
@@ -144,12 +156,12 @@ class GameScreen extends React.Component {
             </View>
           </View>
         </View>
-        <JackpotDealerFooter navigation={this.props.navigation}/>
+        <StoppedDealerFooter navigation={this.props.navigation}/>
       </ImageBackground>
     );
   }
 }
 
 
-export default connect( mapStateToProps, mapDispatchToProps) (GameScreen);
+export default connect( mapStateToProps, mapDispatchToProps) (StoppedVersion);
 

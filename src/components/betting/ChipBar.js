@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Animated, View, Image, StyleSheet, Easing, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
-import { highlightChip,setOpacities } from '../store/actions/actions';
+import { highlightChip,setOpacities } from '../../store/actions/actions';
 
 
 
@@ -86,7 +86,7 @@ class ChipBar extends Component {
                         style={[
                             styles.chipStyle, {opacity: this.props.opacities.yellow}
                         ]}
-                        source={require('../assets/images/chips/chip_one.png')}
+                        source={require('../../assets/images/chips/chip_one.png')}
                         />
                     </TouchableOpacity>
                     <TouchableOpacity
@@ -97,7 +97,7 @@ class ChipBar extends Component {
                         style={[
                             styles.chipStyle, {opacity: this.props.opacities.purple}
                         ]}
-                        source={require('../assets/images/chips/chip_five.png')}
+                        source={require('../../assets/images/chips/chip_five.png')}
                         />
                     </TouchableOpacity>
                     <TouchableOpacity
@@ -108,7 +108,7 @@ class ChipBar extends Component {
                         style={[
                             styles.chipStyle, {opacity: this.props.opacities.green}
                         ]}
-                        source={require('../assets/images/chips/chip_ten.png')}
+                        source={require('../../assets/images/chips/chip_ten.png')}
                         />
                     </TouchableOpacity>
                     <TouchableOpacity
@@ -118,7 +118,7 @@ class ChipBar extends Component {
                         style={[
                             styles.chipStyle, {opacity: this.props.opacities.red}
                         ]}
-                        source={require('../assets/images/chips/chip_twenty.png')}/>
+                        source={require('../../assets/images/chips/chip_twenty.png')}/>
                     </TouchableOpacity>
                     <TouchableOpacity
                         onPress={() => this.setHighlightedChip('gold')}
@@ -127,7 +127,7 @@ class ChipBar extends Component {
                         style={[
                             styles.chipStyle, {opacity: this.props.opacities.gold}
                         ]}
-                        source={require('../assets/images/chips/chip_hundred.png')}
+                        source={require('../../assets/images/chips/chip_hundred.png')}
                         />
                     </TouchableOpacity>
                 </View>

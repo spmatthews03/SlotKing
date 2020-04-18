@@ -1,8 +1,10 @@
 import {createStore, combineReducers, applyMiddleware } from 'redux';
 import reducer from './reducer';
+import bettingBarReducer from './bettingBarReducer';
 import { composeWithDevTools } from 'remote-redux-devtools';
 
 const rootReducer = combineReducers({
+    // bettingBarReducer: bettingBarReducer,
     reducer: reducer,
 });
 
