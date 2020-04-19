@@ -9,11 +9,13 @@ import { deal, resetBet, repeatBet, betAll, flip } from '../../../store/actions/
 import JackpotDealerFooter from '../../../components/footers/JackpotDealerFooter';
 import WinningsBar from '../../../components/WinningsBar';
 import ButtonBar from '../../../components/betting/ButtonBar';
+import {gameStates} from '../../../../constants/gameStates';
 
 
 const mapStateToProps = state => {
   return{
     gameStarted: state.reducer.gameStarted,
+    gameState: state.reducer.gameState,
     betting: state.reducer.betting,
     credit: state.reducer.credit,
     highlighted_chip: state.reducer.highlighted_chip,
@@ -89,7 +91,7 @@ class GameScreen extends React.Component {
                     />
                   </TouchableOpacity>
                 </View>
-                <ChipBar parentCallback={this.chipBarCallback}/>
+                <ChipBar/>
                 <ButtonBar/>
               </View>
     )
@@ -98,29 +100,28 @@ class GameScreen extends React.Component {
   dealButton = () => {
     return(
       <View style={{flex:1}}>
-                <View style={{flex:1.5}}>
-                  <WinningsBar/>
-                </View>
-                <View
-                  style={[styles.buttonBar, {alignItems:"center", justifyContent:"center"}]}>
-                  <TouchableOpacity
-                    onPress={() => this.props.dealFunction()}
-                    style={[styles.flexOneStyles]}>
-                    <Image
-                      style={styles.bottomButtonsStyle}
-                      source={require('../../../assets/images/buttons/button_play__button_play_2.png')}/>
-                    <View
-                      style={styles.dealButton}>
-                      <Text style={styles.dealText}>{"DEAL"}</Text>
-                    </View>
-                  </TouchableOpacity>
-                </View>
-              </View>
+        <View style={{flex:1.5}}>
+          {this.props.gameState === gameStates.NEW_GAME ? null : 
+            <WinningsBar/>
+          }
+        </View>
+        <View
+          style={[styles.buttonBar, {alignItems:"center", justifyContent:"center"}]}>
+          <TouchableOpacity
+            onPress={() => this.props.dealFunction()}
+            style={[styles.flexOneStyles]}>
+            <Image
+              style={styles.bottomButtonsStyle}
+              source={require('../../../assets/images/buttons/button_play__button_play_2.png')}/>
+            <View
+              style={styles.dealButton}>
+              <Text style={styles.dealText}>{"DEAL"}</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+      </View>
     )
-
   }
-
-  
 
 
 
@@ -139,7 +140,7 @@ class GameScreen extends React.Component {
             <View style={{ flex: 1}}>
               <Canvas/>
               <View style={{ flex: 2, justifyContent: 'center', padding: 5 }}>
-                {this.props.betting === false ? this.dealButton() : this.bettingButtons()}
+                {this.props.gameState === gameStates.RESULTS || this.props.gameState === gameStates.NEW_GAME ? this.dealButton() : this.bettingButtons()}
               </View>
             </View>
           </View>

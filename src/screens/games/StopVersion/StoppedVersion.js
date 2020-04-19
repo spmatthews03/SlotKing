@@ -5,15 +5,17 @@ import JackpotBar from '../../../components/JackpotBar';
 import Canvas from '../../../components/canvas/Canvas';
 import { connect } from 'react-redux';
 import { styles } from './styles';
-import { deal, resetBet, repeatBet, betAll, dealFaceDown, flipCards, flip } from '../../../store/actions/actions';
+import { deal, resetBet, repeatBet, betAll, dealFaceDown, flipCards, flip, discard } from '../../../store/actions/actions';
 import WinningsBar from '../../../components/WinningsBar';
 import ButtonBar from '../../../components/betting/ButtonBar';
 import StoppedDealerFooter from '../../../components/footers/StoppedDealerFooter';
+import {gameStates} from '../../../../constants/gameStates';
 
 
 const mapStateToProps = state => {
   return{
     gameStarted: state.reducer.gameStarted,
+    gameState: state.reducer.gameState,
     betting: state.reducer.betting,
     credit: state.reducer.credit,
     highlighted_chip: state.reducer.highlighted_chip,
@@ -48,7 +50,8 @@ const mapDispatchToProps = dispatch => {
     repeatBetFunction: () => dispatch(repeatBet()),
     dealFunction: () => dispatch(deal()),
     betAllFunction: () => dispatch(betAll()),
-    flipFunction: () => dispatch(flip())
+    flipFunction: () => dispatch(flip()),
+    discardFunction: () => dispatch(discard())
   };
 };
 
@@ -110,28 +113,62 @@ class StoppedVersion extends React.Component {
   dealButton = () => {
     return(
       <View style={{flex:1}}>
-                <View style={{flex:1.5}}>
-                  <WinningsBar/>
-                </View>
-                <View
-                  style={[styles.buttonBar, {alignItems:"center", justifyContent:"center"}]}>
-                  <TouchableOpacity
-                    onPress={() => this.props.dealFunction()}
-                    style={[styles.flexOneStyles]}>
-                    <Image
-                      style={styles.bottomButtonsStyle}
-                      source={require('../../../assets/images/buttons/button_play__button_play_2.png')}/>
-                    <View
-                      style={styles.dealButton}>
-                      <Text style={styles.dealText}>{"DEAL"}</Text>
-                    </View>
-                  </TouchableOpacity>
-                </View>
-              </View>
+        <View style={{flex:1.5}}>
+          {this.props.gameState === gameStates.NEW_GAME ? null : 
+            <WinningsBar/>
+          }
+        </View>
+        <View
+          style={[styles.buttonBar, {alignItems:"center", justifyContent:"center"}]}>
+          <TouchableOpacity
+            onPress={() => this.props.dealFunction()}
+            style={[styles.flexOneStyles]}>
+            <Image
+              style={styles.bottomButtonsStyle}
+              source={require('../../../assets/images/buttons/button_play__button_play_2.png')}/>
+            <View
+              style={styles.dealButton}>
+              <Text style={styles.dealText}>{"DEAL"}</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+      </View>
     )
 
   }
 
+  discardButton = () => {
+    return(
+      <View style={{flex:1}}>
+        <View style={{flex:1.5}}/>
+        <View
+          style={[styles.buttonBar, {alignItems:"center", justifyContent:"center"}]}>
+          <TouchableOpacity
+            onPress={() => this.props.discardFunction()}
+            style={[styles.flexOneStyles]}>
+            <Image
+              style={styles.bottomButtonsStyle}
+              source={require('../../../assets/images/buttons/button_play__button_play_2.png')}/>
+            <View
+              style={styles.dealButton}>
+              <Text style={styles.dealText}>{"DISCARD"}</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+      </View>
+    )
+
+  }
+
+  tmpFunction = () => {
+    if(this.props.gameState === gameStates.RESULTS || this.props.gameState === gameStates.NEW_GAME){
+      return this.dealButton();
+    } else if(this.props.gameState === gameStates.WAIT_ON_DISCARD){
+      return this.discardButton();
+    } else {
+      return this.bettingButtons();
+    }
+  }
   
 
 
@@ -151,7 +188,7 @@ class StoppedVersion extends React.Component {
             <View style={{ flex: 1}}>
               <Canvas/>
               <View style={{ flex: 2, justifyContent: 'center', padding: 5 }}>
-                {this.props.betting === false ? this.dealButton() : this.bettingButtons()}
+                {this.tmpFunction()}
               </View>
             </View>
           </View>

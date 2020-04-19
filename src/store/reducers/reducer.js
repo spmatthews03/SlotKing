@@ -3,30 +3,30 @@ import {
     REPEAT_BET, 
     RESET_BET, 
     DEAL, 
+    DEALING,
+    DEAL_NEW,
     HIGHLIGHT_CHIP, 
     SET_OPACITIES, 
     BET_ALL, 
-    DEALING, 
-    FLIPPING,
     BETTING,
     FLIP, 
-    CLEAR,
-    SET_GAME} from "../actions/actions";
+    SET_GAME,
+    DISCARD,
+    DONE_DISCARDING,
+    DONE_FLIPPING} from "../actions/actions";
 import { JACKPOT_DEALER_CARDS } from "../../../constants/cards";
-import { shuffle, getCards } from "../../../helpers/dealer";
-
+import { shuffle, getCards, getNewCard } from "../../../helpers/dealer";
+import {gameStates,gameModes} from "../../../constants/gameStates";
 
 const initialState = {
-    gameStarted: false,
     game: null,
-    dealing: false,
-    flipping: false,
-    betting: false,
+    gameState: gameStates.NEW_GAME,
     credit: 1000,
     highlighted_chip: 1,
     total_bet: 0,
     jackpot: 100,
     jackpotDisable: false,
+    deck: null,
     opacities: {
         yellow: 1,
         purple: 0.2,
@@ -64,12 +64,7 @@ const initialState = {
       "8": require('../../assets/images/canvas/card_holder.png'),
       "9": require('../../assets/images/canvas/card_holder.png'),
     },
-    unflipped_cards: {},
-    flipped_cards: []
 }
-
-
-
 
 
 const reducer = (state = initialState, action) => {
@@ -83,12 +78,36 @@ const reducer = (state = initialState, action) => {
     }
 
     dealCards = () => {
-        cards = getCards(shuffle(JACKPOT_DEALER_CARDS));
+        cards = getCards(state.deck);
         return cards;
     }
 
 
     switch(action.type) {
+        case DEAL_NEW:
+            return {
+                ...state,
+                cards: {
+                    ...state.cards,
+                    [action.card]: getNewCard(state.deck)
+                },
+                deck: state.deck.splice(1)
+            }
+        case DONE_DISCARDING:
+            return {
+                ...state,
+                gameState: gameStates.RESULTS
+            }
+        case DONE_FLIPPING:
+            return {
+                ...state,
+                gameState: gameStates.WAIT_ON_DISCARD
+            }
+        case DISCARD:
+            return{
+                ...state,
+                gameState: gameStates.DISCARDING
+            }
         case DEALING:
             return{
                 ...state,
@@ -96,42 +115,20 @@ const reducer = (state = initialState, action) => {
                     ...state.cards,
                     [action.card]:require('../../assets/images/cards/card_back_blue.png'),
                 },
-                dealing: true,
-                betting: true
             };
-        case FLIPPING:
-            return{
-                ...state,
-                cards: {
-                    ...state.cards,
-                    [action.card]: state.unflipped_cards[action.card],
-                },
-            }
         case FLIP:
             dealtCards = dealCards()
-
             return{
                 ...state,
-                flipping: true,
-                dealing: false,
-                betting: false,
-                unflipped_cards: dealtCards,
-                cards: dealtCards
+                gameState:  state.game == gameModes.STOPPED ? gameStates.FLIPPING : gameStates.RESULTS,
+                cards: dealtCards,
+                deck: state.deck.splice(9)
             }
         case BETTING:
             return{
                 ...state,
-                dealing: false,
-                betting: true
+                gameState: gameStates.BETTING
             }
-        // case CLEAR:
-        //     return{
-        //         ...state,
-        //         cards: {
-        //             ...state.cards,
-        //             [action.card]:require('../../assets/images/cards/card_back_blue.png'),
-        //         }
-        //     }
         case DEAL:
             let temp = {
                 "1": 0,
@@ -159,10 +156,9 @@ const reducer = (state = initialState, action) => {
                 cards: {
                         ...initialState.cards,
                     },
+                deck: shuffle(JACKPOT_DEALER_CARDS),
                 total_bet: 0,
-                betting: true,
-                dealing: true,
-                flipping: false,
+                gameState: gameStates.BETTING
             };
         case RESET_BET:
             let temp2 = {

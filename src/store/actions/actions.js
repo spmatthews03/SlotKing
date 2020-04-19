@@ -5,17 +5,46 @@ export const REPEAT_BET = 'REPEAT_BET';
 export const HIGHLIGHT_CHIP = 'HIGHLIGHT_CHIP';
 export const SET_OPACITIES = 'SET_OPACITIES';
 export const BET_ALL = 'BET_ALL';
-export const DEALING = 'DEALING';
-export const FLIPPING = 'FLIPPING';
 export const BETTING = 'BETTING';
 export const FLIP = 'FLIP';
-export const CLEAR = 'CLEAR';
 export const SET_GAME = 'SET_GAME';
+export const DISCARD = 'DISCARD';
+export const DEAL_NEW = 'DEAL_NEW';
+export const DEALING = 'DEALING';
+export const DONE_DISCARDING = 'DONE_DISCARDING';
+export const DONE_FLIPPING = 'DONE_FLIPPING';
+
 
 export const setGame = (game) => {
     return {
         type: SET_GAME,
         game: game
+    }
+}
+
+export const flippingComplete = () => {
+    return {
+        type: DONE_FLIPPING
+    }
+}
+
+export const discardingComplete = () => {
+    return {
+        type: DONE_DISCARDING
+    }
+}
+
+export const dealNewCard = (num) => {
+    return {
+        type: DEAL_NEW,
+        card: num
+    }
+}
+
+export const discard = (cards) => {
+    return {
+        type: DISCARD,
+        cards: cards
     }
 }
 
@@ -26,22 +55,9 @@ export const dealFaceDown = (num) => {
     }
 }
 
-export const flipCards = (num) => {
-    return {
-        type: FLIPPING,
-        card:num
-    }
-}
-
 export const flip = () => {
     return {
         type: FLIP,
-    }
-}
-
-export const clearCards = () => {
-    return {
-        type: CLEAR,
     }
 }
 

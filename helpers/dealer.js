@@ -1,6 +1,6 @@
 import { 
     CARDS,
-    BAR, SEVEN, TRIPLE_SEVEN, CROWN, COIN, CHERRY, JACKPOT, DOUBLE_BAR, DOUBLE_HEART, HEART, BONUS } from '../constants/cards';
+    BAR, SEVEN, TRIPLE_SEVEN, CROWN, COIN, CHERRY, JACKPOT, DOUBLE_BAR, DOUBLE_HEART, HEART, BONUS, WILD } from '../constants/cards';
   
 
   
@@ -17,6 +17,37 @@ import {
   }
   
   export const symbol = (name) => SYMBOLS[name] || name;
+
+  export const getNewCard = (deck) => {
+      card = deck[0];
+      if(card == BAR){
+        return require("../src/assets/images/cards/card_bar.png");
+      } else if(card == DOUBLE_BAR){
+        return require("../src/assets/images/cards/card_double_bar.png");
+      } else if(card == HEART){
+        return require("../src/assets/images/cards/card_heart.png");
+      } else if(card == DOUBLE_HEART){
+        return require("../src/assets/images/cards/card_double_heart.png");
+      } else if(card == CHERRY){
+        return require("../src/assets/images/cards/card_cherry.png");
+      } else if(card == COIN){
+        return require("../src/assets/images/cards/card_coin.png");
+      } else if(card == CROWN){
+        return require("../src/assets/images/cards/card_crown.png");
+      } else if(card == JACKPOT){
+        return require("../src/assets/images/cards/card_jackpot.png");
+      } else if(card == SEVEN){
+        return require("../src/assets/images/cards/card_seven.png");
+      } else if(card == TRIPLE_SEVEN){
+        return require("../src/assets/images/cards/card_tripleseven.png");
+      } else if(card == BONUS){
+        return require("../src/assets/images/cards/card_bonus.png");
+      } else if(card == WILD){
+        return require("../src/assets/images/cards/card_wild.png");
+      }else {
+        return require("../src/assets/images/cards/card_back_blue.png");
+      } 
+  }
 
   export const getCards = (a) => {
     // let cards = [];
@@ -85,7 +116,9 @@ import {
         newCards[i] = require("../src/assets/images/cards/card_tripleseven.png");
       } else if(card == BONUS){
         newCards[i] = require("../src/assets/images/cards/card_bonus.png");
-      } else {
+      } else if(card == WILD){
+        newCards[i] = require("../src/assets/images/cards/card_wild.png");
+      }else {
         newCards[i] = require("../src/assets/images/cards/card_back_blue.png");
       }
     }
