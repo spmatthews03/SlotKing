@@ -93,11 +93,20 @@ class MenuScreen extends React.Component {
                     </View>
                     <View style={{justifyContent:'center', alignItems:'center', padding:5}}>
                         <TouchableOpacity
+                            disabled={true}
+                            onPress={()=> this.navigateToGame('Game')}>
+                            <Image
+                                style={{width:170, height:170, opacity:.5}}
+                                source={require('../assets/images/buttons/button_skill.png')}/>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={{justifyContent:'center', alignItems:'center', padding:5}}>
+                        <TouchableOpacity
                             // disabled={true}
-                            onPress={()=> this.navigateToGame('Stopped')}>
+                            onPress={()=> this.navigateToGame('HoldAndDraw')}>
                             <Image
                                 style={{width:170, height:170}}
-                                source={require('../assets/images/buttons/button_skill.png')}/>
+                                source={require('../assets/images/buttons/button_holddraw.png')}/>
                         </TouchableOpacity>
                     </View>
                 </View>

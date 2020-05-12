@@ -3,8 +3,8 @@ import { View, StyleSheet, ImageBackground, Image } from 'react-native';
 import BetMarker from './BetMarker';
 import CardHolder from './CardHolder';
 import { connect } from 'react-redux';
-import {gameStates, gameModes} from '../../../constants/gameStates';
-import { discardingComplete, flippingComplete } from '../../store/actions/actions';
+import {gameStates, gameModes} from '../../../../constants/gameStates';
+import { discardingComplete, flippingComplete } from '../../../store/actions/actions';
 
 
 const mapDispatchToProps = dispatch => {
@@ -44,7 +44,7 @@ class Canvas extends Component {
             <View style={{flex:1, paddingHorizontal:30}}>
               <View style={{flex:1}}>
                 <ImageBackground style={{height:'100%',resizeMode:'contain'}}
-                  source={require('../../assets/images/canvas/canvas_frame_complete.png')}>
+                  source={require('../../../assets/images/canvas/canvas_frame_complete.png')}>
                   <View style={{flex:1, paddingVertical:10, paddingHorizontal:10}}>
                   <View style={{flex:1}}>
                     {/* top row of the red bet markers */}

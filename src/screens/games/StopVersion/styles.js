@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     },
     dealText: {
       fontWeight: 'bold',
-      fontSize: 28,
+      fontSize: 20,
       fontFamily: 'Roboto-Bold',
       color: 'white',
       textAlign: 'center'

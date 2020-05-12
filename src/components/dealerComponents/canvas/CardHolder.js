@@ -1,8 +1,8 @@
 import React, { Component, useEffect } from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
-import { dealFaceDown,flipCards, dealNewCard } from '../../store/actions/actions';
-import {gameStates, gameModes} from '../../../constants/gameStates';
+import { dealFaceDown,flipCards, dealNewCard } from '../../../store/actions/actions';
+import {gameStates, gameModes} from '../../../../constants/gameStates';
 
 const mapDispatchToProps = dispatch => {
     return {
@@ -38,10 +38,10 @@ class CardHolder extends Component {
                 this.setState({selected: false});
         }
         if(this.props.state == gameStates.BETTING){
-            if(this.props.src == require('../../assets/images/canvas/card_holder.png')){
+            if(this.props.src == require('../../../assets/images/canvas/card_holder.png')){
                 this.props.dealFaceDownFunction(this.props.num);
             }
-        } else if(this.props.state == gameStates.DISCARDING && this.state.selected){
+        } else if(this.props.state == gameStates.DISCARDING && !this.state.selected){
             this.props.dealNewCardFunction(this.props.num);
         }
     }
@@ -55,7 +55,7 @@ class CardHolder extends Component {
                     onPress={()=> this.setState(prevState => ({selected: !prevState.selected}))}
                     style={{width:'100%', height:'100%', resizeMode:'contain'}}>
                     <Image
-                        style={{width:'100%', height:'100%', resizeMode:'contain', opacity: this.state.selected ? .2 : 1}}
+                        style={{width:'100%', height:'100%', resizeMode:'contain', borderWidth: this.state.selected ? 3 : 0, borderColor: this.state.selected ? 'red' : null}}
                         source={this.props.src}/>
                 </TouchableOpacity>
             )

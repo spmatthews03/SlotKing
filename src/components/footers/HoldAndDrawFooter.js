@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Image, TouchableOpacity } from 'react-native';
 
 
-export default class StoppedDealerFooter extends React.Component {
+export default class HoldAndDrawFooter extends React.Component {
     static navigationOptions = {
         header: null
     }
@@ -13,8 +13,8 @@ export default class StoppedDealerFooter extends React.Component {
     return (
         <View style={{flex:.7, backgroundColor:'#0f2636', flexDirection:'row', padding:8, justifyContent:'center'}}>
         <Image 
-            style={{flex:1, width:'100%', height: '100%'}}
-            source={require('../../assets/images/game_logos/skill_meter.png')}/>
+            style={{flex:1, resizeMode:'contain', height:'100%'}}
+            source={require('../../assets/images/buttons/button_holddraw.png')}/>
         <View style={{flex:3, justifyContent:'center'}}>
             <View style={{flex:1,flexDirection:'row', justifyContent:'flex-end'}}>
                 <View style={{justifyContent:'center', alignItems:'center'}}>

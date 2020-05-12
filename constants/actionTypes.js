@@ -1,0 +1,2 @@
+export const ADD_HOLD_DRAW_BET = "ADD_HOLD_DRAW_BET";
+export const HOLD_DRAW_REPEAT_BET = "HOLD_DRAW_REPEAT_BET";

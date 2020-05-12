@@ -1,32 +1,13 @@
 import React, { Component } from 'react';
 import { Animated, View, Image, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
-import { highlightChip,setOpacities } from '../store/actions/actions';
-
-
-
-const mapStateToProps = state => {
-  return{
-      opacities: state.reducer.opacities,
-      totalBet: state.reducer.total_bet
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-      highlightChipFunction: (chipValue) => dispatch(highlightChip(chipValue)),
-      setOpacitiesFunction: (opacities) => dispatch(setOpacities(opacities)),
-  };
-};
+import { highlightChip,setOpacities } from '../../store/actions/actions';
 
 
 
 class WinningsBar extends Component {
     constructor(props) {
         super(props);
-
-        this.state = {}
-
     }
 
     render() {
@@ -34,15 +15,15 @@ class WinningsBar extends Component {
             <View style={styles.winningBarViewStyle}>
                 <View
                     style={styles.winningBarStyle}>
-                    <Text style={styles.totalBetText}>Your Total Bet: {this.props.totalBet}</Text>
-                    <Text style={styles.winningBetText}>Your Winnings: {this.props.totalBet}</Text>
+                    <Text style={styles.totalBetText}>Your Total Bet: {this.props.totalbet}</Text>
+                    <Text style={styles.winningBetText}>Your Winnings: {this.props.winnings}</Text>
                 </View>
         </View>
         );
     }
   }
 
-export default connect(mapStateToProps,mapDispatchToProps)(WinningsBar);
+export default WinningsBar;
 
 const styles = StyleSheet.create({
     imageContainer: {

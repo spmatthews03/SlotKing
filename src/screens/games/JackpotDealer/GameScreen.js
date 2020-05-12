@@ -2,12 +2,12 @@ import React from 'react';
 import { Image, ImageBackground, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import ChipBar from '../../../components/betting/ChipBar';
 import JackpotBar from '../../../components/JackpotBar';
-import Canvas from '../../../components/canvas/Canvas';
+import Canvas from '../../../components/dealerComponents/canvas/Canvas';
 import { connect } from 'react-redux';
 import { styles } from './styles';
 import { deal, resetBet, repeatBet, betAll, flip } from '../../../store/actions/actions';
 import JackpotDealerFooter from '../../../components/footers/JackpotDealerFooter';
-import WinningsBar from '../../../components/WinningsBar';
+import WinningsBar from '../../../components/dealerComponents/WinningsBar';
 import ButtonBar from '../../../components/betting/ButtonBar';
 import {gameStates} from '../../../../constants/gameStates';
 

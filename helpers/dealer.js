@@ -21,65 +21,33 @@ import {
   export const getNewCard = (deck) => {
       card = deck[0];
       if(card == BAR){
-        return require("../src/assets/images/cards/card_bar.png");
+        return BAR;
       } else if(card == DOUBLE_BAR){
-        return require("../src/assets/images/cards/card_double_bar.png");
+        return DOUBLE_BAR;
       } else if(card == HEART){
-        return require("../src/assets/images/cards/card_heart.png");
+        return HEART;
       } else if(card == DOUBLE_HEART){
-        return require("../src/assets/images/cards/card_double_heart.png");
+        return DOUBLE_HEART;
       } else if(card == CHERRY){
-        return require("../src/assets/images/cards/card_cherry.png");
+        return CHERRY;
       } else if(card == COIN){
-        return require("../src/assets/images/cards/card_coin.png");
+        return COIN;
       } else if(card == CROWN){
-        return require("../src/assets/images/cards/card_crown.png");
+        return CROWN;
       } else if(card == JACKPOT){
-        return require("../src/assets/images/cards/card_jackpot.png");
+        return JACKPOT;
       } else if(card == SEVEN){
-        return require("../src/assets/images/cards/card_seven.png");
+        return SEVEN;
       } else if(card == TRIPLE_SEVEN){
-        return require("../src/assets/images/cards/card_tripleseven.png");
+        return TRIPLE_SEVEN;
       } else if(card == BONUS){
-        return require("../src/assets/images/cards/card_bonus.png");
+        return BONUS;
       } else if(card == WILD){
-        return require("../src/assets/images/cards/card_wild.png");
-      }else {
-        return require("../src/assets/images/cards/card_back_blue.png");
-      } 
+        return WILD;
+      }
   }
 
   export const getCards = (a) => {
-    // let cards = [];
-    // for(i=1; i <=9; i++){
-    //   let card = a[i];
-    //   if(card == BAR){
-    //     cards.push(require("../src/assets/images/cards/card_bar.png"));
-    //   } else if(card == DOUBLE_BAR){
-    //     cards.push(require("../src/assets/images/cards/card_double_bar.png"));
-    //   } else if(card == HEART){
-    //     cards.push(require("../src/assets/images/cards/card_heart.png"));
-    //   } else if(card == DOUBLE_HEART){
-    //     cards.push(require("../src/assets/images/cards/card_double_heart.png"));
-    //   } else if(card == CHERRY){
-    //     cards.push(require("../src/assets/images/cards/card_cherry.png"));
-    //   } else if(card == COIN){
-    //     cards.push(require("../src/assets/images/cards/card_coin.png"));
-    //   } else if(card == CROWN){
-    //     cards.push(require("../src/assets/images/cards/card_crown.png"));
-    //   } else if(card == JACKPOT){
-    //     cards.push(require("../src/assets/images/cards/card_jackpot.png"));
-    //   } else if(card == SEVEN){
-    //     cards.push(require("../src/assets/images/cards/card_seven.png"));
-    //   } else if(card == TRIPLE_SEVEN){
-    //     cards.push(require("../src/assets/images/cards/card_tripleseven.png"));
-    //   } else if(card == BONUS){
-    //     cards.push(require("../src/assets/images/cards/card_bonus.png"));
-    //   } else {
-    //     cards.push(require("../src/assets/images/cards/card_back_blue.png"));
-    //   }
-    // }
-
 
     let newCards = {
       "1": 0,
@@ -95,44 +63,61 @@ import {
     for(i=1; i <=9; i++){
       let card = a[i];
       if(card == BAR){
-        newCards[i] = require("../src/assets/images/cards/card_bar.png");
+        newCards[i] = BAR;
       } else if(card == DOUBLE_BAR){
-        newCards[i] = require("../src/assets/images/cards/card_double_bar.png");
+        newCards[i] = DOUBLE_BAR;
       } else if(card == HEART){
-        newCards[i] = require("../src/assets/images/cards/card_heart.png");
+        newCards[i] = HEART;
       } else if(card == DOUBLE_HEART){
-        newCards[i] = require("../src/assets/images/cards/card_double_heart.png");
+        newCards[i] = DOUBLE_HEART;
       } else if(card == CHERRY){
-        newCards[i] = require("../src/assets/images/cards/card_cherry.png");
+        newCards[i] = CHERRY;
       } else if(card == COIN){
-        newCards[i] = require("../src/assets/images/cards/card_coin.png");
+        newCards[i] = COIN;
       } else if(card == CROWN){
-        newCards[i] = require("../src/assets/images/cards/card_crown.png");
+        newCards[i] = CROWN;
       } else if(card == JACKPOT){
-        newCards[i] = require("../src/assets/images/cards/card_jackpot.png");
+        newCards[i] = JACKPOT;
       } else if(card == SEVEN){
-        newCards[i] = require("../src/assets/images/cards/card_seven.png");
+        newCards[i] = SEVEN;
       } else if(card == TRIPLE_SEVEN){
-        newCards[i] = require("../src/assets/images/cards/card_tripleseven.png");
+        newCards[i] = TRIPLE_SEVEN;
       } else if(card == BONUS){
-        newCards[i] = require("../src/assets/images/cards/card_bonus.png");
+        newCards[i] = BONUS;
       } else if(card == WILD){
-        newCards[i] = require("../src/assets/images/cards/card_wild.png");
-      }else {
-        newCards[i] = require("../src/assets/images/cards/card_back_blue.png");
+        newCards[i] = WILD;
       }
     }
-    
-
     return newCards;
   }
 
-  // "1": require('../../assets/images/cards/card_bonus.png'),
-  //           "2": require('../../assets/images/cards/card_heart.png'),
-  //           "3": require('../../assets/images/cards/card_jackpot.png'),
-  //           "4": require('../../assets/images/cards/card_cherry.png'),
-  //           "5": require('../../assets/images/cards/card_bar.png'),
-  //           "6": require('../../assets/images/cards/card_coin.png'),
-  //           "7": require('../../assets/images/cards/card_coin.png'),
-  //           "8": require('../../assets/images/cards/card_wild.png'),
-  //           "9": require('../../assets/images/cards/card_crown.png'),
+
+  export const getCardImage = (card) => {
+    if(card == BAR){
+      return require("../src/assets/images/cards/card_bar.png");
+    } else if(card == DOUBLE_BAR){
+      return require("../src/assets/images/cards/card_double_bar.png");
+    } else if(card == HEART){
+      return require("../src/assets/images/cards/card_heart.png");
+    } else if(card == DOUBLE_HEART){
+      return require("../src/assets/images/cards/card_double_heart.png");
+    } else if(card == CHERRY){
+      return require("../src/assets/images/cards/card_cherry.png");
+    } else if(card == COIN){
+      return require("../src/assets/images/cards/card_coin.png");
+    } else if(card == CROWN){
+      return require("../src/assets/images/cards/card_crown.png");
+    } else if(card == JACKPOT){
+      return require("../src/assets/images/cards/card_jackpot.png");
+    } else if(card == SEVEN){
+      return require("../src/assets/images/cards/card_seven.png");
+    } else if(card == TRIPLE_SEVEN){
+      return require("../src/assets/images/cards/card_tripleseven.png");
+    } else if(card == BONUS){
+      return require("../src/assets/images/cards/card_bonus.png");
+    } else if(card == WILD){
+      return require("../src/assets/images/cards/card_wild.png");
+    }else {
+      return require("../src/assets/images/cards/card_back_blue.png");
+    }
+  }

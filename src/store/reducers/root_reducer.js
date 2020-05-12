@@ -2,9 +2,11 @@ import {createStore, combineReducers, applyMiddleware } from 'redux';
 import reducer from './reducer';
 import bettingBarReducer from './bettingBarReducer';
 import { composeWithDevTools } from 'remote-redux-devtools';
+import drawReducer from './holddrawreducer';
 
 const rootReducer = combineReducers({
     // bettingBarReducer: bettingBarReducer,
+    drawReducer: drawReducer,
     reducer: reducer,
 });
 

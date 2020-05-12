@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native';
 import { connect } from 'react-redux';
-import { addBet } from '../../store/actions/actions';
+import { addBet } from '../../../store/actions/actions';
 
 
 const mapStateToProps = state => {
@@ -23,7 +23,7 @@ class BetMarker extends Component {
         super(props);
 
         this.state={
-            direction: require('../../assets/images/canvas/red_circle.png'),
+            direction: require('../../../assets/images/canvas/red_circle.png'),
         }
     }
     
@@ -31,16 +31,16 @@ class BetMarker extends Component {
     componentDidMount(){
         var passedDirection;
         if(this.props.direction == 'left'){
-            passedDirection = require('../../assets/images/canvas/red_circle.png');
+            passedDirection = require('../../../assets/images/canvas/red_circle.png');
         }
         else if(this.props.direction == 'right'){
-            passedDirection = require('../../assets/images/canvas/red_circle.png');
+            passedDirection = require('../../../assets/images/canvas/red_circle.png');
         }
         else if(this.props.direction == 'down'){
-            passedDirection = require('../../assets/images/canvas/red_circle.png');
+            passedDirection = require('../../../assets/images/canvas/red_circle.png');
         }
         else{
-            passedDirection = require('../../assets/images/canvas/red_circle.png');
+            passedDirection = require('../../../assets/images/canvas/red_circle.png');
         }
 
         this.setState({
