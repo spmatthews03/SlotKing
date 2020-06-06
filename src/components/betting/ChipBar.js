@@ -19,7 +19,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 
-
 class ChipBar extends Component {
     constructor(props) {
         super(props);

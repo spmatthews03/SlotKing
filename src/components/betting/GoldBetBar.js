@@ -1,49 +1,12 @@
 import React, { Component } from 'react';
-import { View, Image, StyleSheet, TouchableOpacity } from 'react-native';
-import { connect } from 'react-redux';
-import { ADD_HOLD_DRAW_BET } from '../../../constants/actionTypes';
-
-
-
-const mapStateToProps = state => {
-  return{
-    //
-  };
-};
-
-const mapDispatchToProps = dispatch => (  {
-      addBetFunction: payload => dispatch({type: ADD_HOLD_DRAW_BET, payload}),
-});
-
+import { View, Image, StyleSheet, TouchableOpacity, Text } from 'react-native';
+import GoldChip from './GoldChip';
 
 
 class GoldBetBar extends Component {
     constructor(props) {
         super(props);
     }
-
-
-    addChipBet = (number) => {
-      let pressedChip;
-      if (number == 'sixteen') {
-        pressedChip = 16;
-      }
-      if (number == 'thirtytwo') {
-        pressedChip = 32;
-      }
-      if (number == 'fortyeight') {
-        pressedChip = 48;
-      }
-      if (number == 'sixtyfour') {
-        pressedChip = 64;
-      }
-
-  
-      this.props.addBetFunction(pressedChip);
-    };
-
-    
-
 
     render() {
         return (
@@ -56,41 +19,17 @@ class GoldBetBar extends Component {
                         paddingHorizontal: 35,
                     }}
                     >
-                    <TouchableOpacity
-                        onPress={() => this.addChipBet('sixteen')}
-                        style={[styles.flexOneStyles]}>
-                        <Image
-                          style={[styles.chipStyle]}
-                          source={require('../../assets/images/chips/chip_gold.png')}/>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        onPress={() => this.addChipBet('thirtytwo')}
-                        style={styles.flexOneStyles}>
-                        <Image
-                          style={[styles.chipStyle]}
-                          source={require('../../assets/images/chips/chip_gold.png')}/>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        onPress={() => this.addChipBet('fortyeight')}
-                        style={styles.flexOneStyles}>
-                        <Image
-                          style={[styles.chipStyle]}
-                          source={require('../../assets/images/chips/chip_gold.png')}/>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        onPress={() => this.addChipBet('sixtyfour')}
-                        style={styles.flexOneStyles}>
-                        <Image
-                          style={[styles.chipStyle]}
-                          source={require('../../assets/images/chips/chip_gold.png')}/>
-                    </TouchableOpacity>
+                    <GoldChip chip={this.props.chips["16"]} chipCallback={this.props.parentCallback} chipNum={16}/>
+                    <GoldChip chip={this.props.chips["32"]} chipCallback={this.props.parentCallback} chipNum={32}/>
+                    <GoldChip chip={this.props.chips["48"]} chipCallback={this.props.parentCallback} chipNum={48}/>
+                    <GoldChip chip={this.props.chips["64"]} chipCallback={this.props.parentCallback} chipNum={64}/>
                 </View>
         </View>
         );
     }
   }
 
-export default connect(mapStateToProps,mapDispatchToProps)(GoldBetBar);
+export default GoldBetBar;
 
 const styles = StyleSheet.create({
     imageContainer: {
@@ -122,5 +61,21 @@ const styles = StyleSheet.create({
       flex: 1,
       width: '100%',
       padding: 5
+    },
+    totalBet: {
+      position: 'absolute',
+      left: 0,
+      right: 0,
+      top: 0,
+      bottom: 0,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    totalBetText: {
+      fontWeight: 'bold',
+      fontSize: 30,
+      fontFamily: 'Roboto-Bold',
+      color: 'black',
+      textAlign: 'center'
     }
   });

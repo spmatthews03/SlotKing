@@ -1,4 +1,4 @@
-import {createStore, combineReducers, applyMiddleware } from 'redux';
+import {createStore, combineReducers} from 'redux';
 import reducer from './reducer';
 import bettingBarReducer from './bettingBarReducer';
 import { composeWithDevTools } from 'remote-redux-devtools';

@@ -1,19 +1,18 @@
 import { 
-    REPEAT_BET, 
-    RESET_BET, 
     DEAL, 
     DEALING,
     DEAL_NEW,
     HIGHLIGHT_CHIP, 
     BETTING,
-    FLIP, 
     SET_GAME,
     DISCARD,
+    FLIP,
     DONE_DISCARDING,
     DONE_FLIPPING} from "../actions/actions";
 import {
-    ADD_HOLD_DRAW_BET,
-    HOLD_DRAW_REPEAT_BET
+    TOGGLE_BET,
+    HOLD_DRAW_ADD_WINNINGS
+    // FLIP
 } from "../../../constants/actionTypes";
 import { JACKPOT_DEALER_CARDS } from "../../../constants/cards";
 import { shuffle, getCards, getNewCard } from "../../../helpers/dealer";
@@ -23,10 +22,13 @@ const initialState = {
     game: null,
     gameState: gameStates.NEW_GAME,
     credit: 1000,
-    highlighted_chip: 1,
-    total_bet: 0,
     deck: null,
-    previous_bet: null,
+    chips:{
+        "16": false,
+        "32": false,
+        "48": false,
+        "64": false
+    },
     cards: {
       "1": require('../../assets/images/canvas/card_holder.png'),
       "2": require('../../assets/images/canvas/card_holder.png'),
@@ -47,7 +49,6 @@ const drawReducer = (state = initialState, action) => {
         cards = getCards(state.deck);
         return cards;
     }
-
 
     switch(action.type) {
         case DEAL_NEW:
@@ -88,40 +89,36 @@ const drawReducer = (state = initialState, action) => {
                 ...state,
                 gameState:  state.game == gameModes.STOPPED ? gameStates.FLIPPING : gameStates.RESULTS,
                 cards: dealtCards,
-                deck: state.deck.splice(9)
+                deck: state.deck.splice(9),
+                credit: state.credit - action.payload
             }
         case BETTING:
             return{
                 ...state,
                 gameState: gameStates.BETTING
             }
+        case HOLD_DRAW_ADD_WINNINGS:
+            return{
+                ...state,
+                credit: state.credit + action.payload
+            }
         case DEAL:
             return{
                 ...state,
-                previous_bet: state.total_bet,
-                credit: state.credit + state.total_bet,
                 cards: {
                         ...initialState.cards,
                     },
                 deck: shuffle(JACKPOT_DEALER_CARDS),
-                total_bet: 0,
                 gameState: gameStates.BETTING
             };
-        case RESET_BET:         
+        case TOGGLE_BET:
             return{
                 ...state,
-                total_bet: 0
-            };
-        case HOLD_DRAW_REPEAT_BET:
-            return{
-                ...state,
-                total_bet: state.previous_bet
-            };
-        case ADD_HOLD_DRAW_BET:
-            return{
-                ...state,
-                total_bet: state.total_bet + action.payload
-            };
+                chips: {
+                    ...state.chips,
+                    [action.payload]: !state.chips[action.payload]
+                },
+            }
         case HIGHLIGHT_CHIP:
             return{
                 ...state,

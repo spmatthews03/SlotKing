@@ -10,5 +10,5 @@ export const gameStates = {
 
 export const gameModes = {
     JACKPOT_DEALER: "Jackpot Dealer",
-    STOPPED: "Stopped"
+    STOPPED: "HoldAndDraw"
 }

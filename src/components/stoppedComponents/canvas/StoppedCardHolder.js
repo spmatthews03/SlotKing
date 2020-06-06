@@ -8,14 +8,13 @@ import { getCardImage } from '../../../../helpers/dealer';
 const mapDispatchToProps = dispatch => {
     return {
         dealFaceDownFunction: (card) => dispatch(dealFaceDown(card)),
-        flipCardsFunction: (card) => dispatch(flipCards(card)),
         dealNewCardFunction: (card) => dispatch(dealNewCard(card))
     };
 };
 
 const mapStateToProps = state => {
     return{
-        game: state.reducer.game
+        game: state.drawReducer.game
     };
 };
 
@@ -49,24 +48,16 @@ class StoppedCardHolder extends Component {
 
 
     cardType = () => {
-        if(this.props.game == gameModes.STOPPED){
-            return(
-                <TouchableOpacity 
-                    disabled={this.props.state === gameStates.WAIT_ON_DISCARD ? false : true}
-                    onPress={()=> this.setState(prevState => ({selected: !prevState.selected}))}
-                    style={{width:'75%', height:'100%', resizeMode:'contain', borderWidth: this.state.selected ? 3 : 0, borderColor: this.state.selected ? 'red' : null}}>
-                    <Image
-                        style={{width:'100%', height:'100%', resizeMode:'contain'}}
-                        source={getCardImage(this.props.src)}/>
-                </TouchableOpacity>
-            )
-        } else{
-            return(
+        return(
+            <TouchableOpacity 
+                disabled={this.props.state === gameStates.WAIT_ON_DISCARD ? false : true}
+                onPress={()=> this.setState(prevState => ({selected: !prevState.selected}))}
+                style={{width:'75%', height:'100%', resizeMode:'contain', borderWidth: this.state.selected ? 3 : 0, borderColor: this.state.selected ? 'red' : null}}>
                 <Image
                     style={{width:'100%', height:'100%', resizeMode:'contain'}}
                     source={getCardImage(this.props.src)}/>
-            )
-        }
+            </TouchableOpacity>
+        )
     }
 
   render() { 

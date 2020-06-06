@@ -1,24 +1,25 @@
 import React from 'react';
 import { Image, ImageBackground, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import HoldAndDrawHeader from '../../../components/HoldAndDrawHeader';
-import Canvas from '../../../components/stoppedComponents/canvas/StoppedCanvas';
+import HoldAndDrawHeader from '../../../components/stoppedComponents/HoldAndDrawHeader';
+import StoppedCanvas from '../../../components/stoppedComponents/canvas/StoppedCanvas';
 import { connect } from 'react-redux';
 import { styles } from './styles';
 import { deal, resetBet, repeatBet, betAll, dealFaceDown, flipCards, flip, discard } from '../../../store/actions/actions';
 import WinningsBar from '../../../components/dealerComponents/WinningsBar';
 import DiscardBar from '../../../components/stoppedComponents/DiscardBar';
-import ButtonBar from '../../../components/betting/ButtonBar';
+import ButtonBar from '../../../components/stoppedComponents/ButtonBar';
 import HoldAndDrawFooter from '../../../components/footers/HoldAndDrawFooter';
 import {gameStates} from '../../../../constants/gameStates';
 import { stoppedCalculator } from '../../../../helpers/payoutCalculators';
 import GoldBetBar from '../../../components/betting/GoldBetBar';
-import { HOLD_DRAW_REPEAT_BET } from '../../../../constants/actionTypes';
+import { HOLD_DRAW_REPEAT_BET, TOGGLE_BET, HOLD_DRAW_FLIP, HOLD_DRAW_ADD_WINNINGS } from '../../../../constants/actionTypes';
 
 const mapStateToProps = state => {
   return{
     gameStarted: state.drawReducer.gameStarted,
     gameState: state.drawReducer.gameState,
     betting: state.drawReducer.betting,
+    chips: state.drawReducer.chips,
     credit: state.drawReducer.credit,
     total_bet: state.drawReducer.total_bet,
     cards: state.drawReducer.cards,
@@ -28,12 +29,13 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    resetBetFunction: () => dispatch(resetBet()),
     repeatBetFunction: () => dispatch({type:HOLD_DRAW_REPEAT_BET}),
+    toggleBetFunciton: (payload) => dispatch({type:TOGGLE_BET, payload}),
     dealFunction: () => dispatch(deal()),
     betAllFunction: () => dispatch(betAll()),
-    flipFunction: () => dispatch(flip()),
-    discardFunction: () => dispatch(discard())
+    flipFunction: (payload) => dispatch({type:HOLD_DRAW_FLIP, payload}),
+    discardFunction: () => dispatch(discard()),
+    addCredit: (payload) => dispatch({type:HOLD_DRAW_ADD_WINNINGS, payload})
   };
 };
 
@@ -42,40 +44,65 @@ const mapDispatchToProps = dispatch => {
 class HoldAndDraw extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      winnings: 0
+    }
   }
 
-
-  betJackpot = () => {
-    this.setState({
-      total_bet: this.state.total_bet + this.state.highlighted_chip * 16,
-      jackpotDisable: true
-    })
+  toggleBet = (chipvalue) => {
+    this.props.toggleBetFunciton(chipvalue);
   }
 
-  bettingButtons = () => {
+  calcTotalBet = () => {
+    var total = 0;
+    let chips = this.props.chips;
+    if(chips['16']){
+        total = total + 16;
+    }
+    if(chips['32']){
+        total = total + 32;
+    }
+    if(chips['48']){
+        total = total + 48;
+    }
+    if(chips['64']){
+        total = total + 64;
+    }
+    return total;
+  }
+
+  bettingButtons = (bet) => {
     return(
               <View style={{flex:1}}>
                 <View style={{flex: .5, flexDirection: 'row', justifyContent: 'center', paddingHorizontal: 50}}>
+                  <Image
+                    style={{width:'100%',height:'100%', resizeMode:'contain'}} 
+                    source={require('../../../assets/images/tableslotking.png')}/>
                 </View>
-                <GoldBetBar parentCallback={this.chipBarCallback}/>
+                <GoldBetBar chips={this.props.chips} parentCallback={this.toggleBet}/>
                 <ButtonBar 
-                  total_bet={this.props.total_bet}
-                  previous_bets={this.props.previous_bets}
-                  resetBet={this.props.resetBetFunction}
-                  repeatBet={this.props.repeatBetFunction}
+                  total_bet={bet}
                   flip={this.props.flipFunction}
                   />
               </View>
     )
   }
 
-  dealButton = () => {
+
+  discard = () => {
+    var winnings = stoppedCalculator(this.props.cards);
+    this.setState({winnings: winnings});
+    this.props.discardFunction();
+    this.props.addCredit(winnings);
+  }
+
+
+  dealButton = (bet) => {
     return(
       <View style={{flex:1}}>
         <View style={{flex:1.5}}>
           {this.props.gameState === gameStates.NEW_GAME ? null : 
-            <WinningsBar totalbet={this.props.total_bet} winnings={stoppedCalculator(this.props.cards)}/>
+            <WinningsBar totalbet={bet} winnings={this.state.winnings}/>
           }
         </View>
         <View
@@ -106,7 +133,7 @@ class HoldAndDraw extends React.Component {
         <View
           style={[styles.buttonBar, {alignItems:"center", justifyContent:"center"}]}>
           <TouchableOpacity
-            onPress={() => this.props.discardFunction()}
+            onPress={() => this.discard()}
             style={[styles.flexOneStyles]}>
             <Image
               style={styles.bottomButtonsStyle}
@@ -119,24 +146,22 @@ class HoldAndDraw extends React.Component {
         </View>
       </View>
     )
-
   }
 
-  tmpFunction = () => {
+  tmpFunction = (bet) => {
     if(this.props.gameState === gameStates.RESULTS || this.props.gameState === gameStates.NEW_GAME){
-      return this.dealButton();
+      return this.dealButton(bet);
     } else if(this.props.gameState === gameStates.WAIT_ON_DISCARD){
       return this.discardButton();
     } else if(this.props.gameState === gameStates.BETTING){
-      return this.bettingButtons();
+      return this.bettingButtons(bet);
     }
   }
   
 
-
-
-
   render() {
+    var totalBet = this.calcTotalBet();
+
     return (
       
       <ImageBackground
@@ -144,13 +169,13 @@ class HoldAndDraw extends React.Component {
         source={require("../../../assets/images/background.png")}
       >
         <StatusBar hidden={true} />
-        <HoldAndDrawHeader credit={this.props.credit} jackpot={this.props.jackpot}/>
+        <HoldAndDrawHeader credit={this.props.credit} navigation={this.props.navigation}/>
         <View style={{ flex: 6, flexDirection: 'row' }}>
           <View style={{ flex: 4, paddingVertical:10}}>
             <View style={{ flex: 1}}>
-              <Canvas/>
+              <StoppedCanvas/>
               <View style={{ flex: 2, justifyContent: 'center', padding: 5 }}>
-                {this.tmpFunction()}
+                {this.tmpFunction(totalBet)}
               </View>
             </View>
           </View>

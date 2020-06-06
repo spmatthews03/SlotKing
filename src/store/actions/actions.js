@@ -55,9 +55,10 @@ export const dealFaceDown = (num) => {
     }
 }
 
-export const flip = () => {
+export const flip = (bet) => {
     return {
         type: FLIP,
+        payload: bet
     }
 }
 

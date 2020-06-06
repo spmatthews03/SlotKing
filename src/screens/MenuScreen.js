@@ -3,6 +3,7 @@ import { ImageBackground, StyleSheet, View, StatusBar, TouchableOpacity, Image, 
 // import MenuFooter from '../components/footers/MenuFooter';
 import { connect } from 'react-redux';
 import {setGame} from '../store/actions/actions';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const mapStateToProps = state => {
     return{
@@ -35,13 +36,23 @@ class MenuScreen extends React.Component {
                 source={require('../assets/images/background.png')}>
                 <StatusBar hidden={true}/>
                 <View style={{flex:.8, justifyContent:'center', alignItems:'center'}}>
-                    <Text style={{color:'gold', fontSize:24, fontWeight:'bold'}}>SELECT A GAME</Text>
+                    <Text style={styles.selectGameText}>SELECT A GAME</Text>
                 </View>
                 <View style={{flex:10, flexDirection:'row', flexWrap:'wrap', justifyContent:'space-between', alignItems:'center', paddingHorizontal:20}}>
+                    <View style={{justifyContent:'center', alignItems:'center', padding:5}}>
+                        <TouchableOpacity
+                            // disabled={true}
+                            onPress={()=> this.navigateToGame('HoldAndDraw')}>
+                            <Image
+                                style={{width:170, height:170}}
+                                source={require('../assets/images/buttons/button_holddraw.png')}/>
+                        </TouchableOpacity>
+                    </View>
                     <View style={{justifyContent:'center', alignItems:'center'}}>
                         <TouchableOpacity
                             disabled={true}
                             onPress={()=> this.navigateToGame('Game')}>
+                            <Icon name="lock" size={30} color="gold" style={{position:"absolute", top:10, right:10}}/>
                             <Image
                                 style={{width:170, height:170, opacity:.5}}
                                 source={require('../assets/images/buttons/button_rimpim_tournament.png')}/>
@@ -51,6 +62,7 @@ class MenuScreen extends React.Component {
                         <TouchableOpacity
                             disabled={true}
                             onPress={()=> navigate()}>
+                            <Icon name="lock" size={30} color="gold" style={{position:"absolute", top:10, right:10}}/>
                             <Image
                                 style={{width:170, height:170, opacity:.5}}
                                 source={require('../assets/images/buttons/button_rimpim_single.png')}/>
@@ -60,6 +72,7 @@ class MenuScreen extends React.Component {
                         <TouchableOpacity
                             disabled={true}
                             onPress={()=> this.navigateToGame('Game')}>
+                            <Icon name="lock" size={30} color="gold" style={{position:"absolute", top:10, right:10}}/>
                             <Image
                                 style={{width:170, height:170, opacity:.5}}
                                 source={require('../assets/images/buttons/button_wild.png')}/>
@@ -67,9 +80,11 @@ class MenuScreen extends React.Component {
                     </View>
                     <View style={{justifyContent:'center', alignItems:'center', padding:5}}>
                         <TouchableOpacity
+                            disabled={true}
                             onPress={()=> this.navigateToGame('Game')}>
+                            <Icon name="lock" size={30} color="gold" style={{position:"absolute", top:10, right:10}}/>
                             <Image
-                                style={{width:170, height:170}}
+                                style={{width:170, height:170, opacity:.5}}
                                 source={require('../assets/images/buttons/button_jackpot.png')}/>
                         </TouchableOpacity>
                     </View>
@@ -77,6 +92,7 @@ class MenuScreen extends React.Component {
                         <TouchableOpacity
                             disabled={true}
                             onPress={()=> this.navigateToGame('Game')}>
+                            <Icon name="lock" size={30} color="gold" style={{position:"absolute", top:10, right:10}}/>
                             <Image
                                 style={{width:170, height:170, opacity:.5}}
                                 source={require('../assets/images/buttons/button_bonus.png')}/>
@@ -86,6 +102,7 @@ class MenuScreen extends React.Component {
                         <TouchableOpacity
                             disabled={true}
                             onPress={()=> this.navigateToGame('Game')}>
+                            <Icon name="lock" size={30} color="gold" style={{position:"absolute", top:10, right:10}}/>
                             <Image
                                 style={{width:170, height:170, opacity:.5}}
                                 source={require('../assets/images/buttons/button_pay.png')}/>
@@ -95,18 +112,10 @@ class MenuScreen extends React.Component {
                         <TouchableOpacity
                             disabled={true}
                             onPress={()=> this.navigateToGame('Game')}>
+                            <Icon name="lock" size={30} color="gold" style={{position:"absolute", top:10, right:10}}/>
                             <Image
                                 style={{width:170, height:170, opacity:.5}}
                                 source={require('../assets/images/buttons/button_skill.png')}/>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={{justifyContent:'center', alignItems:'center', padding:5}}>
-                        <TouchableOpacity
-                            // disabled={true}
-                            onPress={()=> this.navigateToGame('HoldAndDraw')}>
-                            <Image
-                                style={{width:170, height:170}}
-                                source={require('../assets/images/buttons/button_holddraw.png')}/>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -132,5 +141,10 @@ const styles = StyleSheet.create({
         flex: 1,
         width: undefined,
         height: undefined
+    },
+    selectGameText: {
+        fontFamily:'PlayfairDisplay-BoldItalic',
+        color:'#f7ef8a',
+        fontSize:24
     }
 });

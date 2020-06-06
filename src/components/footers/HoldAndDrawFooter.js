@@ -24,15 +24,6 @@ export default class HoldAndDrawFooter extends React.Component {
                             source={require('../../assets/images/buttons/button_priceboard.png')}/>
                     </TouchableOpacity>
                 </View>
-                <View style={{justifyContent:'center', alignItems:'center'}}>
-                    <TouchableOpacity
-                        onPress={()=> navigate('HighScoreScreen')}
-                        style={{padding :2, justifyContent:'center'}}>
-                        <Image
-                            style={{width:125, height:38}}
-                            source={require('../../assets/images/buttons/best_players_score.png')}/>
-                    </TouchableOpacity>
-                </View>
             </View>
         </View>
     </View>

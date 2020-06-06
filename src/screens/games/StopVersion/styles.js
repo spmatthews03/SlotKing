@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     },
     totalBetText: {
       fontWeight: 'bold',
-      fontSize: 13,
+      fontSize: 18,
       fontFamily: 'Roboto-Bold',
       color: 'white',
       textAlign: 'center'
