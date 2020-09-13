@@ -6,14 +6,15 @@ import {AppRegistry} from 'react-native';
 import App from './src/App';
 import {name as appName} from './app.json';
 import { Provider } from 'react-redux';
-import configStore from './src/store/reducers/root_reducer';
-import devToolsEnhancer from 'remote-redux-devtools';
+import { PersistGate } from 'redux-persist/integration/react';
+import store, { persistor } from './src/store/configureStore';
 
-const store = configStore();
 
 const SlotKing = () => (
     <Provider store={store}>
-        <App/>
+        <PersistGate loading={null} persistor={persistor}>
+            <App/>
+        </PersistGate>
     </Provider>
 );
 

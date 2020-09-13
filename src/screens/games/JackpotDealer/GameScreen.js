@@ -1,7 +1,6 @@
 import React from 'react';
 import { Image, ImageBackground, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import ChipBar from '../../../components/betting/ChipBar';
-import JackpotBar from '../../../components/JackpotBar';
 import Canvas from '../../../components/dealerComponents/canvas/Canvas';
 import { connect } from 'react-redux';
 import { styles } from './styles';
@@ -9,7 +8,7 @@ import { deal, resetBet, repeatBet, betAll, flip } from '../../../store/actions/
 import JackpotDealerFooter from '../../../components/footers/JackpotDealerFooter';
 import WinningsBar from '../../../components/dealerComponents/WinningsBar';
 import ButtonBar from '../../../components/betting/ButtonBar';
-import {gameStates} from '../../../../constants/gameStates';
+import {gameStates} from '../../../constants/gameStates';
 
 
 const mapStateToProps = state => {
@@ -134,7 +133,7 @@ class GameScreen extends React.Component {
         source={require("../../../assets/images/background.png")}
       >
         <StatusBar hidden={true} />
-        <JackpotBar credit={this.props.credit} jackpot={this.props.jackpot}/>
+        {/* <JackpotBar credit={this.props.credit} jackpot={this.props.jackpot}/> */}
         <View style={{ flex: 6, flexDirection: 'row' }}>
           <View style={{ flex: 4, paddingVertical:10}}>
             <View style={{ flex: 1}}>

@@ -11,17 +11,22 @@ import {
     DONE_FLIPPING} from "../actions/actions";
 import {
     TOGGLE_BET,
+    TOGGLE_BET_OFF,
+    NEED_AD,
     HOLD_DRAW_ADD_WINNINGS
-    // FLIP
-} from "../../../constants/actionTypes";
-import { JACKPOT_DEALER_CARDS } from "../../../constants/cards";
-import { shuffle, getCards, getNewCard } from "../../../helpers/dealer";
-import {gameStates,gameModes} from "../../../constants/gameStates";
+} from "../../constants/actionTypes";
+import {
+    BLUE_CARD, 
+    CARD_HOLDER } from '../../constants/imageConstants';
+   import { JACKPOT_DEALER_CARDS } from "../../constants/cards";
+import { shuffle, getCards, getNewCard } from "../../helpers/dealer";
+import {gameStates,gameModes} from "../../constants/gameStates";
+import { allowableChips } from "../../helpers/chips";
 
 const initialState = {
     game: null,
     gameState: gameStates.NEW_GAME,
-    credit: 1000,
+    credit: 300,
     deck: null,
     chips:{
         "16": false,
@@ -30,16 +35,17 @@ const initialState = {
         "64": false
     },
     cards: {
-      "1": require('../../assets/images/canvas/card_holder.png'),
-      "2": require('../../assets/images/canvas/card_holder.png'),
-      "3": require('../../assets/images/canvas/card_holder.png'),
-      "4": require('../../assets/images/canvas/card_holder.png'),
-      "5": require('../../assets/images/canvas/card_holder.png'),
-      "6": require('../../assets/images/canvas/card_holder.png'),
-      "7": require('../../assets/images/canvas/card_holder.png'),
-      "8": require('../../assets/images/canvas/card_holder.png'),
-      "9": require('../../assets/images/canvas/card_holder.png'),
+      "1": CARD_HOLDER,
+      "2": CARD_HOLDER,
+      "3": CARD_HOLDER,
+      "4": CARD_HOLDER,
+      "5": CARD_HOLDER,
+      "6": CARD_HOLDER,
+      "7": CARD_HOLDER,
+      "8": CARD_HOLDER,
+      "9": CARD_HOLDER,
     },
+    adReady: false
 }
 
 
@@ -52,13 +58,14 @@ const drawReducer = (state = initialState, action) => {
 
     switch(action.type) {
         case DEAL_NEW:
+            state.deck.splice(0,1);
             return {
                 ...state,
                 cards: {
                     ...state.cards,
                     [action.card]: getNewCard(state.deck)
                 },
-                deck: state.deck.splice(1)
+                deck: state.deck
             }
         case DONE_DISCARDING:
             return {
@@ -80,16 +87,17 @@ const drawReducer = (state = initialState, action) => {
                 ...state,
                 cards: {
                     ...state.cards,
-                    [action.card]:require('../../assets/images/cards/card_back_blue.png'),
+                    [action.card]:BLUE_CARD,
                 },
             };
         case FLIP:
-            dealtCards = dealCards()
+            dealtCards = dealCards();
+            state.deck.splice(0,9);
             return{
                 ...state,
                 gameState:  state.game == gameModes.STOPPED ? gameStates.FLIPPING : gameStates.RESULTS,
                 cards: dealtCards,
-                deck: state.deck.splice(9),
+                deck: state.deck,
                 credit: state.credit - action.payload
             }
         case BETTING:
@@ -103,13 +111,19 @@ const drawReducer = (state = initialState, action) => {
                 credit: state.credit + action.payload
             }
         case DEAL:
+            // var chips;
+            // if(credit < 160)
+            //     chips = allowableChips(credit, state.chips);
+            // else
+            //     chips = state.chips;
             return{
                 ...state,
                 cards: {
                         ...initialState.cards,
                     },
                 deck: shuffle(JACKPOT_DEALER_CARDS),
-                gameState: gameStates.BETTING
+                gameState: gameStates.BETTING,
+                // chips: chips
             };
         case TOGGLE_BET:
             return{
@@ -117,6 +131,14 @@ const drawReducer = (state = initialState, action) => {
                 chips: {
                     ...state.chips,
                     [action.payload]: !state.chips[action.payload]
+                },
+            }
+        case TOGGLE_BET_OFF:
+            return{
+                ...state,
+                chips: {
+                    ...state.chips,
+                    [action.payload]: false
                 },
             }
         case HIGHLIGHT_CHIP:
@@ -128,6 +150,11 @@ const drawReducer = (state = initialState, action) => {
             return {
                 ...state,
                 game: action.game
+            }
+        case NEED_AD:
+            return {
+                ...state,
+                adReady: action.payload
             }
         default:
             return state;

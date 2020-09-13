@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { View, StyleSheet, ImageBackground, Image } from 'react-native';
 import StoppedCardHolder from './StoppedCardHolder';
 import { connect } from 'react-redux';
-import {gameStates, gameModes} from '../../../../constants/gameStates';
+import {gameStates, gameModes} from '../../../constants/gameStates';
 import { discardingComplete, flippingComplete } from '../../../store/actions/actions';
+import { CANVAS_FRAME_COMPLETE } from '../../../constants/imageConstants';
 
 
 const mapDispatchToProps = dispatch => {
@@ -43,7 +44,7 @@ class StoppedCanvas extends Component {
             <View style={{flex:1, paddingHorizontal:20}}>
               <View style={{flex:1}}>
                 <ImageBackground style={{width:'100%', height:'100%'}} imageStyle={{width:'100%', height:'100%', resizeMode:'contain'}}
-                  source={require('../../../assets/images/canvas/canvas_frame_complete.png')}>
+                  source={CANVAS_FRAME_COMPLETE}>
                   <View style={{flex:1, paddingVertical:10, paddingHorizontal:10}}>
                   <View style={{flex:1}}>
                     {/* top row of card placers markers */}

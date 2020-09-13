@@ -3,7 +3,7 @@ import { View, StyleSheet, ImageBackground, Image } from 'react-native';
 import BetMarker from './BetMarker';
 import CardHolder from './CardHolder';
 import { connect } from 'react-redux';
-import {gameStates, gameModes} from '../../../../constants/gameStates';
+import {gameStates, gameModes} from '../../../constants/gameStates';
 import { discardingComplete, flippingComplete } from '../../../store/actions/actions';
 
 

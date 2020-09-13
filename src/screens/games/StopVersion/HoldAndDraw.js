@@ -1,118 +1,103 @@
-import React from 'react';
-import { Image, ImageBackground, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Image, ImageBackground, StatusBar, Text, TouchableOpacity, View, Alert, Platform } from 'react-native';
 import HoldAndDrawHeader from '../../../components/stoppedComponents/HoldAndDrawHeader';
 import StoppedCanvas from '../../../components/stoppedComponents/canvas/StoppedCanvas';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { styles } from './styles';
-import { deal, resetBet, repeatBet, betAll, dealFaceDown, flipCards, flip, discard } from '../../../store/actions/actions';
+import { DEAL, DISCARD } from '../../../store/actions/actions';
 import WinningsBar from '../../../components/dealerComponents/WinningsBar';
 import DiscardBar from '../../../components/stoppedComponents/DiscardBar';
 import ButtonBar from '../../../components/stoppedComponents/ButtonBar';
 import HoldAndDrawFooter from '../../../components/footers/HoldAndDrawFooter';
-import {gameStates} from '../../../../constants/gameStates';
-import { stoppedCalculator } from '../../../../helpers/payoutCalculators';
+import {gameStates} from '../../../constants/gameStates';
+import { stoppedCalculator } from '../../../helpers/payoutCalculators';
 import GoldBetBar from '../../../components/betting/GoldBetBar';
-import { HOLD_DRAW_REPEAT_BET, TOGGLE_BET, HOLD_DRAW_FLIP, HOLD_DRAW_ADD_WINNINGS } from '../../../../constants/actionTypes';
-
-const mapStateToProps = state => {
-  return{
-    gameStarted: state.drawReducer.gameStarted,
-    gameState: state.drawReducer.gameState,
-    betting: state.drawReducer.betting,
-    chips: state.drawReducer.chips,
-    credit: state.drawReducer.credit,
-    total_bet: state.drawReducer.total_bet,
-    cards: state.drawReducer.cards,
-    previous_bets: state.drawReducer.previous_bets,
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    repeatBetFunction: () => dispatch({type:HOLD_DRAW_REPEAT_BET}),
-    toggleBetFunciton: (payload) => dispatch({type:TOGGLE_BET, payload}),
-    dealFunction: () => dispatch(deal()),
-    betAllFunction: () => dispatch(betAll()),
-    flipFunction: (payload) => dispatch({type:HOLD_DRAW_FLIP, payload}),
-    discardFunction: () => dispatch(discard()),
-    addCredit: (payload) => dispatch({type:HOLD_DRAW_ADD_WINNINGS, payload})
-  };
-};
+import { TOGGLE_BET, HOLD_DRAW_FLIP, HOLD_DRAW_ADD_WINNINGS, TOGGLE_BET_OFF } from '../../../constants/actionTypes';
+import { BACKGROUND, TABLE_SLOT_KING_LOGO, PLAY_BUTTON_2 } from '../../../constants/imageConstants';
 
 
+const HoldAndDraw = (navigation) => {
+  const gameState = useSelector(state => state.drawReducer.gameState)
+  const chips = useSelector(state => state.drawReducer.chips)
+  const credit = useSelector(state => state.drawReducer.credit)
+  const cards = useSelector(state => state.drawReducer.cards)
 
-class HoldAndDraw extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      winnings: 0
+  const dispatch = useDispatch();
+  const [winnings, setWinnings] = useState(0);
+  const [totalBet, setTotalBet] = useState(calcTotalBet(chips));
+
+
+  useEffect(() => {
+    if(gameState === gameStates.RESULTS){
+      let payload = stoppedCalculator(calcTotalBet(chips)/16, cards);
+      setWinnings(payload);
+      dispatch({type:HOLD_DRAW_ADD_WINNINGS, payload});
     }
+  },[gameState])
+
+  useEffect(() => {
+    setTotalBet(calcTotalBet(chips));
+  },[chips])
+
+  function flipFunction(payload) {
+    dispatch({type:HOLD_DRAW_FLIP, payload});
   }
 
-  toggleBet = (chipvalue) => {
-    this.props.toggleBetFunciton(chipvalue);
+  function toggleBet(payload) {
+    dispatch({ type: TOGGLE_BET, payload})
   }
 
-  calcTotalBet = () => {
+  function rewardAlert(){
+    if(Platform.OS == 'android')
+      Alert.alert("Congratulations! You just earned $500 in chips!");
+  }
+
+  function calcTotalBet(gameChips) {
     var total = 0;
-    let chips = this.props.chips;
-    if(chips['16']){
-        total = total + 16;
-    }
-    if(chips['32']){
-        total = total + 32;
-    }
-    if(chips['48']){
-        total = total + 48;
-    }
-    if(chips['64']){
-        total = total + 64;
+    let chips = gameChips;
+    for(var i = 0; i < Object.keys(chips).length; i++){
+      var chip = Object.keys(chips)[i]
+      if(chips[chip])
+        total = total + parseInt(chip);
     }
     return total;
   }
 
-  bettingButtons = (bet) => {
+
+  function bettingButtons(bet) {
     return(
               <View style={{flex:1}}>
                 <View style={{flex: .5, flexDirection: 'row', justifyContent: 'center', paddingHorizontal: 50}}>
                   <Image
                     style={{width:'100%',height:'100%', resizeMode:'contain'}} 
-                    source={require('../../../assets/images/tableslotking.png')}/>
+                    source={TABLE_SLOT_KING_LOGO}/>
                 </View>
-                <GoldBetBar chips={this.props.chips} parentCallback={this.toggleBet}/>
+                <GoldBetBar credit={credit} chips={chips} parentCallback={toggleBet}/>
                 <ButtonBar 
                   total_bet={bet}
-                  flip={this.props.flipFunction}
+                  flip={flipFunction}
                   />
               </View>
     )
   }
 
 
-  discard = () => {
-    var winnings = stoppedCalculator(this.props.cards);
-    this.setState({winnings: winnings});
-    this.props.discardFunction();
-    this.props.addCredit(winnings);
-  }
-
-
-  dealButton = (bet) => {
+  function dealButton(bet) {
     return(
       <View style={{flex:1}}>
         <View style={{flex:1.5}}>
-          {this.props.gameState === gameStates.NEW_GAME ? null : 
-            <WinningsBar totalbet={bet} winnings={this.state.winnings}/>
+          {gameState === gameStates.NEW_GAME ? null : 
+            <WinningsBar totalbet={bet} winnings={winnings}/>
           }
         </View>
         <View
           style={[styles.buttonBar, {alignItems:"center", justifyContent:"center"}]}>
           <TouchableOpacity
-            onPress={() => this.props.dealFunction()}
+            onPress={() => dispatch({type: DEAL})}
             style={[styles.flexOneStyles]}>
             <Image
               style={styles.bottomButtonsStyle}
-              source={require('../../../assets/images/buttons/button_play__button_play_2.png')}/>
+              source={PLAY_BUTTON_2}/>
             <View
               style={styles.dealButton}>
               <Text style={styles.dealText}>{"DEAL"}</Text>
@@ -121,10 +106,9 @@ class HoldAndDraw extends React.Component {
         </View>
       </View>
     )
-
   }
 
-  discardButton = () => {
+  function discardButton() {
     return(
       <View style={{flex:1}}>
         <View style={{flex:1.5}}>
@@ -133,14 +117,14 @@ class HoldAndDraw extends React.Component {
         <View
           style={[styles.buttonBar, {alignItems:"center", justifyContent:"center"}]}>
           <TouchableOpacity
-            onPress={() => this.discard()}
+            onPress={() => dispatch({type: DISCARD})}
             style={[styles.flexOneStyles]}>
             <Image
               style={styles.bottomButtonsStyle}
-              source={require('../../../assets/images/buttons/button_play__button_play_2.png')}/>
+              source={PLAY_BUTTON_2}/>
             <View
               style={styles.dealButton}>
-              <Text style={styles.dealText}>{"DISCARD"}</Text>
+              <Text style={styles.dealText}>{"DRAW"}</Text>
             </View>
           </TouchableOpacity>
         </View>
@@ -148,44 +132,38 @@ class HoldAndDraw extends React.Component {
     )
   }
 
-  tmpFunction = (bet) => {
-    if(this.props.gameState === gameStates.RESULTS || this.props.gameState === gameStates.NEW_GAME){
-      return this.dealButton(bet);
-    } else if(this.props.gameState === gameStates.WAIT_ON_DISCARD){
-      return this.discardButton();
-    } else if(this.props.gameState === gameStates.BETTING){
-      return this.bettingButtons(bet);
+  function tmpFunction(bet) {
+    if(gameState === gameStates.RESULTS || gameState === gameStates.NEW_GAME){
+      return dealButton(bet);
+    } else if(gameState === gameStates.WAIT_ON_DISCARD){
+      return discardButton();
+    } else if(gameState === gameStates.BETTING){
+      return bettingButtons(bet);
     }
   }
-  
 
-  render() {
-    var totalBet = this.calcTotalBet();
-
-    return (
-      
-      <ImageBackground
-        style={styles.backgroundImage}
-        source={require("../../../assets/images/background.png")}
-      >
-        <StatusBar hidden={true} />
-        <HoldAndDrawHeader credit={this.props.credit} navigation={this.props.navigation}/>
-        <View style={{ flex: 6, flexDirection: 'row' }}>
-          <View style={{ flex: 4, paddingVertical:10}}>
-            <View style={{ flex: 1}}>
-              <StoppedCanvas/>
-              <View style={{ flex: 2, justifyContent: 'center', padding: 5 }}>
-                {this.tmpFunction(totalBet)}
-              </View>
+  return (
+    <ImageBackground
+      style={styles.backgroundImage}
+      source={BACKGROUND}
+    >
+      <StatusBar hidden={true} />
+      <HoldAndDrawHeader credit={credit} navigation={navigation}/>
+      <View style={{ flex: 6, flexDirection: 'row' }}>
+        <View style={{ flex: 4, paddingVertical:10}}>
+          <View style={{ flex: 1}}>
+            <StoppedCanvas/>
+            <View style={{ flex: 2, justifyContent: 'center', padding: 5 }}>
+              {tmpFunction(totalBet)}
             </View>
           </View>
         </View>
-        <HoldAndDrawFooter navigation={this.props.navigation}/>
-      </ImageBackground>
-    );
-  }
+      </View>
+      <HoldAndDrawFooter credit={credit} state={gameState} navigation={navigation}/>
+    </ImageBackground> 
+  );
 }
 
 
-export default connect( mapStateToProps, mapDispatchToProps) (HoldAndDraw);
+export default HoldAndDraw;
 

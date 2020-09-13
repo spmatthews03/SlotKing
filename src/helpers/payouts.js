@@ -1,0 +1,20 @@
+export const payouts = {
+    "2xBAR": 2,
+    "3xBAR":12,
+    "2xDOUBLE_BAR":5,
+    "3xDOUBLE_BAR":30,
+    "2xCHERRY":2,
+    "3xCHERRY":12,
+    "2xCOIN":3,
+    "3xCOIN":15,
+    "2xCROWN":5,
+    "3xCROWN":30,
+    "2xHEART":1,
+    "3xHEART":8,
+    "2xDOUBLE_HEART":3,
+    "3xDOUBLE_HEART":15,
+    "2xSEVEN":5,
+    "3xSEVEN":30,
+    "2xTRIPLE_SEVEN":6,
+    "3xTRIPLE_SEVEN":100
+}

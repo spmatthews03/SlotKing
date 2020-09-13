@@ -1,7 +1,9 @@
 import { 
     CARDS,
     BAR, SEVEN, TRIPLE_SEVEN, CROWN, COIN, CHERRY, JACKPOT, DOUBLE_BAR, DOUBLE_HEART, HEART, BONUS, WILD } from '../constants/cards';
-  
+import { BAR_CARD, DOUBLE_BAR_CARD, HEART_CARD, DOUBLE_HEART_CARD,
+   SEVEN_CARD, TRIPLE_SEVEN_CARD, CROWN_CARD, CHERRY_CARD, BLUE_CARD, COIN_CARD,
+  JACKPOT_CARD, BONUS_CARD, WILD_CARD } from '../constants/imageConstants';
 
   
   export const shuffle = (a) => {
@@ -94,30 +96,30 @@ import {
 
   export const getCardImage = (card) => {
     if(card == BAR){
-      return require("../src/assets/images/cards/card_bar.png");
+      return BAR_CARD;
     } else if(card == DOUBLE_BAR){
-      return require("../src/assets/images/cards/card_double_bar.png");
+      return DOUBLE_BAR_CARD;
     } else if(card == HEART){
-      return require("../src/assets/images/cards/card_heart.png");
+      return HEART_CARD;
     } else if(card == DOUBLE_HEART){
-      return require("../src/assets/images/cards/card_double_heart.png");
+      return DOUBLE_HEART_CARD;
     } else if(card == CHERRY){
-      return require("../src/assets/images/cards/card_cherry.png");
+      return CHERRY_CARD;
     } else if(card == COIN){
-      return require("../src/assets/images/cards/card_coin.png");
+      return COIN_CARD;
     } else if(card == CROWN){
-      return require("../src/assets/images/cards/card_crown.png");
+      return CROWN_CARD;
     } else if(card == JACKPOT){
-      return require("../src/assets/images/cards/card_jackpot.png");
+      return JACKPOT_CARD;
     } else if(card == SEVEN){
-      return require("../src/assets/images/cards/card_seven.png");
+      return SEVEN_CARD;
     } else if(card == TRIPLE_SEVEN){
-      return require("../src/assets/images/cards/card_tripleseven.png");
+      return TRIPLE_SEVEN_CARD;
     } else if(card == BONUS){
-      return require("../src/assets/images/cards/card_bonus.png");
+      return BONUS_CARD;
     } else if(card == WILD){
-      return require("../src/assets/images/cards/card_wild.png");
+      return WILD_CARD;
     }else {
-      return require("../src/assets/images/cards/card_back_blue.png");
+      return BLUE_CARD;
     }
   }

@@ -1,47 +1,32 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
  
 import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
-import BackBox from '../BackBox';
+import { GOLD_CHIP } from '../../constants/imageConstants';
 
-export default class GoldChip extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-        on: false
-    }
+const GoldChip = (props) => {
+  const [on, setOn] = useState(props.chip);
+
+  function chipToggle(){
+    setOn(!on);
+    props.chipCallback(props.chipNum);
   }
 
-  componentDidMount(){
-      this.setState({on: this.props.chip})
-  }
-
-  chipToggle(){
-    this.setState((prevState => ({on: !prevState.on})));
-    this.props.chipCallback(this.props.chipNum);
-  }
-
-  render() {
-    return (
-        <View style={[styles.flexOneStyles, {opacity: this.state.on ? 1 : .5}]}>
-            <TouchableOpacity onPress={() => this.chipToggle()} style={{flex:1}} >
-                <Image
-                    style={[styles.chipStyle]}
-                    source={require('../../assets/images/chips/chip_gold.png')}/>
-                <View style={styles.totalBet}>
-                    <Text style={styles.totalBetText}>${this.props.chipNum}</Text>
-                </View>
-            </TouchableOpacity>
-        </View>
-    );
-  }
+  return (
+      <View style={[styles.flexOneStyles, {opacity: on ? 1 : .5}]}>
+          <TouchableOpacity onPress={() => chipToggle()} style={{flex:1}} >
+              <Image
+                  style={[styles.chipStyle]}
+                  source={GOLD_CHIP}/>
+              <View style={styles.totalBet}>
+                  <Text style={styles.totalBetText}>${props.chipNum}</Text>
+              </View>
+          </TouchableOpacity>
+      </View>
+  );
 }
+export default GoldChip;
 
 var styles = StyleSheet.create({
-      container: {
-        flex: 1,
-        paddingTop: 2
-      },
       chipStyle:{
         flex: 1,
         width: '100%',

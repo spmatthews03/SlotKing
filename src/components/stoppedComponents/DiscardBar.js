@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Animated, View, Image, StyleSheet, Text,  } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 
 class DiscardBar extends Component {
     constructor(props) {

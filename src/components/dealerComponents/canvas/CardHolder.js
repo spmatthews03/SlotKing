@@ -2,7 +2,8 @@ import React, { Component, useEffect } from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { dealFaceDown,flipCards, dealNewCard } from '../../../store/actions/actions';
-import {gameStates, gameModes} from '../../../../constants/gameStates';
+import {gameStates, gameModes} from '../../../constants/gameStates';
+import { CARD_HOLDER } from '../../../constants/imageConstants';
 
 const mapDispatchToProps = dispatch => {
     return {
@@ -38,7 +39,7 @@ class CardHolder extends Component {
                 this.setState({selected: false});
         }
         if(this.props.state == gameStates.BETTING){
-            if(this.props.src == require('../../../assets/images/canvas/card_holder.png')){
+            if(this.props.src == CARD_HOLDER){
                 this.props.dealFaceDownFunction(this.props.num);
             }
         } else if(this.props.state == gameStates.DISCARDING && !this.state.selected){

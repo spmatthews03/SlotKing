@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Image, Text, TouchableOpacity } from 'react-native';
 import {styles} from '../../screens/games/StopVersion/styles';
+import { TOTAL_BET_BUTTON, PLAY_BUTTON_2 } from '../../constants/imageConstants';
 
 
 export default class ButtonBar extends Component {
@@ -12,7 +13,7 @@ export default class ButtonBar extends Component {
                 disabled={true}
                 style={styles.flexOneStyles}>
                     <Image style={styles.bottomButtonsStyle}
-                        source={require('../../assets/images/buttons/button_totalbet.png')}/>
+                        source={TOTAL_BET_BUTTON}/>
                     <View
                         style={styles.totalBet}>
                         <Text style={styles.totalBetText}>{"TOTAL BET\n" + this.props.total_bet}</Text>
@@ -24,7 +25,7 @@ export default class ButtonBar extends Component {
                     style={[styles.flexOneStyles, {opacity:this.props.total_bet == 0 ? 0.2 : 1} ]}>
                     <Image
                         style={styles.bottomButtonsStyle}
-                        source={require('../../assets/images/buttons/button_play__button_play_2.png')}/>
+                        source={PLAY_BUTTON_2}/>
                     <View
                         style={styles.dealButton}>
                         <Text style={styles.flipText}>{"FLIP"}</Text>

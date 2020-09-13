@@ -17,13 +17,11 @@ export default class RimPimPamScreen extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            //
             deck: null,
         }
     }
 
     getRimPimPamDeck = () => {
-        // get deck
         this.setState({
             deck: shuffle(CARDS)
         })
@@ -40,7 +38,6 @@ export default class RimPimPamScreen extends React.Component {
                 source={require('../../assets/images/gameBackground.png')}>
                 <StatusBar hidden={true}/>
                 <View style={{flex:5}}> 
-                    {/* <View style={{flex:2}}/>                 */}
                     <View style={{flex:1}}>
                         <View style={{flex:1, padding:10}}>
                             <Image 

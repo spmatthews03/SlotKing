@@ -6,19 +6,45 @@
  * @flow
  */
 
-import { createStackNavigator, createAppContainer } from 'react-navigation';
-import React, { Fragment } from 'react';
+import { createAppContainer } from 'react-navigation';
+import {createStackNavigator} from 'react-navigation-stack';
 import HomeScreen from './screens/HomeScreen';
 import GameScreen from './screens/games/JackpotDealer/GameScreen';
 import MenuScreen from './screens/MenuScreen';
-import JackpotDealerPriceboard from './screens/JackpotDealerPriceboard';
+import Priceboard from './screens/JackpotDealerPriceboard';
 import HighScoreScreen from './screens/HighScoreScreen';
 import HoldAndDraw from './screens/games/StopVersion/HoldAndDraw';
+import SplashScreen from './screens/SplashScreen';
+import admob, { MaxAdContentRating } from '@react-native-firebase/admob';
 
+admob()
+  .setRequestConfiguration({
+    // Update all future requests suitable for parental guidance
+    maxAdContentRating: MaxAdContentRating.PG,
+
+    // Indicates that you want your content treated as child-directed for purposes of COPPA.
+    tagForChildDirectedTreatment: true,
+
+    // Indicates that you want the ad request to be handled in a
+    // manner suitable for users under the age of consent.
+    tagForUnderAgeOfConsent: true,
+  })
+  .then(() => {
+    // Request config successfully set!
+  });
 
 const stackNavigator = createStackNavigator({
+  Splash: {
+    screen:SplashScreen,
+    navigationOptions:{
+      headerShown: false
+    }
+  },
   Home: {
-    screen: HomeScreen
+    screen: HomeScreen,
+    navigationOptions:{
+      headerShown: false
+    }
   },
   Menu: {
     screen: MenuScreen
@@ -26,25 +52,25 @@ const stackNavigator = createStackNavigator({
   Game: {
     screen: GameScreen,
     navigationOptions: {
-      header: null,
+      headerShown: false
     },
   },
   HoldAndDraw: {
     screen: HoldAndDraw,
     navigationOptions: {
-      header: null,
+      headerShown: false
     },
   },
-  JackpotDealerPriceboard: {
-    screen: JackpotDealerPriceboard,
-    // navigationOptions: {
-    //   header: null,
-    // },
+  Priceboard: {
+    screen: Priceboard,
+    navigationOptions: {
+      headerShown: false
+    }
   },
   HighScoreScreen: {
     screen: HighScoreScreen,
     navigationOptions:{
-      header: null,
+      headerShown: false
     },
   }
 });

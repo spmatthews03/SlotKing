@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import BackBox from '../BackBox';
+import AnimateNumber from '@bankify/react-native-animate-number';
 
 export default class HoldAndDrawHeader extends Component {
   constructor(props){
@@ -24,7 +25,10 @@ export default class HoldAndDrawHeader extends Component {
             </LinearGradient>
           </View>
           <View style={{flex:1, alignItems:'flex-end', justifyContent:'center'}}>
-            <Text style={styles.creditValueText}>${this.props.credit}</Text>      
+            <Text style={styles.creditValueText}>
+              {"$" + this.props.credit}
+              {/* <AnimateNumber value={this.props.credit} interval={1} countBy={5} formatter={(val)=> { return '$' + parseInt(val)}}/>   */}
+            </Text>
           </View>        
         </View>
       </View>

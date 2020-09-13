@@ -29,7 +29,7 @@ export default class MenuFooter extends Component {
                 </View>
                 <View style={{justifyContent:'center', alignItems:'center'}}>
                 <TouchableOpacity
-                    onPress={()=> alert('image clicked')}
+                    onPress={()=> this.props.callback(true)}
                     style={{padding:2, justifyContent:'center'}}>
                     <Image
                         style={{width:52, height: 38}}

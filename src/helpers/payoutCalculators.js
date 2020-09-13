@@ -1,3 +1,5 @@
+import { payouts } from "./payouts";
+
 line1 = [1,2,3];
 line2 = [4,5,6];
 line3 = [7,8,9];
@@ -22,16 +24,16 @@ export const jackpotCalculator = () => {
 
 }
 
-export const stoppedCalculator = (cards) => {
+export const stoppedCalculator = (bet, cards) => {
     var total_winnings = 0;
 
     lines.forEach(line => {
         if(cards[line[0]] == cards[line[1]]){
             if(cards[line[1]] == cards[line[2]]){
-                total_winnings = total_winnings + 1
+                total_winnings = total_winnings + bet * payouts["3x" + cards[line[0]]];
             }
             else{
-                total_winnings = total_winnings + 5
+                total_winnings = total_winnings + bet * payouts["2x" + cards[line[0]]]
             }
         }
     })

@@ -4,6 +4,16 @@ import { ImageBackground, StyleSheet, View, StatusBar, TouchableOpacity, Image, 
 import { connect } from 'react-redux';
 import {setGame} from '../store/actions/actions';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { 
+    BACKGROUND, 
+    HOLD_DRAW_BUTTON, 
+    RIMPIMPAM_TOURNAMENT,
+    RIMPIMPAM_SINGLE, 
+    WILD_DEALER, 
+    JACKPOT_DEALER, 
+    BONUS_DEALER, 
+    PAY_N_PLAY, 
+    SKILL_METER } from '../constants/imageConstants';
 
 const mapStateToProps = state => {
     return{
@@ -19,7 +29,7 @@ const mapDispatchToProps = dispatch => {
 
 class MenuScreen extends React.Component {
     static navigationOptions = {
-        header: null
+        headerShown: false
     }
 
     navigateToGame = (game) => {
@@ -33,10 +43,10 @@ class MenuScreen extends React.Component {
         return (
             <ImageBackground
                 style={styles.backgroundImage}
-                source={require('../assets/images/background.png')}>
+                source={BACKGROUND}>
                 <StatusBar hidden={true}/>
                 <View style={{flex:.8, justifyContent:'center', alignItems:'center'}}>
-                    <Text style={styles.selectGameText}>SELECT A GAME</Text>
+                    <Text style={styles.selectGameText}>CHOOSE A GAME</Text>
                 </View>
                 <View style={{flex:10, flexDirection:'row', flexWrap:'wrap', justifyContent:'space-between', alignItems:'center', paddingHorizontal:20}}>
                     <View style={{justifyContent:'center', alignItems:'center', padding:5}}>
@@ -45,7 +55,7 @@ class MenuScreen extends React.Component {
                             onPress={()=> this.navigateToGame('HoldAndDraw')}>
                             <Image
                                 style={{width:170, height:170}}
-                                source={require('../assets/images/buttons/button_holddraw.png')}/>
+                                source={HOLD_DRAW_BUTTON}/>
                         </TouchableOpacity>
                     </View>
                     <View style={{justifyContent:'center', alignItems:'center'}}>
@@ -55,7 +65,7 @@ class MenuScreen extends React.Component {
                             <Icon name="lock" size={30} color="gold" style={{position:"absolute", top:10, right:10}}/>
                             <Image
                                 style={{width:170, height:170, opacity:.5}}
-                                source={require('../assets/images/buttons/button_rimpim_tournament.png')}/>
+                                source={RIMPIMPAM_TOURNAMENT}/>
                         </TouchableOpacity>
                     </View>
                     <View style={{justifyContent:'center', alignItems:'center', padding:5}}>
@@ -65,7 +75,7 @@ class MenuScreen extends React.Component {
                             <Icon name="lock" size={30} color="gold" style={{position:"absolute", top:10, right:10}}/>
                             <Image
                                 style={{width:170, height:170, opacity:.5}}
-                                source={require('../assets/images/buttons/button_rimpim_single.png')}/>
+                                source={RIMPIMPAM_SINGLE}/>
                         </TouchableOpacity>
                     </View>
                     <View style={{justifyContent:'center', alignItems:'center', padding:5}}>
@@ -75,7 +85,7 @@ class MenuScreen extends React.Component {
                             <Icon name="lock" size={30} color="gold" style={{position:"absolute", top:10, right:10}}/>
                             <Image
                                 style={{width:170, height:170, opacity:.5}}
-                                source={require('../assets/images/buttons/button_wild.png')}/>
+                                source={WILD_DEALER}/>
                         </TouchableOpacity>
                     </View>
                     <View style={{justifyContent:'center', alignItems:'center', padding:5}}>
@@ -85,7 +95,7 @@ class MenuScreen extends React.Component {
                             <Icon name="lock" size={30} color="gold" style={{position:"absolute", top:10, right:10}}/>
                             <Image
                                 style={{width:170, height:170, opacity:.5}}
-                                source={require('../assets/images/buttons/button_jackpot.png')}/>
+                                source={JACKPOT_DEALER}/>
                         </TouchableOpacity>
                     </View>
                     <View style={{justifyContent:'center', alignItems:'center', padding:5}}>
@@ -95,7 +105,7 @@ class MenuScreen extends React.Component {
                             <Icon name="lock" size={30} color="gold" style={{position:"absolute", top:10, right:10}}/>
                             <Image
                                 style={{width:170, height:170, opacity:.5}}
-                                source={require('../assets/images/buttons/button_bonus.png')}/>
+                                source={BONUS_DEALER}/>
                         </TouchableOpacity>
                     </View>
                     <View style={{justifyContent:'center', alignItems:'center', padding:5}}>
@@ -105,7 +115,7 @@ class MenuScreen extends React.Component {
                             <Icon name="lock" size={30} color="gold" style={{position:"absolute", top:10, right:10}}/>
                             <Image
                                 style={{width:170, height:170, opacity:.5}}
-                                source={require('../assets/images/buttons/button_pay.png')}/>
+                                source={PAY_N_PLAY}/>
                         </TouchableOpacity>
                     </View>
                     <View style={{justifyContent:'center', alignItems:'center', padding:5}}>
@@ -115,7 +125,7 @@ class MenuScreen extends React.Component {
                             <Icon name="lock" size={30} color="gold" style={{position:"absolute", top:10, right:10}}/>
                             <Image
                                 style={{width:170, height:170, opacity:.5}}
-                                source={require('../assets/images/buttons/button_skill.png')}/>
+                                source={SKILL_METER}/>
                         </TouchableOpacity>
                     </View>
                 </View>

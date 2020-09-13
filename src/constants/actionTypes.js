@@ -1,4 +1,6 @@
 export const HOLD_DRAW_REPEAT_BET = "HOLD_DRAW_REPEAT_BET";
 export const TOGGLE_BET = "TOGGLE_BET";
+export const TOGGLE_BET_OFF = "TOGGLE_BET_OFF";
+export const NEED_AD = "NEED_AD";
 export const HOLD_DRAW_FLIP = "FLIP";
 export const HOLD_DRAW_ADD_WINNINGS = "Hold_DRAW_ADD_WINNINGS";

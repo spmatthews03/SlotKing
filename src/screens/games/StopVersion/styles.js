@@ -46,6 +46,13 @@ const styles = StyleSheet.create({
       color: 'white',
       textAlign: 'center'
     },
+    adButtonText: {
+      fontWeight: 'bold',
+      fontSize: 14,
+      fontFamily: 'Roboto-Bold',
+      color: 'white',
+      textAlign: 'center'
+    },
     dealButton: {
       position: 'absolute',
       left: 0,

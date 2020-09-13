@@ -1,9 +1,10 @@
-import React, { Component, useEffect } from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import React, { Component } from 'react';
+import { View, Image, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
-import { dealFaceDown,flipCards, dealNewCard } from '../../../store/actions/actions';
-import {gameStates, gameModes} from '../../../../constants/gameStates';
-import { getCardImage } from '../../../../helpers/dealer';
+import { dealFaceDown, dealNewCard } from '../../../store/actions/actions';
+import {gameStates} from '../../../constants/gameStates';
+import { getCardImage } from '../../../helpers/dealer';
+import { CARD_HOLDER } from '../../../constants/imageConstants';
 
 const mapDispatchToProps = dispatch => {
     return {
@@ -38,7 +39,7 @@ class StoppedCardHolder extends Component {
                 this.setState({selected: false});
         }
         if(this.props.state == gameStates.BETTING){
-            if(this.props.src == require('../../../assets/images/canvas/card_holder.png')){
+            if(this.props.src == CARD_HOLDER){
                 this.props.dealFaceDownFunction(this.props.num);
             }
         } else if(this.props.state == gameStates.DISCARDING && !this.state.selected){
@@ -52,7 +53,7 @@ class StoppedCardHolder extends Component {
             <TouchableOpacity 
                 disabled={this.props.state === gameStates.WAIT_ON_DISCARD ? false : true}
                 onPress={()=> this.setState(prevState => ({selected: !prevState.selected}))}
-                style={{width:'75%', height:'100%', resizeMode:'contain', borderWidth: this.state.selected ? 3 : 0, borderColor: this.state.selected ? 'red' : null}}>
+                style={{width:'75%', height:'100%', resizeMode:'contain', borderWidth: this.state.selected ? 3 : 0, borderColor: this.state.selected ? 'gold' : null}}>
                 <Image
                     style={{width:'100%', height:'100%', resizeMode:'contain'}}
                     source={getCardImage(this.props.src)}/>
