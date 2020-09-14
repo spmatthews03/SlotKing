@@ -18,3 +18,24 @@ export const payouts = {
     "2xTRIPLE_SEVEN":6,
     "3xTRIPLE_SEVEN":100
 }
+
+export const payoutsBig = {
+    "3xBAR": 10,
+    "4xBAR":30,
+    "3xDOUBLE_BAR":25,
+    "4xDOUBLE_BAR":75,
+    "3xCHERRY":10,
+    "4xCHERRY":30,
+    "3xCOIN":15,
+    "4xCOIN":45,
+    "3xCROWN":25,
+    "4xCROWN":75,
+    "3xHEART":5,
+    "4xHEART":15,
+    "3xDOUBLE_HEART":15,
+    "4xDOUBLE_HEART":75,
+    "3xSEVEN":25,
+    "4xSEVEN":75,
+    "3xTRIPLE_SEVEN":50,
+    "4xTRIPLE_SEVEN":250
+}

@@ -26,16 +26,14 @@ const styles = StyleSheet.create({
       padding: 5
     },
     totalBetText: {
-      fontWeight: 'bold',
       fontSize: 18,
-      fontFamily: 'Roboto-Bold',
+      fontFamily: 'PlayfairDisplay-Bold',
       color: 'white',
       textAlign: 'center'
     },
     flipText: {
-      fontWeight: 'bold',
       fontSize: 20,
-      fontFamily: 'Roboto-Bold',
+      fontFamily: 'PlayfairDisplay-Bold',
       color: 'white',
       textAlign: 'center'
     },

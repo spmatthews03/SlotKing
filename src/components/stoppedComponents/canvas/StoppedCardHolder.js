@@ -5,18 +5,28 @@ import { dealFaceDown, dealNewCard } from '../../../store/actions/actions';
 import {gameStates} from '../../../constants/gameStates';
 import { getCardImage } from '../../../helpers/dealer';
 import { CARD_HOLDER } from '../../../constants/imageConstants';
+import { DEALING_SMALL, DEALING_BIG, DEAL_NEW_SMALL, DEAL_NEW_BIG } from '../../../constants/actionTypes';
 
 const mapDispatchToProps = dispatch => {
     return {
-        dealFaceDownFunction: (card) => dispatch(dealFaceDown(card)),
-        dealNewCardFunction: (card) => dispatch(dealNewCard(card))
+        dealFaceDownFunction: (card, version) => {version == '3x3' ? dispatch({type: DEALING_SMALL, card}) : dispatch({type:DEALING_BIG, card})},
+        dealNewCardFunction: (card, version) => {version == '3x3' ? dispatch({type: DEAL_NEW_SMALL, card}) : dispatch({type:DEAL_NEW_BIG, card})}
     };
 };
 
 const mapStateToProps = state => {
-    return{
-        game: state.drawReducer.game
-    };
+    if(state.versionReducer.version == '3x3'){
+        return{
+            game: state.drawReducer.game,
+            version: state.versionReducer.version
+        };
+    } else {
+        return{
+            game: state.drawReducerBig.game,
+            version: state.versionReducer.version
+        };
+    }
+
 };
 
 class StoppedCardHolder extends Component {
@@ -29,7 +39,7 @@ class StoppedCardHolder extends Component {
 
     componentDidMount(){
         if(this.props.state == gameStates.DEALING){
-            this.props.dealFaceDownFunction(this.props.num);
+            this.props.dealFaceDownFunction(this.props.num, this.props.version);
         }
     }
 
@@ -40,10 +50,10 @@ class StoppedCardHolder extends Component {
         }
         if(this.props.state == gameStates.BETTING){
             if(this.props.src == CARD_HOLDER){
-                this.props.dealFaceDownFunction(this.props.num);
+                this.props.dealFaceDownFunction(this.props.num, this.props.version);
             }
         } else if(this.props.state == gameStates.DISCARDING && !this.state.selected){
-            this.props.dealNewCardFunction(this.props.num);
+            this.props.dealNewCardFunction(this.props.num, this.props.version);
         }
     }
 

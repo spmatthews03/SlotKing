@@ -4,24 +4,56 @@ import HoldAndDrawHeader from '../../../components/stoppedComponents/HoldAndDraw
 import StoppedCanvas from '../../../components/stoppedComponents/canvas/StoppedCanvas';
 import { useDispatch, useSelector } from 'react-redux';
 import { styles } from './styles';
-import { DEAL, DISCARD } from '../../../store/actions/actions';
 import WinningsBar from '../../../components/dealerComponents/WinningsBar';
 import DiscardBar from '../../../components/stoppedComponents/DiscardBar';
 import ButtonBar from '../../../components/stoppedComponents/ButtonBar';
 import HoldAndDrawFooter from '../../../components/footers/HoldAndDrawFooter';
 import {gameStates} from '../../../constants/gameStates';
-import { stoppedCalculator } from '../../../helpers/payoutCalculators';
+import { stoppedCalculator, stoppedBigCalculator } from '../../../helpers/payoutCalculators';
 import GoldBetBar from '../../../components/betting/GoldBetBar';
-import { TOGGLE_BET, HOLD_DRAW_FLIP, HOLD_DRAW_ADD_WINNINGS, TOGGLE_BET_OFF } from '../../../constants/actionTypes';
+import { 
+  TOGGLE_BET_BIG,
+  TOGGLE_BET_SMALL,
+  FLIP_BIG, 
+  FLIP_SMALL,
+  HOLD_DRAW_ADD_WINNINGS,
+  DEAL_BIG,
+  DEAL_SMALL,
+  DISCARD_BIG,
+  DISCARD_SMALL,
+  BET
+} from '../../../constants/actionTypes';
 import { BACKGROUND, TABLE_SLOT_KING_LOGO, PLAY_BUTTON_2 } from '../../../constants/imageConstants';
 
 
 const HoldAndDraw = (navigation) => {
-  const gameState = useSelector(state => state.drawReducer.gameState)
-  const chips = useSelector(state => state.drawReducer.chips)
-  const credit = useSelector(state => state.drawReducer.credit)
-  const cards = useSelector(state => state.drawReducer.cards)
-
+  const navigator = navigation.navigation;
+  const version = navigator.getParam('version','3x3');
+  const credit = useSelector(state => state.versionReducer.credit);
+  var gameState;
+  var chips;
+  var cards;
+  var TOGGLE_BET;
+  var FLIP;
+  var DEAL;
+  var DISCARD;
+  if(version == '3x3'){
+    gameState = useSelector(state => state.drawReducer.gameState)
+    chips = useSelector(state => state.drawReducer.chips)
+    cards = useSelector(state => state.drawReducer.cards)
+    TOGGLE_BET = TOGGLE_BET_SMALL;
+    FLIP = FLIP_SMALL;
+    DEAL = DEAL_SMALL;
+    DISCARD = DISCARD_SMALL;
+  } else {
+    gameState = useSelector(state => state.drawReducerBig.gameState)
+    chips = useSelector(state => state.drawReducerBig.chips)
+    cards = useSelector(state => state.drawReducerBig.cards)
+    TOGGLE_BET = TOGGLE_BET_BIG;
+    FLIP = FLIP_BIG;
+    DEAL = DEAL_BIG;
+    DISCARD = DISCARD_BIG;
+  }
   const dispatch = useDispatch();
   const [winnings, setWinnings] = useState(0);
   const [totalBet, setTotalBet] = useState(calcTotalBet(chips));
@@ -29,7 +61,12 @@ const HoldAndDraw = (navigation) => {
 
   useEffect(() => {
     if(gameState === gameStates.RESULTS){
-      let payload = stoppedCalculator(calcTotalBet(chips)/16, cards);
+      let payload;
+      if(version == '3x3')
+        payload = stoppedCalculator(calcTotalBet(chips)/16, cards);
+      else
+        payload = stoppedBigCalculator(calcTotalBet(chips)/16, cards);
+        
       setWinnings(payload);
       dispatch({type:HOLD_DRAW_ADD_WINNINGS, payload});
     }
@@ -40,7 +77,8 @@ const HoldAndDraw = (navigation) => {
   },[chips])
 
   function flipFunction(payload) {
-    dispatch({type:HOLD_DRAW_FLIP, payload});
+    dispatch({type:FLIP});
+    dispatch({type: BET, payload})
   }
 
   function toggleBet(payload) {
@@ -66,18 +104,18 @@ const HoldAndDraw = (navigation) => {
 
   function bettingButtons(bet) {
     return(
-              <View style={{flex:1}}>
-                <View style={{flex: .5, flexDirection: 'row', justifyContent: 'center', paddingHorizontal: 50}}>
-                  <Image
-                    style={{width:'100%',height:'100%', resizeMode:'contain'}} 
-                    source={TABLE_SLOT_KING_LOGO}/>
-                </View>
-                <GoldBetBar credit={credit} chips={chips} parentCallback={toggleBet}/>
-                <ButtonBar 
-                  total_bet={bet}
-                  flip={flipFunction}
-                  />
-              </View>
+      <View style={{flex:1}}>
+        <View style={{flex: .5, flexDirection: 'row', justifyContent: 'center', paddingHorizontal: 50}}>
+          <Image
+            style={{width:'100%',height:'100%', resizeMode:'contain'}} 
+            source={TABLE_SLOT_KING_LOGO}/>
+        </View>
+        <GoldBetBar credit={credit} chips={chips} parentCallback={toggleBet}/>
+        <ButtonBar 
+          total_bet={bet}
+          flip={flipFunction}
+          />
+      </View>
     )
   }
 
@@ -152,14 +190,14 @@ const HoldAndDraw = (navigation) => {
       <View style={{ flex: 6, flexDirection: 'row' }}>
         <View style={{ flex: 4, paddingVertical:10}}>
           <View style={{ flex: 1}}>
-            <StoppedCanvas/>
+            <StoppedCanvas version={version}/>
             <View style={{ flex: 2, justifyContent: 'center', padding: 5 }}>
               {tmpFunction(totalBet)}
             </View>
           </View>
         </View>
       </View>
-      <HoldAndDrawFooter credit={credit} state={gameState} navigation={navigation}/>
+      <HoldAndDrawFooter credit={credit} state={gameState} navigation={navigator} version={version}/>
     </ImageBackground> 
   );
 }

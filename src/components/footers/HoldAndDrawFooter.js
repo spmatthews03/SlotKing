@@ -3,13 +3,15 @@ import { View, Image, TouchableOpacity, Text } from 'react-native';
 import { PLAY_BUTTON_2, HOLD_DRAW_BUTTON } from '../../constants/imageConstants';
 import { styles } from '../../screens/games/StopVersion/styles';
 import { useSelector, useDispatch } from 'react-redux';
-import { HOLD_DRAW_ADD_WINNINGS, NEED_AD } from '../../constants/actionTypes';
+import { 
+    HOLD_DRAW_ADD_WINNINGS,
+    NEED_AD} from '../../constants/actionTypes';
 import { RewardedAd, RewardedAdEventType, TestIds } from '@react-native-firebase/admob';
 
 const adUnitId = __DEV__ ? TestIds.REWARDED : 'ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy';
 
 const HoldAndDrawFooter = (props) => {
-    const needAd = useSelector(state => state.drawReducer.adReady);
+    const needAd = useSelector(state => state.versionReducer.adReady);
     const dispatch = useDispatch();
     const [loaded, setLoaded] = useState(false);
 
@@ -31,8 +33,6 @@ const HoldAndDrawFooter = (props) => {
             console.log('User earned reward of ', reward);
             dispatch({type: NEED_AD, payload: false});
             setLoaded(false);
-            // TODO:
-            // props.callback();
         }
         
         if(type === "closed") {
