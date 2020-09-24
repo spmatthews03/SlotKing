@@ -29,6 +29,8 @@ target 'SlotKing2' do
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
 
+  pod 'RNSound', :path => '../node_modules/react-native-sound'
+
   target 'SlotKing2Tests' do
     inherit! :search_paths
     # Pods for testing

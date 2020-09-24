@@ -7,8 +7,3 @@ export const gameStates = {
     NEW_GAME: "New Game",
     RESULTS: "Results"
 }
-
-export const gameModes = {
-    JACKPOT_DEALER: "Jackpot Dealer",
-    STOPPED: "HoldAndDraw"
-}

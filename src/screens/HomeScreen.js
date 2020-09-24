@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
-import { ImageBackground, StyleSheet, View, StatusBar, TouchableOpacity, Image, Text, Modal, Alert } from 'react-native';
+import React from 'react';
+import { ImageBackground, StyleSheet, View, StatusBar, TouchableOpacity, Image, Text, Modal } from 'react-native';
 import MenuFooter from '../components/footers/MenuFooter';
-import { TABLE_SLOT_KING_LOGO, PLAY_BUTTON_1, HOME_SCREEN_BACKGROUND, CANVAS_FRAME_COMPLETE, CLOSE_BUTTON } from '../constants/imageConstants';
+import { TABLE_SLOT_KING_LOGO, PLAY_BUTTON_1, HOME_SCREEN_BACKGROUND, CLOSE_BUTTON, NO_BET_NO_WIN } from '../constants/imageConstants';
 import { Switch } from 'react-native-gesture-handler';
 import SwitchSelector from "react-native-switch-selector";
+import { penClick } from '../helpers/sounds';
 
 
 export default class HomeScreen extends React.Component {
@@ -21,6 +22,7 @@ export default class HomeScreen extends React.Component {
     }
 
 
+
     render() {
         const{navigate} = this.props.navigation;
         const { modalVisible } = this.state;
@@ -30,6 +32,11 @@ export default class HomeScreen extends React.Component {
             {label:'Blue', value:'blue'},
             {label:'Red', value:'red'}
         ];
+
+        function onPressPlay() {
+            penClick.play();
+            navigate('Menu');
+        }
 
         return (
             <ImageBackground
@@ -92,7 +99,7 @@ export default class HomeScreen extends React.Component {
                     <View style={{flex:1, width:'100%', padding:20}}>
                         <Image
                             style={{flex:1, width:'100%', height:'100%', resizeMode:'contain'}}
-                            source={require('../assets/images/king_nobet_nowin.png')}/>
+                            source={NO_BET_NO_WIN}/>
                         <Image
                             style={{flex:1, width:'100%', height:'100%', resizeMode:'contain'}}
                             source={TABLE_SLOT_KING_LOGO}/>
@@ -100,7 +107,7 @@ export default class HomeScreen extends React.Component {
                     <View style={{flex:1,  paddingHorizontal:10, paddingTop:50, justifyContent:'center', alignItems:'center'}}>
                         <View style={{justifyContent:'center', alignItems:'center'}}>
                             <TouchableOpacity
-                                onPress={()=> navigate('Menu')}>
+                                onPress={()=> onPressPlay()}>
                                 <Image
                                     style={{width:191, height:51}}
                                     source={PLAY_BUTTON_1}/>

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+ 
 import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
-import { GOLD_CHIP } from '../../constants/imageConstants';
+import { DIAMOND_CHIP } from '../../constants/imageConstants';
 
-const GoldChip = (props) => {
+const DiamondChip = (props) => {
   const [on, setOn] = useState(props.chip);
 
   function chipToggle(){
@@ -15,7 +16,7 @@ const GoldChip = (props) => {
           <TouchableOpacity onPress={() => chipToggle()} style={{flex:1}} >
               <Image
                   style={[styles.chipStyle]}
-                  source={GOLD_CHIP}/>
+                  source={DIAMOND_CHIP}/>
               <View style={styles.totalBet}>
                   <Text style={styles.totalBetText}>{props.chipNum}</Text>
               </View>
@@ -23,7 +24,7 @@ const GoldChip = (props) => {
       </View>
   );
 }
-export default GoldChip;
+export default DiamondChip;
 
 var styles = StyleSheet.create({
       chipStyle:{
@@ -47,7 +48,7 @@ var styles = StyleSheet.create({
         alignItems: 'center',
       },
       totalBetText: {
-        fontSize: 38,
+        fontSize: 30,
         fontFamily: 'PlayfairDisplay',
         color: 'black',
         textAlign: 'center'

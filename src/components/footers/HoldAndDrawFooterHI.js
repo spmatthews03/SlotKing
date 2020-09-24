@@ -8,10 +8,9 @@ import {
     NEED_AD} from '../../constants/actionTypes';
 import { RewardedAd, RewardedAdEventType, TestIds } from '@react-native-firebase/admob';
 
-// const adUnitId = __DEV__ ? TestIds.REWARDED : 'ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy';
-const adUnitId = TestIds.REWARDED;
+const adUnitId = __DEV__ ? TestIds.REWARDED : 'ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy';
 
-const HoldAndDrawFooter = (props) => {
+const HoldAndDrawFooterHI = (props) => {
     const needAd = useSelector(state => state.versionReducer.adReady);
     const dispatch = useDispatch();
     const [loaded, setLoaded] = useState(false);
@@ -55,7 +54,7 @@ const HoldAndDrawFooter = (props) => {
     }
 
     return (
-        <View style={{flex:.7, backgroundColor:'#0f2636', flexDirection:'row', padding:8, justifyContent:'center'}}>
+        <View style={{flex:.7, backgroundColor:'#280000', flexDirection:'row', padding:8, justifyContent:'center'}}>
         <Image 
             style={{flex:1, resizeMode:'contain', height:'100%'}}
             source={HOLD_DRAW_BUTTON_HI}/>
@@ -90,4 +89,4 @@ const HoldAndDrawFooter = (props) => {
     );
 }
 
-export default HoldAndDrawFooter;
+export default HoldAndDrawFooterHI;

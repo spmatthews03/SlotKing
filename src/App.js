@@ -9,11 +9,10 @@
 import { createAppContainer } from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import HomeScreen from './screens/HomeScreen';
-import GameScreen from './screens/games/JackpotDealer/GameScreen';
 import MenuScreen from './screens/MenuScreen';
 import Priceboard from './screens/JackpotDealerPriceboard';
-import HighScoreScreen from './screens/HighScoreScreen';
 import HoldAndDraw from './screens/games/StopVersion/HoldAndDraw';
+import HoldAndDrawHi from './screens/games/StopVersion/HoldAndDrawHi';
 import SplashScreen from './screens/SplashScreen';
 import admob, { MaxAdContentRating } from '@react-native-firebase/admob';
 
@@ -49,14 +48,14 @@ const stackNavigator = createStackNavigator({
   Menu: {
     screen: MenuScreen
   },
-  Game: {
-    screen: GameScreen,
+  HoldAndDraw: {
+    screen: HoldAndDraw,
     navigationOptions: {
       headerShown: false
     },
   },
-  HoldAndDraw: {
-    screen: HoldAndDraw,
+  HoldAndDrawHI: {
+    screen: HoldAndDrawHi,
     navigationOptions: {
       headerShown: false
     },
@@ -66,12 +65,6 @@ const stackNavigator = createStackNavigator({
     navigationOptions: {
       headerShown: false
     }
-  },
-  HighScoreScreen: {
-    screen: HighScoreScreen,
-    navigationOptions:{
-      headerShown: false
-    },
   }
 });
 

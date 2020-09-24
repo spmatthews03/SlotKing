@@ -1,35 +1,32 @@
 import React, { Component } from 'react';
 import { View, Image, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
-import { dealFaceDown, dealNewCard } from '../../../store/actions/actions';
 import {gameStates} from '../../../constants/gameStates';
 import { getCardImage } from '../../../helpers/dealer';
 import { CARD_HOLDER } from '../../../constants/imageConstants';
-import { DEALING_SMALL, DEALING_BIG, DEAL_NEW_SMALL, DEAL_NEW_BIG } from '../../../constants/actionTypes';
+import { HI_DEALING_SMALL, HI_DEALING_BIG, HI_DEAL_NEW_SMALL, HI_DEAL_NEW_BIG } from '../../../constants/actionTypes';
+import { buttonClick } from '../../../helpers/sounds';
 
 const mapDispatchToProps = dispatch => {
     return {
-        dealFaceDownFunction: (card, version) => {version == '3x3' ? dispatch({type: DEALING_SMALL, card}) : dispatch({type:DEALING_BIG, card})},
-        dealNewCardFunction: (card, version) => {version == '3x3' ? dispatch({type: DEAL_NEW_SMALL, card}) : dispatch({type:DEAL_NEW_BIG, card})}
+        dealFaceDownFunction: (card, version) => {version == '3x3' ? dispatch({type: HI_DEALING_SMALL, card}) : dispatch({type:HI_DEALING_BIG, card})},
+        dealNewCardFunction: (card, version) => {version == '3x3' ? dispatch({type: HI_DEAL_NEW_SMALL, card}) : dispatch({type:HI_DEAL_NEW_BIG, card})}
     };
 };
 
 const mapStateToProps = state => {
     if(state.versionReducer.version == '3x3'){
         return{
-            game: state.drawReducer.game,
             version: state.versionReducer.version
         };
     } else {
         return{
-            game: state.drawReducerBig.game,
             version: state.versionReducer.version
         };
     }
-
 };
 
-class StoppedCardHolder extends Component {
+class CardHolderHi extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -57,12 +54,16 @@ class StoppedCardHolder extends Component {
         }
     }
 
+    selectCard(){
+        this.setState(prevState => ({selected: !prevState.selected}));
+        buttonClick.play();
+    }
 
     cardType = () => {
         return(
             <TouchableOpacity 
                 disabled={this.props.state === gameStates.WAIT_ON_DISCARD ? false : true}
-                onPress={()=> this.setState(prevState => ({selected: !prevState.selected}))}
+                onPress={()=>this.selectCard()}
                 style={{width:'75%', height:'100%', resizeMode:'contain', borderWidth: this.state.selected ? 3 : 0, borderColor: this.state.selected ? 'gold' : null}}>
                 <Image
                     style={{width:'100%', height:'100%', resizeMode:'contain'}}
@@ -80,4 +81,4 @@ class StoppedCardHolder extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(StoppedCardHolder);
+export default connect(mapStateToProps, mapDispatchToProps)(CardHolderHi);

@@ -38,16 +38,14 @@ const styles = StyleSheet.create({
       textAlign: 'center'
     },
     dealText: {
-      fontWeight: 'bold',
       fontSize: 20,
-      fontFamily: 'Roboto-Bold',
+      fontFamily: 'PlayfairDisplay-Bold',
       color: 'white',
       textAlign: 'center'
     },
     adButtonText: {
-      fontWeight: 'bold',
       fontSize: 14,
-      fontFamily: 'Roboto-Bold',
+      fontFamily: 'PlayfairDisplay-Bold',
       color: 'white',
       textAlign: 'center'
     },

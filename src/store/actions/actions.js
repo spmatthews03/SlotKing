@@ -2,7 +2,6 @@ export const ADD_BET = 'ADD_BET';
 export const RESET_BET = 'RESET_BET';
 export const DEAL = 'DEAL';
 export const REPEAT_BET = 'REPEAT_BET';
-export const HIGHLIGHT_CHIP = 'HIGHLIGHT_CHIP';
 export const SET_OPACITIES = 'SET_OPACITIES';
 export const BET_ALL = 'BET_ALL';
 export const BETTING = 'BETTING';
@@ -13,14 +12,6 @@ export const DEAL_NEW = 'DEAL_NEW';
 export const DEALING = 'DEALING';
 export const DONE_DISCARDING = 'DONE_DISCARDING';
 export const DONE_FLIPPING = 'DONE_FLIPPING';
-
-
-export const setGame = (game) => {
-    return {
-        type: SET_GAME,
-        game: game
-    }
-}
 
 export const flippingComplete = () => {
     return {
@@ -97,13 +88,6 @@ export const repeatBet = () => {
 export const betAll = () => {
     return{
         type: BET_ALL
-    }
-}
-
-export const highlightChip = (chip) => {
-    return{
-        type: HIGHLIGHT_CHIP,
-        payload: chip
     }
 }
 

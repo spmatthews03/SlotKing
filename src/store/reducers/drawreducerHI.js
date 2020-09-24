@@ -1,18 +1,18 @@
 import {
-    TOGGLE_BET_BIG,
-    NEED_AD_BIG,
-    DONE_DISCARDING_BIG,
-    DONE_FLIPPING_BIG,
-    DISCARD_BIG,
-    DEALING_BIG,
-    FLIP_BIG,
-    DEAL_NEW_BIG,
-    DEAL_BIG
+    HI_TOGGLE_BET_SMALL,
+    HI_NEED_AD_SMALL,
+    HI_DEAL_SMALL, 
+    HI_DEALING_SMALL,
+    HI_DEAL_NEW_SMALL,
+    HI_DISCARD_SMALL,
+    HI_FLIP_SMALL,
+    HI_DONE_DISCARDING_SMALL,
+    HI_DONE_FLIPPING_SMALL
 } from "../../constants/actionTypes";
 import {
     BLUE_CARD, 
     CARD_HOLDER } from '../../constants/imageConstants';
-   import { HOLD_AND_DRAW_BIG_DECK } from "../../constants/cards";
+   import { HOLD_AND_DRAW_DECK } from "../../constants/cards";
 import { shuffle, getCards, getNewCard } from "../../helpers/dealer";
 import {gameStates} from "../../constants/gameStates";
 import { allowableChips } from "../../helpers/chips";
@@ -21,41 +21,34 @@ const initialState = {
     gameState: gameStates.NEW_GAME,
     deck: null,
     chips:{
-        "20": false,
-        "40": false,
-        "60": false,
-        "80": false
+        "16": false,
+        "32": false,
+        "48": false,
+        "64": false
     },
     cards: {
-        "1": CARD_HOLDER,
-        "2": CARD_HOLDER,
-        "3": CARD_HOLDER,
-        "4": CARD_HOLDER,
-        "5": CARD_HOLDER,
-        "6": CARD_HOLDER,
-        "7": CARD_HOLDER,
-        "8": CARD_HOLDER,
-        "9": CARD_HOLDER,
-        "10": CARD_HOLDER,
-        "11": CARD_HOLDER,
-        "12": CARD_HOLDER,
-        "13": CARD_HOLDER,
-        "14": CARD_HOLDER,
-        "15": CARD_HOLDER,
-        "16": CARD_HOLDER,
-      },
+      "1": CARD_HOLDER,
+      "2": CARD_HOLDER,
+      "3": CARD_HOLDER,
+      "4": CARD_HOLDER,
+      "5": CARD_HOLDER,
+      "6": CARD_HOLDER,
+      "7": CARD_HOLDER,
+      "8": CARD_HOLDER,
+      "9": CARD_HOLDER,
+    },
     adReady: false
 }
 
 
-const drawReducerBig = (state = initialState, action) => {
+const drawReducerHI = (state = initialState, action) => {
 
     dealCards = () => {
-        return getCards(state.deck, 16);
+        return getCards(state.deck, 9);
     }
 
     switch(action.type) {
-        case DEAL_NEW_BIG:
+        case HI_DEAL_NEW_SMALL:
             state.deck.splice(0,1);
             return {
                 ...state,
@@ -65,22 +58,22 @@ const drawReducerBig = (state = initialState, action) => {
                 },
                 deck: state.deck
             }
-        case DONE_DISCARDING_BIG:
+        case HI_DONE_DISCARDING_SMALL:
             return {
                 ...state,
                 gameState: gameStates.RESULTS
             }
-        case DONE_FLIPPING_BIG:
+        case HI_DONE_FLIPPING_SMALL:
             return {
                 ...state,
                 gameState: gameStates.WAIT_ON_DISCARD
             }
-        case DISCARD_BIG:
+        case HI_DISCARD_SMALL:
             return{
                 ...state,
                 gameState: gameStates.DISCARDING
             }
-        case DEALING_BIG:
+        case HI_DEALING_SMALL:
             return{
                 ...state,
                 cards: {
@@ -88,25 +81,25 @@ const drawReducerBig = (state = initialState, action) => {
                     [action.card]:BLUE_CARD,
                 },
             };
-        case FLIP_BIG:
+        case HI_FLIP_SMALL:
             dealtCards = dealCards();
-            state.deck.splice(0,16);
+            state.deck.splice(0,9);
             return{
                 ...state,
                 gameState: gameStates.FLIPPING,
                 cards: dealtCards,
                 deck: state.deck,
             }
-        case DEAL_BIG:
+        case HI_DEAL_SMALL:
             return{
                 ...state,
                 cards: {
                         ...initialState.cards,
                     },
-                deck: shuffle(HOLD_AND_DRAW_BIG_DECK),
+                deck: shuffle(HOLD_AND_DRAW_DECK),
                 gameState: gameStates.BETTING,
             };
-        case TOGGLE_BET_BIG:
+        case HI_TOGGLE_BET_SMALL:
             return{
                 ...state,
                 chips: {
@@ -114,7 +107,7 @@ const drawReducerBig = (state = initialState, action) => {
                     [action.payload]: !state.chips[action.payload]
                 },
             }
-        case NEED_AD_BIG:
+        case HI_NEED_AD_SMALL:
             return {
                 ...state,
                 adReady: action.payload
@@ -124,4 +117,4 @@ const drawReducerBig = (state = initialState, action) => {
     }
 };
 
-export default drawReducerBig;
+export default drawReducerHI;

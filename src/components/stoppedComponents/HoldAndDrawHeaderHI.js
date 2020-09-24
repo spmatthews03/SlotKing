@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, ImageBackground } from 'react-native';
+ 
+import { StyleSheet, View, Text, Image, ImageBackground } from 'react-native';
 import BackBox from '../BackBox';
-import { HEADER } from '../../constants/imageConstants';
+import { HEADER_HI } from '../../constants/imageConstants';
 
-export default class HoldAndDrawHeader extends Component {
+export default class HoldAndDrawHeaderHI extends Component {
   constructor(props){
     super(props);
   }
@@ -11,7 +12,7 @@ export default class HoldAndDrawHeader extends Component {
   render() {
     return (
       <View style={{flex:1, flexDirection: 'row'}}>
-        <ImageBackground source={HEADER} style={{width:'100%', resizeMode:'contain', flexDirection:'row', justifyContent:'space-between'}}>
+        <ImageBackground source={HEADER_HI} style={{width:'100%', resizeMode:'contain', flexDirection:'row', justifyContent:'space-between'}}>
           <View style={{flex:1}}>
               <BackBox navigation={this.props.navigation}/>
           </View>

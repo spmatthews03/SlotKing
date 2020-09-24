@@ -35,13 +35,20 @@ export const stoppedBigCalculator = (bet, cards) => {
         var two = cards[line[1]];
         var three = cards[line[2]];
         var four = cards[line[3]];
-        if(one == two || one == WILD || two == "WILD") {
+        if(one == two || one == "WILD" || two == "WILD") {
             if(three == one || three == two || three == "WILD"){
                 if(four == three || four == two || four == one || four == "WILD"){
-                    total_winnings = total_winnings + bet * payoutsBig["4x" + cards[line[0]]];
+                    if(one != "WILD")
+                        total_winnings = total_winnings + bet * payoutsBig["4x" + one];
+                    else
+                        total_winnings = total_winnings + bet * payoutsBig["4x" + two];
+
                 }
                 else{
-                    total_winnings = total_winnings + bet * payoutsBig["3x" + cards[line[0]]]
+                    if(one != "WILD")
+                        total_winnings = total_winnings + bet * payoutsBig["3x" + one]
+                    else
+                        total_winnings = total_winnings + bet * payoutsBig["3x" + two]
                 }
             }
         }

@@ -1,14 +1,9 @@
 import {
     TOGGLE_BET_SMALL,
-    TOGGLE_BET_OFF_SMALL,
     NEED_AD_SMALL,
-    SET_VERSION_SMALL,
     DEAL_SMALL, 
     DEALING_SMALL,
     DEAL_NEW_SMALL,
-    HIGHLIGHT_CHIP_SMALL, 
-    BETTING_SMALL,
-    SET_GAME_SMALL,
     DISCARD_SMALL,
     FLIP_SMALL,
     DONE_DISCARDING_SMALL,
@@ -19,11 +14,10 @@ import {
     CARD_HOLDER } from '../../constants/imageConstants';
    import { HOLD_AND_DRAW_DECK } from "../../constants/cards";
 import { shuffle, getCards, getNewCard } from "../../helpers/dealer";
-import {gameStates,gameModes} from "../../constants/gameStates";
+import {gameStates} from "../../constants/gameStates";
 import { allowableChips } from "../../helpers/chips";
 
 const initialState = {
-    game: null,
     gameState: gameStates.NEW_GAME,
     deck: null,
     chips:{
@@ -92,14 +86,9 @@ const drawReducer = (state = initialState, action) => {
             state.deck.splice(0,9);
             return{
                 ...state,
-                gameState:  state.game == gameModes.STOPPED ? gameStates.FLIPPING : gameStates.RESULTS,
+                gameState: gameStates.FLIPPING,
                 cards: dealtCards,
                 deck: state.deck,
-            }
-        case BETTING_SMALL:
-            return{
-                ...state,
-                gameState: gameStates.BETTING
             }
         case DEAL_SMALL:
             return{
@@ -118,33 +107,10 @@ const drawReducer = (state = initialState, action) => {
                     [action.payload]: !state.chips[action.payload]
                 },
             }
-        case TOGGLE_BET_OFF_SMALL:
-            return{
-                ...state,
-                chips: {
-                    ...state.chips,
-                    [action.payload]: false
-                },
-            }
-        case HIGHLIGHT_CHIP_SMALL:
-            return{
-                ...state,
-                highlighted_chip: action.payload
-            };
-        case SET_GAME_SMALL:
-            return {
-                ...state,
-                game: action.game
-            }
         case NEED_AD_SMALL:
             return {
                 ...state,
                 adReady: action.payload
-            }
-        case SET_VERSION_SMALL:
-            return {
-                ...state,
-                version: action.version
             }
         default:
             return state;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Animated, View, Image, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
-import { highlightChip,setOpacities } from '../../store/actions/actions';
+import { highlightChip,setOpacities } from '../store/actions/actions';
 
 
 

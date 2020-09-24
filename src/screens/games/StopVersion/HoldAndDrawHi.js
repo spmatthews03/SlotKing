@@ -1,32 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import { Image, ImageBackground, StatusBar, Text, TouchableOpacity, View, Alert, Platform } from 'react-native';
-import HoldAndDrawHeader from '../../../components/stoppedComponents/HoldAndDrawHeader';
-import Canvas from '../../../components/stoppedComponents/canvas/Canvas';
 import { useDispatch, useSelector } from 'react-redux';
 import { styles } from './styles';
 import WinningsBar from '../../../components/WinningsBar';
 import DiscardBar from '../../../components/stoppedComponents/DiscardBar';
 import ButtonBar from '../../../components/stoppedComponents/ButtonBar';
-import HoldAndDrawFooter from '../../../components/footers/HoldAndDrawFooter';
+import HoldAndDrawFooterHI from '../../../components/footers/HoldAndDrawFooterHI';
 import {gameStates} from '../../../constants/gameStates';
 import { stoppedCalculator, stoppedBigCalculator } from '../../../helpers/payoutCalculators';
-import GoldBetBar from '../../../components/betting/GoldBetBar';
 import { 
-  TOGGLE_BET_BIG,
-  TOGGLE_BET_SMALL,
-  FLIP_BIG, 
-  FLIP_SMALL,
+  HI_TOGGLE_BET_BIG,
+  HI_TOGGLE_BET_SMALL,
+  HI_FLIP_BIG, 
+  HI_FLIP_SMALL,
   HOLD_DRAW_ADD_WINNINGS,
-  DEAL_BIG,
-  DEAL_SMALL,
-  DISCARD_BIG,
-  DISCARD_SMALL,
+  HI_DEAL_BIG,
+  HI_DEAL_SMALL,
+  HI_DISCARD_BIG,
+  HI_DISCARD_SMALL,
   BET
 } from '../../../constants/actionTypes';
-import { BACKGROUND, TABLE_SLOT_KING_LOGO, PLAY_BUTTON_2 } from '../../../constants/imageConstants';
+import { PLAY_BUTTON_2, HI_BACKGROUND } from '../../../constants/imageConstants';
 import { cardDeal, coinThud, win } from '../../../helpers/sounds';
+import CanvasHI from '../../../components/stoppedComponents/canvas/CanvasHI';
+import HoldAndDrawHeaderHI from '../../../components/stoppedComponents/HoldAndDrawHeaderHI';
+import DiamondBetBar from '../../../components/betting/DiamondBetBar';
 
-const HoldAndDraw = (navigation) => {
+const HoldAndDrawHi = (navigation) => {
   const navigator = navigation.navigation;
   const version = navigator.getParam('version','3x3');
   const credit = useSelector(state => state.versionReducer.credit);
@@ -39,21 +39,21 @@ const HoldAndDraw = (navigation) => {
   var DEAL;
   var DISCARD;
   if(version == '3x3'){
-    gameState = useSelector(state => state.drawReducer.gameState)
-    chips = useSelector(state => state.drawReducer.chips)
-    cards = useSelector(state => state.drawReducer.cards)
-    TOGGLE_BET = TOGGLE_BET_SMALL;
-    FLIP = FLIP_SMALL;
-    DEAL = DEAL_SMALL;
-    DISCARD = DISCARD_SMALL;
+    gameState = useSelector(state => state.drawReducerHI.gameState)
+    chips = useSelector(state => state.drawReducerHI.chips)
+    cards = useSelector(state => state.drawReducerHI.cards)
+    TOGGLE_BET = HI_TOGGLE_BET_SMALL;
+    FLIP = HI_FLIP_SMALL;
+    DEAL = HI_DEAL_SMALL;
+    DISCARD = HI_DISCARD_SMALL;
   } else {
-    gameState = useSelector(state => state.drawReducerBig.gameState)
-    chips = useSelector(state => state.drawReducerBig.chips)
-    cards = useSelector(state => state.drawReducerBig.cards)
-    TOGGLE_BET = TOGGLE_BET_BIG;
-    FLIP = FLIP_BIG;
-    DEAL = DEAL_BIG;
-    DISCARD = DISCARD_BIG;
+    gameState = useSelector(state => state.drawReducerBigHI.gameState)
+    chips = useSelector(state => state.drawReducerBigHI.chips)
+    cards = useSelector(state => state.drawReducerBigHI.cards)
+    TOGGLE_BET = HI_TOGGLE_BET_BIG;
+    FLIP = HI_FLIP_BIG;
+    DEAL = HI_DEAL_BIG;
+    DISCARD = HI_DISCARD_BIG;
   }
   const dispatch = useDispatch();
   const [winnings, setWinnings] = useState(0);
@@ -122,7 +122,7 @@ const HoldAndDraw = (navigation) => {
       <View style={{flex:1}}>
         <View style={{flex: .5, flexDirection: 'row', justifyContent: 'center', paddingHorizontal: 50}}>
         </View>
-        <GoldBetBar credit={credit} chips={chips} parentCallback={toggleBet}/>
+        <DiamondBetBar credit={credit} chips={chips} parentCallback={toggleBet}/>
         <ButtonBar 
           total_bet={bet}
           flip={flipFunction}
@@ -195,25 +195,25 @@ const HoldAndDraw = (navigation) => {
   return (
     <ImageBackground
       style={styles.backgroundImage}
-      source={BACKGROUND}
+      source={HI_BACKGROUND}
     >
       <StatusBar hidden={true} />
-      <HoldAndDrawHeader credit={credit} navigation={navigation}/>
+      <HoldAndDrawHeaderHI credit={credit} navigation={navigation}/>
       <View style={{ flex: 6, flexDirection: 'row' }}>
         <View style={{ flex: 4, paddingVertical:10}}>
           <View style={{ flex: 1}}>
-            <Canvas version={version}/>
+            <CanvasHI version={version}/>
             <View style={{ flex: 2, justifyContent: 'center', padding: 5 }}>
               {tmpFunction(totalBet)}
             </View>
           </View>
         </View>
       </View>
-      <HoldAndDrawFooter credit={credit} state={gameState} navigation={navigator} version={version}/>
+      <HoldAndDrawFooterHI credit={credit} state={gameState} navigation={navigator} version={version}/>
     </ImageBackground> 
   );
 }
 
 
-export default HoldAndDraw;
+export default HoldAndDrawHi;
 
