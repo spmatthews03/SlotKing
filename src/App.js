@@ -10,7 +10,6 @@ import { createAppContainer } from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import HomeScreen from './screens/HomeScreen';
 import MenuScreen from './screens/MenuScreen';
-import Priceboard from './screens/JackpotDealerPriceboard';
 import HoldAndDraw from './screens/games/StopVersion/HoldAndDraw';
 import HoldAndDrawHi from './screens/games/StopVersion/HoldAndDrawHi';
 import SplashScreen from './screens/SplashScreen';
@@ -59,12 +58,6 @@ const stackNavigator = createStackNavigator({
     navigationOptions: {
       headerShown: false
     },
-  },
-  Priceboard: {
-    screen: Priceboard,
-    navigationOptions: {
-      headerShown: false
-    }
   }
 });
 

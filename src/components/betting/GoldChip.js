@@ -48,7 +48,7 @@ var styles = StyleSheet.create({
       },
       totalBetText: {
         fontSize: 38,
-        fontFamily: 'PlayfairDisplay',
+        fontFamily: 'PlayfairDisplay-Bold',
         color: 'black',
         textAlign: 'center'
       }

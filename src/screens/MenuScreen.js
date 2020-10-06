@@ -1,9 +1,9 @@
 import React from 'react';
 import { ImageBackground, StyleSheet, View, StatusBar, TouchableOpacity, Image, Text } from 'react-native';
 import { connect } from 'react-redux';
-import { 
-    BACKGROUND, 
-    HOLD_DRAW_BUTTON, 
+import {
+    BACKGROUND,
+    HOLD_DRAW_BUTTON,
     RIMPIMPAM_TOURNAMENT,
     HOLD_DRAW_BIG_BUTTON,
     NO_BET_NO_WIN,
@@ -11,7 +11,7 @@ import {
     HOLD_DRAW_BIG_BUTTON_HI
     } from '../constants/imageConstants';
 import {
-    SET_VERSION, 
+    SET_VERSION,
     SET_GAME} from '../constants/actionTypes';
 import { penClick } from '../helpers/sounds';
 import Icon from 'react-native-vector-icons/FontAwesome5';
@@ -55,7 +55,7 @@ class MenuScreen extends React.Component {
                     <Text style={styles.selectGameText}>Select A Game</Text>
                 </View>
                 <View style={{flex:10,justifyContent:'center', alignItems:'center'}}>
-                    <Text style={styles.roomText}>Regular Room</Text>
+                    <Text style={styles.roomText}>Standard Room</Text>
                     <View style={{flex:1, flexDirection:'row'}}>
                         <View style={{flex:1}}>
                             <View style={{justifyContent:'center', alignItems:'center', padding:5}}>

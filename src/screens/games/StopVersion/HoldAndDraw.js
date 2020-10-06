@@ -11,10 +11,10 @@ import HoldAndDrawFooter from '../../../components/footers/HoldAndDrawFooter';
 import {gameStates} from '../../../constants/gameStates';
 import { stoppedCalculator, stoppedBigCalculator } from '../../../helpers/payoutCalculators';
 import GoldBetBar from '../../../components/betting/GoldBetBar';
-import { 
+import {
   TOGGLE_BET_BIG,
   TOGGLE_BET_SMALL,
-  FLIP_BIG, 
+  FLIP_BIG,
   FLIP_SMALL,
   HOLD_DRAW_ADD_WINNINGS,
   DEAL_BIG,
@@ -123,7 +123,7 @@ const HoldAndDraw = (navigation) => {
         <View style={{flex: .5, flexDirection: 'row', justifyContent: 'center', paddingHorizontal: 50}}>
         </View>
         <GoldBetBar credit={credit} chips={chips} parentCallback={toggleBet}/>
-        <ButtonBar 
+        <ButtonBar
           total_bet={bet}
           flip={flipFunction}
           />
@@ -136,7 +136,7 @@ const HoldAndDraw = (navigation) => {
     return(
       <View style={{flex:1}}>
         <View style={{flex:1.5}}>
-          {gameState === gameStates.NEW_GAME ? null : 
+          {gameState === gameStates.NEW_GAME ? null :
             <WinningsBar totalbet={bet} winnings={winnings}/>
           }
         </View>
@@ -198,7 +198,7 @@ const HoldAndDraw = (navigation) => {
       source={BACKGROUND}
     >
       <StatusBar hidden={true} />
-      <HoldAndDrawHeader credit={credit} navigation={navigation}/>
+      <HoldAndDrawHeader credit={credit} navigation={navigator}/>
       <View style={{ flex: 6, flexDirection: 'row' }}>
         <View style={{ flex: 4, paddingVertical:10}}>
           <View style={{ flex: 1}}>
@@ -210,7 +210,7 @@ const HoldAndDraw = (navigation) => {
         </View>
       </View>
       <HoldAndDrawFooter credit={credit} state={gameState} navigation={navigator} version={version}/>
-    </ImageBackground> 
+    </ImageBackground>
   );
 }
 

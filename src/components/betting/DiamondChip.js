@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
- 
+
 import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 import { DIAMOND_CHIP } from '../../constants/imageConstants';
 
@@ -49,7 +49,7 @@ var styles = StyleSheet.create({
       },
       totalBetText: {
         fontSize: 30,
-        fontFamily: 'PlayfairDisplay',
+        fontFamily: 'PlayfairDisplay-Bold',
         color: 'black',
         textAlign: 'center'
       }

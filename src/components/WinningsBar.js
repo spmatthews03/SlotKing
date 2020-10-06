@@ -46,17 +46,17 @@ const styles = StyleSheet.create({
       resizeMode: 'contain'
     },
     winningBarViewStyle:{
-      flex:1, 
-      flexDirection:'row', 
-      justifyContent:'center', 
+      flex:1,
+      flexDirection:'row',
+      justifyContent:'center',
       alignItems:'center'
     },
     winningBarStyle:{
       flex: 1,
       justifyContent: 'center',
       paddingHorizontal: 35,
-      borderColor:'gold', 
-      borderWidth: 1, 
+      borderColor:'gold',
+      borderWidth: 1,
       backgroundColor:'rgba(24, 58, 82,.5)',
       marginHorizontal:-35
     },
@@ -72,15 +72,15 @@ const styles = StyleSheet.create({
       padding: 5
     },
     totalBetText: {
-      // fontWeight:'bold',
       color:'white',
       fontSize:24,
-      textAlign:'center'
+      textAlign:'center',
+      fontFamily:'PlayfairDisplay-Bold'
     },
     winningBetText: {
-      fontWeight:'bold',
       color:'white',
       fontSize:30,
-      textAlign:'center'
+      textAlign:'center',
+      fontFamily:'PlayfairDisplay-Bold'
     }
   });
