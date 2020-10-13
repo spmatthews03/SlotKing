@@ -141,10 +141,10 @@ const HoldAndDraw = (navigation) => {
           }
         </View>
         <View
-          style={[styles.buttonBar, {alignItems:"center", justifyContent:"center"}]}>
+          style={[styles.flexOneStyles, {alignItems:"center", justifyContent:"center"}]}>
           <TouchableOpacity
             onPress={() => deal()}
-            style={[styles.flexOneStyles]}>
+            style={{width:150}}>
             <Image
               style={styles.bottomButtonsStyle}
               source={PLAY_BUTTON_2}/>
@@ -165,10 +165,10 @@ const HoldAndDraw = (navigation) => {
           <DiscardBar/>
         </View>
         <View
-          style={[styles.buttonBar, {alignItems:"center", justifyContent:"center"}]}>
+          style={[styles.flexOneStyles, {alignItems:"center", justifyContent:"center"}]}>
           <TouchableOpacity
             onPress={() => draw()}
-            style={[styles.flexOneStyles]}>
+            style={{width:150}}>
             <Image
               style={styles.bottomButtonsStyle}
               source={PLAY_BUTTON_2}/>

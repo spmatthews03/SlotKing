@@ -30,23 +30,21 @@ const Rules = (props) => {
             )
         } else {
             return (
-                <Swiper style={{width:'99%'}} showsButtons={true}>
-                    <ScrollView
-                        style={{margin:10}}
-                        contentContainerStyle={{justifyContent: 'center', alignItems:'center'}}>
-                        <Text style={styles.ruleText}>
-                            Sixteen cards will be dealt on the table. After the first deal, select the cards you want
-                            to keep. Once you've selected your cards, hit 'Draw' to deal the next round of cards.
-                            Your winnings will then be calculated.
-                        </Text>
-                        <Text style={styles.ruleText}>
-                            You are paid out for connecting 3 or 4 cards,
-                            as shown on the next slide.
-                            There are 20 lines in the 4x4 version, so a minimum bet of 20 will allow you to play
-                            all the lines.
-                        </Text>
-                    </ScrollView>
-                </Swiper>
+                <ScrollView
+                    style={{margin:10}}
+                    contentContainerStyle={{justifyContent: 'center', alignItems:'center'}}>
+                    <Text style={styles.ruleText}>
+                        Sixteen cards will be dealt on the table. After the first deal, select the cards you want
+                        to keep. Once you've selected your cards, hit 'Draw' to deal the next round of cards.
+                        Your winnings will then be calculated.
+                    </Text>
+                    <Text style={styles.ruleText}>
+                        You are paid out for connecting 3 or 4 cards,
+                        as shown on the next slide.
+                        There are 20 lines in the 4x4 version, so a minimum bet of 20 will allow you to play
+                        all the lines.
+                    </Text>
+                </ScrollView>
             )
         }
     }
@@ -93,11 +91,9 @@ var styles = StyleSheet.create({
         padding:100
     },
     ruleModal: {
-        width:'95%',
-        height:'85%',
+        width:'100%',
+        height:'100%',
         backgroundColor: '#0f2636',
-        borderRadius: 20,
-        // borderColor:'#ae8625',
         borderWidth:1,
         padding: 15,
         alignItems: "center",
@@ -105,10 +101,7 @@ var styles = StyleSheet.create({
         shadowOffset: {
             width: 0,
             height: 2
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 5
+        }
     },
     modalCenteredView: {
         flex:1,
@@ -116,7 +109,7 @@ var styles = StyleSheet.create({
         alignItems: "center",
     },
     ruleText: {
-        fontSize: 24,
+        fontSize: 22,
         marginTop: 15,
         letterSpacing:3,
         textAlign: "center",
@@ -129,6 +122,6 @@ var styles = StyleSheet.create({
         fontSize:30,
         textAlign: "center",
         color:'white',
-        fontFamily:'PlayfairDisplay-BoldItalic'
+        fontFamily:'PlayfairDisplay-Bold'
     },
 })

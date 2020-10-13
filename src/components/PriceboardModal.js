@@ -1,9 +1,36 @@
 import React, {useState} from 'react';
-import {Image, Modal, StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import {CLOSE_BUTTON} from "../constants/imageConstants";
-
+import {Image, ImageBackground, Modal, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {
+    CLOSE_BUTTON, PRICEBOARD_7,
+    PRICEBOARD_777,
+    PRICEBOARD_BAR, PRICEBOARD_CHERRY,
+    PRICEBOARD_COIN,
+    PRICEBOARD_CROWN, PRICEBOARD_DOUBLE_BAR, PRICEBOARD_DOUBLE_HEART, PRICEBOARD_HEART, PRICEBOARD_WILD
+} from "../constants/imageConstants";
+import {priceboard_3x3, priceboard_4x4} from "../constants/priceboardObjects";
+import {useSelector} from "react-redux";
+import PriceboardSection from "./PriceboardSection";
 
 const PriceboardModal = (props) => {
+    const version = useSelector(state => state.versionReducer.version)
+    let priceboard;
+    let toWin;
+
+    if(version == '3x3') {
+        priceboard = priceboard_3x3;
+        toWin = {
+            small : '2x',
+            big : '3x'
+        }
+    }
+    else {
+        priceboard = priceboard_4x4;
+        toWin = {
+            small : '3x',
+            big : '4x'
+        }
+    }
+
 
     return (
         <Modal
@@ -16,7 +43,82 @@ const PriceboardModal = (props) => {
         >
             <View style={styles.centeredView}>
                 <View style={styles.modalView}>
-                    <Text style={styles.modalText}>Hello World!</Text>
+                    <View style={{height:75, justifyContent:'center', alignItems:'center'}}>
+                        <Text style={styles.priceboardText}>Priceboard</Text>
+                    </View>
+                    <View style={{flex:1, flexDirection:'row'}}>
+                        <View style={{flex:1}}>
+                            <PriceboardSection
+                                image={PRICEBOARD_777}
+                                toWin={toWin}
+                                pieces={priceboard["card_777"].pieces}
+                                payoutBig={priceboard["card_777"].payout_big}
+                                payoutSmall={priceboard["card_777"].payout_small}/>
+                            <PriceboardSection
+                                image={PRICEBOARD_CROWN}
+                                toWin={toWin}
+                                pieces={priceboard["card_crown"].pieces}
+                                payoutBig={priceboard["card_crown"].payout_big}
+                                payoutSmall={priceboard["card_crown"].payout_small}/>
+                            <PriceboardSection
+                                image={PRICEBOARD_COIN}
+                                toWin={toWin}
+                                pieces={priceboard["card_coin"].pieces}
+                                payoutBig={priceboard["card_coin"].payout_big}
+                                payoutSmall={priceboard["card_coin"].payout_small}/>
+                            <PriceboardSection
+                                image={PRICEBOARD_BAR}
+                                toWin={toWin}
+                                pieces={priceboard["card_bar"].pieces}
+                                payoutBig={priceboard["card_bar"].payout_big}
+                                payoutSmall={priceboard["card_bar"].payout_small}/>
+                            <PriceboardSection
+                                image={PRICEBOARD_HEART}
+                                toWin={toWin}
+                                pieces={priceboard["card_heart"].pieces}
+                                payoutBig={priceboard["card_heart"].payout_big}
+                                payoutSmall={priceboard["card_heart"].payout_small}/>
+                        </View>
+                        <View style={{flex:1}}>
+                            <View style={{flex:4}}>
+                                <PriceboardSection
+                                    image={PRICEBOARD_7}
+                                    toWin={toWin}
+                                    pieces={priceboard["card_7"].pieces}
+                                    payoutBig={priceboard["card_7"].payout_big}
+                                    payoutSmall={priceboard["card_7"].payout_small}/>
+                                <PriceboardSection
+                                    image={PRICEBOARD_DOUBLE_BAR}
+                                    toWin={toWin}
+                                    pieces={priceboard["card_double_bar"].pieces}
+                                    payoutBig={priceboard["card_double_bar"].payout_big}
+                                    payoutSmall={priceboard["card_double_bar"].payout_small}/>
+                                <PriceboardSection
+                                    image={PRICEBOARD_DOUBLE_HEART}
+                                    toWin={toWin}
+                                    pieces={priceboard["card_double_heart"].pieces}
+                                    payoutBig={priceboard["card_double_heart"].payout_big}
+                                    payoutSmall={priceboard["card_double_heart"].payout_small}/>
+                                <PriceboardSection
+                                    image={PRICEBOARD_CHERRY}
+                                    toWin={toWin}
+                                    pieces={priceboard["card_cherry"].pieces}
+                                    payoutBig={priceboard["card_cherry"].payout_big}
+                                    payoutSmall={priceboard["card_cherry"].payout_small}/>
+                            </View>
+                            <View style={{flex:1}}>
+                                {version == '4x4' ?
+                                    <PriceboardSection
+                                        image={PRICEBOARD_WILD}
+                                        pieces={1}
+                                        payoutBig={priceboard["card_cherry"].payout_big}
+                                        payoutSmall={priceboard["card_cherry"].payout_small}/>
+                                        : null
+                                }
+                            </View>
+                        </View>
+
+                    </View>
                     <View style={{height:40, width:40}}>
                         <TouchableOpacity
                             onPress={() => {
@@ -40,11 +142,11 @@ var styles = StyleSheet.create({
         padding:100
     },
     modalView: {
-        width:'75%',
-        height:'50%',
-        margin: 20,
+        width: '100%',
+        height: '100%',
+        // margin: 20,
         backgroundColor: '#0f2636',
-        borderRadius: 20,
+        // borderRadius: 20,
         // borderColor:'#ae8625',
         borderWidth:1,
         padding: 15,
@@ -58,9 +160,15 @@ var styles = StyleSheet.create({
         shadowRadius: 3.84,
         elevation: 5
     },
+    priceboardText: {
+        fontFamily:'PlayfairDisplay-Bold',
+        // color:'#f7ef8a',
+        color:'white',
+        fontSize:38
+    },
     centeredView: {
         flex:1,
         justifyContent: "center",
         alignItems: "center",
-    },
+    }
 })

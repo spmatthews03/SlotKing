@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import {
     BACKGROUND,
     HOLD_DRAW_BUTTON,
-    RIMPIMPAM_TOURNAMENT,
     HOLD_DRAW_BIG_BUTTON,
     NO_BET_NO_WIN,
     HOLD_DRAW_BUTTON_HI,
@@ -58,21 +57,23 @@ class MenuScreen extends React.Component {
                     <Text style={styles.roomText}>Standard Room</Text>
                     <View style={{flex:1, flexDirection:'row'}}>
                         <View style={{flex:1}}>
-                            <View style={{justifyContent:'center', alignItems:'center', padding:5}}>
+                            <View style={{flex:1, justifyContent:'center', alignItems:'center', padding:20}}>
                                 <TouchableOpacity
+                                    style={{width:'100%', justifyContent: 'center'}}
                                     onPress={()=> this.navigateToGame('HoldAndDraw','3x3')}>
                                     <Image
-                                        style={{width:180, height:180}}
+                                        style={{width:'100%', height:'100%', resizeMode:'contain'}}
                                         source={HOLD_DRAW_BUTTON}/>
                                 </TouchableOpacity>
                             </View>
                         </View>
                         <View style={{flex:1}}>
-                            <View style={{justifyContent:'center', alignItems:'center', padding:5}}>
+                            <View style={{flex:1, justifyContent:'center', alignItems:'center', padding:20}}>
                                 <TouchableOpacity
+                                    style={{width:'100%', justifyContent: 'center'}}
                                     onPress={()=> this.navigateToGame('HoldAndDraw','4x4')}>
                                     <Image
-                                        style={{width:180, height:180}}
+                                        style={{width:'100%', height:'100%', resizeMode:'contain'}}
                                         source={HOLD_DRAW_BIG_BUTTON}/>
                                 </TouchableOpacity>
                             </View>
@@ -81,29 +82,31 @@ class MenuScreen extends React.Component {
                     <Text style={styles.roomText}>Hi-Limit Room</Text>
                     <View style={{flex:1, flexDirection:'row'}}>
                         <View style={{flex:1}}>
-                            <View style={{justifyContent:'center', alignItems:'center', padding:5}}>
+                            <View style={{flex:1, justifyContent:'center', alignItems:'center', padding:20}}>
                                 <TouchableOpacity
                                     // disabled={!this.props.unlocked}
+                                    style={{width:'100%', justifyContent: 'center'}}
                                     onPress={()=> this.navigateToGame('HoldAndDrawHI','3x3')}>
-                                    {!this.props.unlocked ? <Icon name="lock" size={30} color="gold" style={{position:"absolute", top:10, right:10,zIndex:1}}/> : null }
+                                    {!this.props.unlocked ? <Icon name="lock" size={30} color="gold" style={{position:"absolute", top:10, right:25,zIndex:1}}/> : null }
                                     <Image
-                                        style={{width:180, height:180}}
+                                        style={{width:'100%', height:'100%', resizeMode:'contain'}}
                                         source={HOLD_DRAW_BUTTON_HI}/>
                                 </TouchableOpacity>
                             </View>
                         </View>
                         <View style={{flex:1}}>
-                            <View style={{justifyContent:'center', alignItems:'center', padding:5}}>
+                            <View style={{flex:1, justifyContent:'center', alignItems:'center', padding:20}}>
                                 <TouchableOpacity
                                     // disabled={!this.props.unlocked}
+                                    style={{width:'100%', justifyContent: 'center'}}
                                     onPress={()=> this.navigateToGame('HoldAndDrawHI','4x4')}>
-                                    {!this.props.unlocked ? <Icon name="lock" size={30} color="gold" style={{position:"absolute", top:10, right:10,zIndex:1}}/> : null }
+                                    {!this.props.unlocked ? <Icon name="lock" size={30} color="gold" style={{position:"absolute", top:10, right:25,zIndex:1}}/> : null }
                                     <Image
-                                        style={{width:180, height:180}}
+                                        style={{width:'100%', height:'100%', resizeMode:'contain'}}
                                         source={HOLD_DRAW_BIG_BUTTON_HI}/>
                                 </TouchableOpacity>
                             </View>
-                            </View>
+                        </View>
                     </View>
                 </View>
                 {/* <MenuFooter/> */}

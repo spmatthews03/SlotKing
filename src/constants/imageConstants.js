@@ -48,3 +48,25 @@ export const HEADER_HI = require('../assets/images/header_hilimit.png');
 export const BACKGROUND = require('../assets/images/background.png');
 export const HI_BACKGROUND = require('../assets/images/hi_limit_background.png');
 export const HOME_SCREEN_BACKGROUND = require('../assets/images/main_menu_background.png');
+
+// FOOTER
+export const BUY_CHIPS = require('../assets/images/footer/buy.png');
+export const FOOTER_PRICEBOARD = require('../assets/images/footer/priceboard.png');
+export const FOOTER_RULES = require('../assets/images/footer/rules.png');
+export const FOOTER_AD = require('../assets/images/footer/get500.png');
+
+// PRICEBOARD
+export const PRICEBOARD_777 = require('../assets/images/priceboard/777.png');
+export const PRICEBOARD_7 = require('../assets/images/priceboard/7.png');
+export const PRICEBOARD_CROWN = require('../assets/images/priceboard/crown.png');
+export const PRICEBOARD_DOUBLE_BAR = require('../assets/images/priceboard/barbar.png');
+export const PRICEBOARD_COIN = require('../assets/images/priceboard/coin_1.png');
+export const PRICEBOARD_DOUBLE_HEART = require('../assets/images/priceboard/double_heart.png');
+export const PRICEBOARD_BAR = require('../assets/images/priceboard/bar.png');
+export const PRICEBOARD_CHERRY = require('../assets/images/priceboard/cherry.png');
+export const PRICEBOARD_HEART = require('../assets/images/priceboard/heart.png');
+export const PRICEBOARD_WILD = require('../assets/images/buttons/button_wild.png');
+
+// PURCHASE
+export const PURCHASE_10000 = require('../assets/images/buttons/10k.png');
+export const PURCHASE_50000 = require('../assets/images/buttons/50k.png');

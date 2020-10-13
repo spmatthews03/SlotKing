@@ -33,7 +33,7 @@ export const payoutsBig = {
     "3xHEART":5,
     "4xHEART":15,
     "3xDOUBLE_HEART":15,
-    "4xDOUBLE_HEART":75,
+    "4xDOUBLE_HEART":45,
     "3xSEVEN":25,
     "4xSEVEN":75,
     "3xTRIPLE_SEVEN":50,

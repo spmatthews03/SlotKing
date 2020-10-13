@@ -1,37 +1,15 @@
 import React from 'react';
 import { ImageBackground, StyleSheet, View, StatusBar, TouchableOpacity, Image, Text, Modal } from 'react-native';
-import MenuFooter from '../components/footers/MenuFooter';
 import { TABLE_SLOT_KING_LOGO, PLAY_BUTTON_1, HOME_SCREEN_BACKGROUND, CLOSE_BUTTON, NO_BET_NO_WIN } from '../constants/imageConstants';
 import { Switch } from 'react-native-gesture-handler';
 import SwitchSelector from "react-native-switch-selector";
 import { penClick } from '../helpers/sounds';
-
+import MenuFooter from "../components/footers/MenuFooter";
 
 export default class HomeScreen extends React.Component {
-    state = {
-        modalVisible: false,
-        isEnabled: false
-    };
-
-    setModalVisible = (visible) => {
-        this.setState({modalVisible: visible});
-    }
-
-    setIsEnabled = (enable) => {
-        this.setState({isEnabled: enable});
-    }
-
-
 
     render() {
         const{navigate} = this.props.navigation;
-        const { modalVisible } = this.state;
-        const {isEnabled} = this.state;
-        const toggleSwitch = () => this.setIsEnabled(previousState => !previousState);
-        const options = [
-            {label:'Blue', value:'blue'},
-            {label:'Red', value:'red'}
-        ];
 
         function onPressPlay() {
             penClick.play();
@@ -43,58 +21,6 @@ export default class HomeScreen extends React.Component {
                 style={styles.backgroundImage}
                 source={HOME_SCREEN_BACKGROUND}>
                 <StatusBar hidden={true}/>
-                <Modal
-                    animationType="slide"
-                    transparent={true}
-                    visible={modalVisible}
-                    onRequestClose={() => {
-                        this.setModalVisible(!modalVisible);
-                    }}
-                    >
-                    <View style={styles.centeredView}>
-                        <View style={styles.modalView}>
-                            <View style={{flexDirection:'row'}}>
-                                <Text style={styles.modalText}>Sound</Text>
-                                <Switch
-                                    trackColor={{ false: "#767577", true: "#81b0ff" }}
-                                    thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
-                                    ios_backgroundColor="#3e3e3e"
-                                    onValueChange={toggleSwitch}
-                                    value={isEnabled}
-                                />                                
-                            </View>
-                            <View style={{alignItems:'space-between', flexDirection:'row'}}>
-                                <Text style={styles.modalText}>Card Color</Text>
-                                <View style={{width:'40%'}}>
-                                    <SwitchSelector
-                                        options={options}
-                                        hasPadding
-                                        textCStyle={styles.textContainerSwitch}
-                                        textStyle={styles.switchText}
-                                        textColor={"gold"}
-                                        buttonColor={"#0f4660"}
-                                        selectedTextStyle={styles.switchTextSelected}
-                                        backgroundColor={"#0f2636"}
-                                        borderColor={"gold"}
-                                        selectedColor={'gold'}
-                                        initial={0}
-                                        onPress={value => console.log('Hello')}
-                                    />    
-                                </View>                            
-                            </View>
-                            <Text style={styles.modalText}>Hello World!</Text>
-                            <View style={{height:40, width:40}}>
-                                <TouchableOpacity
-                                    onPress={() => {
-                                    this.setModalVisible(!modalVisible);
-                                    }}
-                                >
-                                    <Image style={{width:'100%',height:'100%', resizeMode:'contain'}} source={CLOSE_BUTTON}/>
-                                </TouchableOpacity>
-                            </View>
-                        </View>
-                    </View>
-                    </Modal>
                 <View style={{flex:6, justifyContent:'center', alignItems:'center'}}>
                     <View style={{flex:1, width:'100%', padding:20}}>
                         <Image
@@ -115,7 +41,7 @@ export default class HomeScreen extends React.Component {
                         </View>
                     </View>
                 </View>
-                <MenuFooter callback={this.setModalVisible}/>
+                <MenuFooter />
             </ImageBackground>
         );
     };
@@ -180,6 +106,6 @@ const styles = StyleSheet.create({
       textContainerSwitch:{
           justifyContent:'center',
           alignItems:'center',
-          textAlignVertical:'center'        
+          textAlignVertical:'center'
         }
 });
