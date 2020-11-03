@@ -1,21 +1,19 @@
 import {
     TOGGLE_BET_BIG,
-    NEED_AD_BIG,
     DONE_DISCARDING_BIG,
     DONE_FLIPPING_BIG,
     DISCARD_BIG,
     DEALING_BIG,
     FLIP_BIG,
     DEAL_NEW_BIG,
-    DEAL_BIG
+    DEAL_BIG, SET_WINNINGS_LINES_BIG
 } from "../../constants/actionTypes";
 import {
-    BLUE_CARD, 
+    BLUE_CARD,
     CARD_HOLDER } from '../../constants/imageConstants';
    import { HOLD_AND_DRAW_BIG_DECK } from "../../constants/cards";
 import { shuffle, getCards, getNewCard } from "../../helpers/dealer";
 import {gameStates} from "../../constants/gameStates";
-import { allowableChips } from "../../helpers/chips";
 
 const initialState = {
     gameState: gameStates.NEW_GAME,
@@ -44,7 +42,8 @@ const initialState = {
         "15": CARD_HOLDER,
         "16": CARD_HOLDER,
       },
-    adReady: false
+    adReady: false,
+    winningLines: []
 }
 
 
@@ -114,10 +113,10 @@ const drawReducerBig = (state = initialState, action) => {
                     [action.payload]: !state.chips[action.payload]
                 },
             }
-        case NEED_AD_BIG:
+        case SET_WINNINGS_LINES_BIG:
             return {
                 ...state,
-                adReady: action.payload
+                winningLines: action.winningLines
             }
         default:
             return state;

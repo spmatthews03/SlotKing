@@ -5,7 +5,7 @@ import {
     HOLD_DRAW_BUTTON_HI,
     BUY_CHIPS,
     FOOTER_PRICEBOARD,
-    FOOTER_RULES, FOOTER_AD
+    FOOTER_RULES, FOOTER_AD, HOLD_DRAW_BUTTON, HOLD_DRAW_BIG_BUTTON
 } from '../../constants/imageConstants';
 import { useSelector, useDispatch } from 'react-redux';
 import {
@@ -20,12 +20,28 @@ import BuyModal from "../BuyModal";
 const adUnitId = TestIds.REWARDED;
 
 const HoldAndDrawFooter = (props) => {
+    const version = useSelector(state => state.versionReducer.version);
+
+    let image_source;
+    let rulesshown;
+    if(version == '3x3') {
+        image_source = HOLD_DRAW_BUTTON;
+        rulesshown = useSelector(state => state.versionReducer.rules_3x3_shown)
+
+    }
+    else {
+        image_source = HOLD_DRAW_BIG_BUTTON;
+        rulesshown = useSelector(state => state.versionReducer.rules_4x4_shown)
+    }
+
     const needAd = useSelector(state => state.versionReducer.adReady);
     const dispatch = useDispatch();
     const [loaded, setLoaded] = useState(false);
-    const [modalVisible, setModalVisible] = useState(true);
+    const [modalVisible, setModalVisible] = useState(!rulesshown);
     const [priceboardVisible, setPriceboardVisible] = useState(false);
     const [buyModalVisible, setBuyModalVisible] = useState(false);
+
+
 
     const rewarded = useRef(RewardedAd.createForAdRequest(adUnitId, {
         requestNonPersonalizedAdsOnly: true,
@@ -71,6 +87,7 @@ const HoldAndDrawFooter = (props) => {
                 isVisible={modalVisible}
                 setModalVisibility={() => {setModalVisible(!modalVisible)}}/>
             <PriceboardModal
+                totalBet={props.totatlBet}
                 isVisible={priceboardVisible}
                 setPriceboardVisibility={() => {setPriceboardVisible(!priceboardVisible)}}/>
             <BuyModal
@@ -78,9 +95,10 @@ const HoldAndDrawFooter = (props) => {
                 setVisibility={() => {setBuyModalVisible(!buyModalVisible)}}/>
             <View style={{flex:1,flexDirection:'row'}}>
                 <View style={{flex:1}}>
+
                     <Image
                         style={{width:'100%', padding:3, resizeMode:'contain', height:'100%'}}
-                        source={HOLD_DRAW_BUTTON_HI}/>
+                        source={image_source}/>
                 </View>
                 <View style={{flex: 2, justifyContent:'center', alignItems:'center'}}>
                     <TouchableOpacity

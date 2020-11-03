@@ -1,5 +1,6 @@
 import { payouts, payoutsBig } from "./payouts";
 import { WILD } from './cards';
+import {win} from "./sounds";
 
 
 
@@ -28,7 +29,8 @@ export const stoppedBigCalculator = (bet, cards) => {
 
     lines = [line1, line2, line3, line4, line5, line6, line7, line8, line9, line10, line11, line12, line13, line14, line15, line16, line17, line18, line19, line20]
 
-    var total_winnings = 0;
+    let total_winnings = 0;
+    let winning_lines = [];
 
     lines.forEach(line => {
         var one = cards[line[0]];
@@ -42,18 +44,20 @@ export const stoppedBigCalculator = (bet, cards) => {
                         total_winnings = total_winnings + bet * payoutsBig["4x" + one];
                     else
                         total_winnings = total_winnings + bet * payoutsBig["4x" + two];
-
+                    winning_lines.push(line);
                 }
                 else{
                     if(one != "WILD")
                         total_winnings = total_winnings + bet * payoutsBig["3x" + one]
                     else
                         total_winnings = total_winnings + bet * payoutsBig["3x" + two]
+                    line.pop();
+                    winning_lines.push(line);
                 }
             }
         }
     })
-    return total_winnings;
+    return {winnings: total_winnings, winning_lines: winning_lines};
 }
 
 export const stoppedCalculator = (bet, cards) => {
@@ -73,20 +77,24 @@ export const stoppedCalculator = (bet, cards) => {
     line14 = [2,5,8];
     line15 = [1,4,7];
     line16 = [1,5,9];
-    
+
     lines = [line1, line2, line3, line4, line5, line6, line7, line8, line9, line10, line11, line12, line13, line14, line15, line16]
 
-    var total_winnings = 0;
+    let total_winnings = 0;
+    let winning_lines = [];
 
     lines.forEach(line => {
         if(cards[line[0]] == cards[line[1]]){
             if(cards[line[1]] == cards[line[2]]){
                 total_winnings = total_winnings + bet * payouts["3x" + cards[line[0]]];
+                winning_lines.push(line);
             }
             else{
-                total_winnings = total_winnings + bet * payouts["2x" + cards[line[0]]]
+                total_winnings = total_winnings + bet * payouts["2x" + cards[line[0]]];
+                line.pop();
+                winning_lines.push(line);
             }
         }
     })
-    return total_winnings;
+    return {winnings: total_winnings, winning_lines: winning_lines};
 }

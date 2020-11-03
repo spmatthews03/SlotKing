@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Image, ImageBackground, Modal, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {
-    CLOSE_BUTTON, PRICEBOARD_7,
+    CLOSE_BUTTON, FLY_IN_DREAM_LOGO, PRICEBOARD_7,
     PRICEBOARD_777,
     PRICEBOARD_BAR, PRICEBOARD_CHERRY,
     PRICEBOARD_COIN,
@@ -15,6 +15,7 @@ const PriceboardModal = (props) => {
     const version = useSelector(state => state.versionReducer.version)
     let priceboard;
     let toWin;
+    let betPerLine;
 
     if(version == '3x3') {
         priceboard = priceboard_3x3;
@@ -22,6 +23,7 @@ const PriceboardModal = (props) => {
             small : '2x',
             big : '3x'
         }
+        betPerLine = props.totalBet/16;
     }
     else {
         priceboard = priceboard_4x4;
@@ -29,6 +31,7 @@ const PriceboardModal = (props) => {
             small : '3x',
             big : '4x'
         }
+        betPerLine = props.totalBet/20;
     }
 
 
@@ -43,36 +46,50 @@ const PriceboardModal = (props) => {
         >
             <View style={styles.centeredView}>
                 <View style={styles.modalView}>
-                    <View style={{height:75, justifyContent:'center', alignItems:'center'}}>
-                        <Text style={styles.priceboardText}>Priceboard</Text>
+                    <View style={{height:75, justifyContent:'center', alignItems:'center', flexDirection:'row'}}>
+                        <View style={{flex:.3}}>
+                            <Image style={{width:'100%', height:'100%', resizeMode:'contain'}} source={FLY_IN_DREAM_LOGO} />
+                        </View>
+                        <View style={{flex:1, justifyContent:'center', alignItems:'center'}}>
+                            <Text style={styles.priceboardText}>Priceboard</Text>
+                            <Text style={styles.priceboardSubText}>Bet: ${props.totalBet}</Text>
+                        </View>
+                        <View style={{flex:.3}}>
+                            <Image style={{width:'100%', height:'100%', resizeMode:'contain'}} source={FLY_IN_DREAM_LOGO} />
+                        </View>
                     </View>
                     <View style={{flex:1, flexDirection:'row'}}>
                         <View style={{flex:1}}>
                             <PriceboardSection
+                                lineBet={betPerLine}
                                 image={PRICEBOARD_777}
                                 toWin={toWin}
                                 pieces={priceboard["card_777"].pieces}
                                 payoutBig={priceboard["card_777"].payout_big}
                                 payoutSmall={priceboard["card_777"].payout_small}/>
                             <PriceboardSection
+                                lineBet={betPerLine}
                                 image={PRICEBOARD_CROWN}
                                 toWin={toWin}
                                 pieces={priceboard["card_crown"].pieces}
                                 payoutBig={priceboard["card_crown"].payout_big}
                                 payoutSmall={priceboard["card_crown"].payout_small}/>
                             <PriceboardSection
+                                lineBet={betPerLine}
                                 image={PRICEBOARD_COIN}
                                 toWin={toWin}
                                 pieces={priceboard["card_coin"].pieces}
                                 payoutBig={priceboard["card_coin"].payout_big}
                                 payoutSmall={priceboard["card_coin"].payout_small}/>
                             <PriceboardSection
+                                lineBet={betPerLine}
                                 image={PRICEBOARD_BAR}
                                 toWin={toWin}
                                 pieces={priceboard["card_bar"].pieces}
                                 payoutBig={priceboard["card_bar"].payout_big}
                                 payoutSmall={priceboard["card_bar"].payout_small}/>
                             <PriceboardSection
+                                lineBet={betPerLine}
                                 image={PRICEBOARD_HEART}
                                 toWin={toWin}
                                 pieces={priceboard["card_heart"].pieces}
@@ -82,24 +99,28 @@ const PriceboardModal = (props) => {
                         <View style={{flex:1}}>
                             <View style={{flex:4}}>
                                 <PriceboardSection
+                                    lineBet={betPerLine}
                                     image={PRICEBOARD_7}
                                     toWin={toWin}
                                     pieces={priceboard["card_7"].pieces}
                                     payoutBig={priceboard["card_7"].payout_big}
                                     payoutSmall={priceboard["card_7"].payout_small}/>
                                 <PriceboardSection
+                                    lineBet={betPerLine}
                                     image={PRICEBOARD_DOUBLE_BAR}
                                     toWin={toWin}
                                     pieces={priceboard["card_double_bar"].pieces}
                                     payoutBig={priceboard["card_double_bar"].payout_big}
                                     payoutSmall={priceboard["card_double_bar"].payout_small}/>
                                 <PriceboardSection
+                                    lineBet={betPerLine}
                                     image={PRICEBOARD_DOUBLE_HEART}
                                     toWin={toWin}
                                     pieces={priceboard["card_double_heart"].pieces}
                                     payoutBig={priceboard["card_double_heart"].payout_big}
                                     payoutSmall={priceboard["card_double_heart"].payout_small}/>
                                 <PriceboardSection
+                                    lineBet={betPerLine}
                                     image={PRICEBOARD_CHERRY}
                                     toWin={toWin}
                                     pieces={priceboard["card_cherry"].pieces}
@@ -162,9 +183,13 @@ var styles = StyleSheet.create({
     },
     priceboardText: {
         fontFamily:'PlayfairDisplay-Bold',
-        // color:'#f7ef8a',
         color:'white',
         fontSize:38
+    },
+    priceboardSubText: {
+        fontFamily:'PlayfairDisplay-Bold',
+        color:'white',
+        fontSize:24
     },
     centeredView: {
         flex:1,

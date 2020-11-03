@@ -1,20 +1,28 @@
 import React from 'react';
-import { View } from 'react-native';
+import {Text, View} from 'react-native';
 import GoldChip from './GoldChip';
-import { useDispatch } from 'react-redux';
-import { TOGGLE_BET } from '../../constants/actionTypes';
-
 
 const GoldBetBar = (props) => {
-  const dispatch = useDispatch();
-  
+
   function chipBar() {
     var chipBarArray = [];
+    let total = 0;
     for(var i = 0; i < Object.keys(props.chips).length; i++)
     {
-      var chip = Object.keys(props.chips)[i];
-      chipBarArray.push(<GoldChip chip={props.chips[chip]} chipCallback={props.parentCallback} chipNum={chip}/>);
+        var chip = Object.keys(props.chips)[i];
+        total = total + parseInt(chip);
+        if(total <= props.credit)
+            chipBarArray.push(<GoldChip chip={props.chips[chip]} chipCallback={props.parentCallback} chipNum={chip}/>);
+        else {
+            if(props.chips[chip])
+                props.parentCallback(chip);
+        }
     }
+      if(chipBarArray.length == 0)
+          return (
+              <View style={{height:'100%', justifyContent:'center', alignItems:'center'}}>
+                  <Text style={{color:'white', fontSize:24, fontFamily:'PlayfairDisplay-Bold'}}>Not Enough Credit</Text>
+              </View>)
     return chipBarArray;
   }
 

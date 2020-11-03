@@ -21,7 +21,7 @@ const PriceboardSection = (props) => {
                             {props.toWin.big} =
                         </Text>
                         <Text style={styles.payoutText}>
-                            ${props.payoutBig}
+                            ${props.lineBet * props.payoutBig}
                         </Text>
                     </View>
                     <View style={{flexDirection: 'row'}}>
@@ -29,7 +29,7 @@ const PriceboardSection = (props) => {
                             {props.toWin.small} =
                         </Text>
                         <Text style={styles.payoutText}>
-                            ${props.payoutSmall}
+                            ${props.lineBet * props.payoutSmall}
                         </Text>
                     </View>
                 </View>

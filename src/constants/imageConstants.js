@@ -43,6 +43,11 @@ export const DIAMOND_CHIP = require('../assets/images/chips/diamond.png');
 export const NO_BET_NO_WIN = require('../assets/images/king_nobet_nowin.png');
 export const HEADER = require('../assets/images/header_3x3_blue.png');
 export const HEADER_HI = require('../assets/images/header_hilimit.png');
+export const CHIP_16 = require('../assets/images/chips/chip_16.png');
+export const CHIP_32 = require('../assets/images/chips/chip_32.png');
+export const CHIP_48 = require('../assets/images/chips/chip_48.png');
+export const CHIP_64 = require('../assets/images/chips/chip_64.png');
+
 
 //BACKGROUNDS
 export const BACKGROUND = require('../assets/images/background.png');
@@ -65,8 +70,12 @@ export const PRICEBOARD_DOUBLE_HEART = require('../assets/images/priceboard/doub
 export const PRICEBOARD_BAR = require('../assets/images/priceboard/bar.png');
 export const PRICEBOARD_CHERRY = require('../assets/images/priceboard/cherry.png');
 export const PRICEBOARD_HEART = require('../assets/images/priceboard/heart.png');
-export const PRICEBOARD_WILD = require('../assets/images/buttons/button_wild.png');
+export const PRICEBOARD_WILD = require('../assets/images/priceboard/wild.png');
 
 // PURCHASE
 export const PURCHASE_10000 = require('../assets/images/buttons/10k.png');
 export const PURCHASE_50000 = require('../assets/images/buttons/50k.png');
+
+// RULES
+export const LINES_3X3 = require('../assets/images/diagram_high.png');
+export const LINES_4X4 = require('../assets/images/diagram_normal.png');

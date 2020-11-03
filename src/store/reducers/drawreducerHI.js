@@ -1,30 +1,29 @@
 import {
     HI_TOGGLE_BET_SMALL,
-    HI_NEED_AD_SMALL,
-    HI_DEAL_SMALL, 
+    HI_DEAL_SMALL,
     HI_DEALING_SMALL,
     HI_DEAL_NEW_SMALL,
     HI_DISCARD_SMALL,
     HI_FLIP_SMALL,
     HI_DONE_DISCARDING_SMALL,
-    HI_DONE_FLIPPING_SMALL
+    HI_DONE_FLIPPING_SMALL,
+    HI_SET_WINNINGS_LINES_SMALL
 } from "../../constants/actionTypes";
 import {
-    BLUE_CARD, 
+    BLUE_CARD,
     CARD_HOLDER } from '../../constants/imageConstants';
    import { HOLD_AND_DRAW_DECK } from "../../constants/cards";
 import { shuffle, getCards, getNewCard } from "../../helpers/dealer";
 import {gameStates} from "../../constants/gameStates";
-import { allowableChips } from "../../helpers/chips";
 
 const initialState = {
     gameState: gameStates.NEW_GAME,
     deck: null,
     chips:{
-        "16": false,
-        "32": false,
-        "48": false,
-        "64": false
+        "160": false,
+        "320": false,
+        "480": false,
+        "640": false
     },
     cards: {
       "1": CARD_HOLDER,
@@ -37,7 +36,8 @@ const initialState = {
       "8": CARD_HOLDER,
       "9": CARD_HOLDER,
     },
-    adReady: false
+    adReady: false,
+    winningLines: []
 }
 
 
@@ -107,10 +107,10 @@ const drawReducerHI = (state = initialState, action) => {
                     [action.payload]: !state.chips[action.payload]
                 },
             }
-        case HI_NEED_AD_SMALL:
+        case HI_SET_WINNINGS_LINES_SMALL:
             return {
                 ...state,
-                adReady: action.payload
+                winningLines: action.winningLines
             }
         default:
             return state;

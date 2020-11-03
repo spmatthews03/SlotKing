@@ -18,9 +18,9 @@ import {
   HI_DEAL_SMALL,
   HI_DISCARD_BIG,
   HI_DISCARD_SMALL,
-  BET
+  BET, HI_SET_WINNINGS_LINES_SMALL, HI_SET_WINNINGS_LINES_BIG
 } from '../../../constants/actionTypes';
-import { PLAY_BUTTON_2, HI_BACKGROUND } from '../../../constants/imageConstants';
+import {PLAY_BUTTON_2, HI_BACKGROUND, TABLE_SLOT_KING_LOGO} from '../../../constants/imageConstants';
 import { cardDeal, coinThud, win } from '../../../helpers/sounds';
 import CanvasHI from '../../../components/stoppedComponents/canvas/CanvasHI';
 import HoldAndDrawHeaderHI from '../../../components/stoppedComponents/HoldAndDrawHeaderHI';
@@ -31,13 +31,14 @@ const HoldAndDrawHi = (navigation) => {
   const version = navigator.getParam('version','3x3');
   const credit = useSelector(state => state.versionReducer.credit);
   const soundOn = useSelector(state => state.versionReducer.soundOn);
-  var gameState;
-  var chips;
-  var cards;
-  var TOGGLE_BET;
-  var FLIP;
-  var DEAL;
-  var DISCARD;
+  let gameState;
+  let chips;
+  let cards;
+  let TOGGLE_BET;
+  let FLIP;
+  let DEAL;
+  let DISCARD;
+  let WINNING_LINES;
   if(version == '3x3'){
     gameState = useSelector(state => state.drawReducerHI.gameState)
     chips = useSelector(state => state.drawReducerHI.chips)
@@ -46,6 +47,7 @@ const HoldAndDrawHi = (navigation) => {
     FLIP = HI_FLIP_SMALL;
     DEAL = HI_DEAL_SMALL;
     DISCARD = HI_DISCARD_SMALL;
+    WINNING_LINES = HI_SET_WINNINGS_LINES_SMALL;
   } else {
     gameState = useSelector(state => state.drawReducerBigHI.gameState)
     chips = useSelector(state => state.drawReducerBigHI.chips)
@@ -54,6 +56,7 @@ const HoldAndDrawHi = (navigation) => {
     FLIP = HI_FLIP_BIG;
     DEAL = HI_DEAL_BIG;
     DISCARD = HI_DISCARD_BIG;
+    WINNING_LINES = HI_SET_WINNINGS_LINES_BIG;
   }
   const dispatch = useDispatch();
   const [winnings, setWinnings] = useState(0);
@@ -62,17 +65,21 @@ const HoldAndDrawHi = (navigation) => {
 
   useEffect(() => {
     if(gameState === gameStates.RESULTS){
-      let payload;
+      let calculated;
       if(version == '3x3')
-        payload = stoppedCalculator(calcTotalBet(chips)/16, cards);
+        calculated = stoppedCalculator(calcTotalBet(chips)/16, cards);
       else
-        payload = stoppedBigCalculator(calcTotalBet(chips)/20, cards);
+        calculated = stoppedBigCalculator(calcTotalBet(chips)/20, cards);
 
+      let payload = calculated.winnings;
       if(payload > totalBet)
         win.play();
 
+      let winningLines = calculated.winning_lines;
+
       setWinnings(payload);
       dispatch({type:HOLD_DRAW_ADD_WINNINGS, payload});
+      dispatch({type:WINNING_LINES, winningLines});
     }
   },[gameState])
 
@@ -121,6 +128,9 @@ const HoldAndDrawHi = (navigation) => {
     return(
       <View style={{flex:1}}>
         <View style={{flex: .5, flexDirection: 'row', justifyContent: 'center', paddingHorizontal: 50}}>
+          <Image
+              style={{width:'100%', height:'100%', resizeMode:'contain'}}
+              source={TABLE_SLOT_KING_LOGO}/>
         </View>
         <DiamondBetBar credit={credit} chips={chips} parentCallback={toggleBet}/>
         <ButtonBar
@@ -209,7 +219,7 @@ const HoldAndDrawHi = (navigation) => {
           </View>
         </View>
       </View>
-      <HoldAndDrawFooterHI credit={credit} state={gameState} navigation={navigator} version={version}/>
+      <HoldAndDrawFooterHI credit={credit} state={gameState} navigation={navigator} version={version} totalBet={totalBet}/>
     </ImageBackground>
   );
 }

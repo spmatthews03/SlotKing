@@ -1,21 +1,20 @@
 import {
     HI_TOGGLE_BET_BIG,
-    HI_NEED_AD_BIG,
     HI_DONE_DISCARDING_BIG,
     HI_DONE_FLIPPING_BIG,
     HI_DISCARD_BIG,
     HI_DEALING_BIG,
     HI_FLIP_BIG,
     HI_DEAL_NEW_BIG,
-    HI_DEAL_BIG
+    HI_DEAL_BIG,
+    HI_SET_WINNINGS_LINES_BIG
 } from "../../constants/actionTypes";
 import {
-    BLUE_CARD, 
+    BLUE_CARD,
     CARD_HOLDER } from '../../constants/imageConstants';
    import { HOLD_AND_DRAW_BIG_DECK } from "../../constants/cards";
 import { shuffle, getCards, getNewCard } from "../../helpers/dealer";
 import {gameStates} from "../../constants/gameStates";
-import { allowableChips } from "../../helpers/chips";
 
 const initialState = {
     gameState: gameStates.NEW_GAME,
@@ -44,7 +43,8 @@ const initialState = {
         "15": CARD_HOLDER,
         "16": CARD_HOLDER,
       },
-    adReady: false
+    adReady: false,
+    winningLines: []
 }
 
 
@@ -114,10 +114,10 @@ const drawReducerBigHI = (state = initialState, action) => {
                     [action.payload]: !state.chips[action.payload]
                 },
             }
-        case HI_NEED_AD_BIG:
+        case HI_SET_WINNINGS_LINES_BIG:
             return {
                 ...state,
-                adReady: action.payload
+                winningLines: action.winningLines
             }
         default:
             return state;

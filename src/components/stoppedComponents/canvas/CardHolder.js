@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Image, TouchableOpacity } from 'react-native';
+import { View, Image, TouchableOpacity, Animated } from 'react-native';
 import { connect } from 'react-redux';
 import {gameStates} from '../../../constants/gameStates';
 import { getCardImage } from '../../../helpers/dealer';
@@ -17,11 +17,13 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
     if(state.versionReducer.version == '3x3'){
         return{
-            version: state.versionReducer.version
+            version: state.versionReducer.version,
+            winningLines: state.drawReducer.winningLines
         };
     } else {
         return{
-            version: state.versionReducer.version
+            version: state.versionReducer.version,
+            winningLines: state.drawReducerBig.winningLines
         };
     }
 };
@@ -34,22 +36,34 @@ class CardHolder extends Component {
         }
     }
 
+    animatedValue = new Animated.Value(0);
+
     componentDidMount(){
-        if(this.props.state == gameStates.DEALING){
+        if(this.props.state === gameStates.DEALING){
             this.props.dealFaceDownFunction(this.props.num, this.props.version);
         }
     }
 
     componentDidUpdate(prevProps){
-        if(this.props.state == gameStates.RESULTS){
+        if(this.props.state === gameStates.RESULTS){
             if(this.state.selected)
                 this.setState({selected: false});
+            if(this.props.winningLines !== prevProps.winningLines) {
+                this.props.winningLines.forEach(line => {
+                    if (line.includes(parseInt(this.props.num))) {
+                        Animated.sequence([
+                            Animated.timing(this.animatedValue, {toValue: 1, duration:200, useNativeDriver:true}),
+                            Animated.timing(this.animatedValue, {toValue: 0, duration:200, useNativeDriver:true})
+                        ]).start();
+                    }
+                })
+            }
         }
-        if(this.props.state == gameStates.BETTING){
-            if(this.props.src == CARD_HOLDER){
+        if(this.props.state === gameStates.BETTING){
+            if(this.props.src === CARD_HOLDER){
                 this.props.dealFaceDownFunction(this.props.num, this.props.version);
             }
-        } else if(this.props.state == gameStates.DISCARDING && !this.state.selected){
+        } else if(this.props.state === gameStates.DISCARDING && !this.state.selected){
             this.props.dealNewCardFunction(this.props.num, this.props.version);
         }
     }
@@ -61,18 +75,34 @@ class CardHolder extends Component {
 
     cardType = () => {
         return(
-            <TouchableOpacity 
-                disabled={this.props.state === gameStates.WAIT_ON_DISCARD ? false : true}
+            <TouchableOpacity
+                disabled={this.props.state !== gameStates.WAIT_ON_DISCARD}
                 onPress={()=>this.selectCard()}
-                style={{width:'75%', height:'100%', resizeMode:'contain', borderWidth: this.state.selected ? 3 : 0, borderColor: this.state.selected ? 'gold' : null}}>
-                <Image
-                    style={{width:'100%', height:'100%', resizeMode:'contain'}}
+                style={{width:'75%', height:'100%',
+                    resizeMode:'contain',
+                    borderWidth: this.state.selected ? 3 : 0,
+                    borderColor: this.state.selected ? 'gold' : null,
+                    backgroundColor: this.state.selected ? 'rgba(52,52,52,.5)' : null}}>
+                <Animated.Image
+                    style={{
+                        width:'100%',
+                        height:'100%',
+                        resizeMode:'contain',
+                        transform: [
+                            {
+                                scale: this.animatedValue.interpolate({
+                                    inputRange: [0, 1],
+                                    outputRange: [1, 1.15]
+                                })
+                            }
+                        ]
+                    }}
                     source={getCardImage(this.props.src)}/>
             </TouchableOpacity>
         )
     }
 
-  render() { 
+  render() {
     return (
         <View className='hidden' style={{flex:1, alignItems:'center',paddingVertical:5}}>
             {this.cardType()}

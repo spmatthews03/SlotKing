@@ -14,7 +14,7 @@ const BuyModal = (props) => {
             transparent={true}
             visible={props.isVisible}
             onRequestClose={() => {
-                props.setPriceboardVisibility();
+                props.setVisibility();
             }}
         >
             <View style={styles.centeredView}>
@@ -45,7 +45,7 @@ const BuyModal = (props) => {
                     <View style={{height:40, width:40}}>
                         <TouchableOpacity
                             onPress={() => {
-                                props.setPriceboardVisibility();
+                                props.setVisibility();
                             }}
                         >
                             <Image style={{width:'100%',height:'100%', resizeMode:'contain'}} source={CLOSE_BUTTON}/>
