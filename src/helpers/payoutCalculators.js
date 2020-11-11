@@ -1,6 +1,4 @@
 import { payouts, payoutsBig } from "./payouts";
-import { WILD } from './cards';
-import {win} from "./sounds";
 
 
 
@@ -97,4 +95,15 @@ export const stoppedCalculator = (bet, cards) => {
         }
     })
     return {winnings: total_winnings, winning_lines: winning_lines};
+}
+
+export const calculateTotalBet = (gameChips) => {
+    var total = 0;
+    let chips = gameChips;
+    for(var i = 0; i < Object.keys(chips).length; i++){
+        var chip = Object.keys(chips)[i]
+        if(chips[chip])
+            total = total + parseInt(chip);
+    }
+    return total;
 }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Image, ImageBackground, StatusBar, Text, TouchableOpacity, View, Alert, Platform } from 'react-native';
+import { Image, ImageBackground, StatusBar, Text, TouchableOpacity, View } from 'react-native';
 import HoldAndDrawHeader from '../../../components/stoppedComponents/HoldAndDrawHeader';
 import Canvas from '../../../components/stoppedComponents/canvas/Canvas';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,7 +9,7 @@ import DiscardBar from '../../../components/stoppedComponents/DiscardBar';
 import ButtonBar from '../../../components/stoppedComponents/ButtonBar';
 import HoldAndDrawFooter from '../../../components/footers/HoldAndDrawFooter';
 import {gameStates} from '../../../constants/gameStates';
-import { stoppedCalculator, stoppedBigCalculator } from '../../../helpers/payoutCalculators';
+import {stoppedCalculator, stoppedBigCalculator, calculateTotalBet} from '../../../helpers/payoutCalculators';
 import GoldBetBar from '../../../components/betting/GoldBetBar';
 import {
   TOGGLE_BET_BIG,
@@ -32,19 +32,20 @@ const HoldAndDraw = (navigation) => {
   const navigator = navigation.navigation;
   const version = navigator.getParam('version','3x3');
   const credit = useSelector(state => state.versionReducer.credit);
-  const soundOn = useSelector(state => state.versionReducer.soundOn);
   let gameState;
   let chips;
   let cards;
+  let calculated;
   let TOGGLE_BET;
   let FLIP;
   let DEAL;
   let DISCARD;
   let WINNING_LINES;
-  if(version == '3x3'){
+  if(version === '3x3'){
     gameState = useSelector(state => state.drawReducer.gameState)
     chips = useSelector(state => state.drawReducer.chips)
     cards = useSelector(state => state.drawReducer.cards)
+    calculated = useSelector(state => state.drawReducer.calculated)
     TOGGLE_BET = TOGGLE_BET_SMALL;
     FLIP = FLIP_SMALL;
     DEAL = DEAL_SMALL;
@@ -54,6 +55,7 @@ const HoldAndDraw = (navigation) => {
     gameState = useSelector(state => state.drawReducerBig.gameState)
     chips = useSelector(state => state.drawReducerBig.chips)
     cards = useSelector(state => state.drawReducerBig.cards)
+    calculated = useSelector(state => state.drawReducerBig.calculated)
     TOGGLE_BET = TOGGLE_BET_BIG;
     FLIP = FLIP_BIG;
     DEAL = DEAL_BIG;
@@ -62,35 +64,38 @@ const HoldAndDraw = (navigation) => {
   }
   const dispatch = useDispatch();
   const [winnings, setWinnings] = useState(0);
-  const [totalBet, setTotalBet] = useState(calcTotalBet(chips));
+  const [totalBet, setTotalBet] = useState(calculateTotalBet(chips));
 
 
   useEffect(() => {
     if(gameState === gameStates.RESULTS){
-      let calculated;
-      if(version == '3x3')
-        calculated = stoppedCalculator(calcTotalBet(chips)/16, cards);
+      let calculated_results;
+      if(version === '3x3')
+        calculated_results = stoppedCalculator(calculateTotalBet(chips)/16, cards);
       else
-        calculated = stoppedBigCalculator(calcTotalBet(chips)/20, cards);
+        calculated_results = stoppedBigCalculator(calculateTotalBet(chips)/20, cards);
 
-      let payload = calculated.winnings;
+      let payload = calculated_results.winnings;
       if(payload > totalBet)
         win.play();
 
-      let winningLines = calculated.winning_lines;
+      let winningLines = calculated_results.winning_lines;
 
       setWinnings(payload);
-      dispatch({type:HOLD_DRAW_ADD_WINNINGS, payload});
-      dispatch({type:WINNING_LINES, winningLines});
+      if(!calculated) {
+        dispatch({type: HOLD_DRAW_ADD_WINNINGS, payload});
+        dispatch({type: WINNING_LINES, winningLines});
+      }
     }
   },[gameState])
 
   useEffect(() => {
-    setTotalBet(calcTotalBet(chips));
+    setTotalBet(calculateTotalBet(chips));
   },[chips])
 
   function flipFunction(payload) {
     dispatch({type:FLIP});
+    cardDeal.play();
     dispatch({type: BET, payload})
   }
 
@@ -99,30 +104,14 @@ const HoldAndDraw = (navigation) => {
     dispatch({ type: TOGGLE_BET, payload})
   }
 
-  function rewardAlert(){
-    if(Platform.OS == 'android')
-      Alert.alert("Congratulations! You just earned $500 in chips!");
-  }
-
-  function calcTotalBet(gameChips) {
-    var total = 0;
-    let chips = gameChips;
-    for(var i = 0; i < Object.keys(chips).length; i++){
-      var chip = Object.keys(chips)[i]
-      if(chips[chip])
-        total = total + parseInt(chip);
-    }
-    return total;
-  }
-
   function deal(){
     dispatch({type: DEAL});
     cardDeal.play();
   }
 
   function draw(){
-    dispatch({type: DISCARD})
-    cardDeal.play()
+    dispatch({type: DISCARD});
+    cardDeal.play();
   }
 
 

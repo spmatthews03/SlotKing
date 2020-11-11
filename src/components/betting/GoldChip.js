@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
-import {CHIP_16, CHIP_32, CHIP_48, CHIP_64, GOLD_CHIP} from '../../constants/imageConstants';
+import { StyleSheet, View, Image, TouchableOpacity } from 'react-native';
+import {CHIP_16, CHIP_20, CHIP_32, CHIP_40, CHIP_48, CHIP_60, CHIP_64, CHIP_80} from '../../constants/imageConstants';
 
 const GoldChip = (props) => {
   const [on, setOn] = useState(props.chip);
@@ -13,20 +13,20 @@ const GoldChip = (props) => {
   function getChipImage() {
       if(props.chipNum == "16")
         return CHIP_16
-      // else if(props.chipNum == "20")
-      //     return CHIP_20
+      else if(props.chipNum == "20")
+          return CHIP_20
       else if(props.chipNum == "32")
           return CHIP_32
-      // else if(props.chipNum == "40")
-      //     return CHIP_40
+      else if(props.chipNum == "40")
+          return CHIP_40
       else if(props.chipNum == "48")
           return CHIP_48
-      // else if(props.chipNum == "60")
-      //     return CHIP_60
+      else if(props.chipNum == "60")
+          return CHIP_60
       else if(props.chipNum == "64")
           return CHIP_64
-      // else if(props.chipNum == "80")
-      //     return CHIP_80
+      else if(props.chipNum == "80")
+          return CHIP_80
   }
 
 

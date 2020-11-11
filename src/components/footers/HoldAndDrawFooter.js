@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react';
-import { View, Image, TouchableOpacity, Text } from 'react-native';
+import {View, Image, TouchableOpacity, Text, Alert} from 'react-native';
 import {
     PLAY_BUTTON_2,
     HOLD_DRAW_BUTTON_HI,
@@ -65,6 +65,7 @@ const HoldAndDrawFooter = (props) => {
 
         if(type === "closed") {
             rewarded.current.load();
+            rewardAlert();
         }
         });
 
@@ -79,6 +80,14 @@ const HoldAndDrawFooter = (props) => {
 
     if(props.credit < 250 && needAd != true){
         dispatch({type: NEED_AD, payload: true})
+    }
+
+    function rewardAlert() {
+        Alert.alert('Congratulations!', 'You just earned 500 coins!', [
+            {
+                text: 'Ok',
+            },
+        ]);
     }
 
     return (

@@ -20,7 +20,7 @@ export default class HoldAndDrawHeader extends Component {
             <Text style={styles.creditValueText}>
               {"$" + this.props.credit}
             </Text>
-          </View>        
+          </View>
         </ImageBackground>
       </View>
     );

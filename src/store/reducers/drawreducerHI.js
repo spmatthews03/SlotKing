@@ -7,7 +7,7 @@ import {
     HI_FLIP_SMALL,
     HI_DONE_DISCARDING_SMALL,
     HI_DONE_FLIPPING_SMALL,
-    HI_SET_WINNINGS_LINES_SMALL
+    HI_SET_WINNINGS_LINES_SMALL, CALCULATED
 } from "../../constants/actionTypes";
 import {
     BLUE_CARD,
@@ -37,7 +37,8 @@ const initialState = {
       "9": CARD_HOLDER,
     },
     adReady: false,
-    winningLines: []
+    winningLines: [],
+    calculated: false,
 }
 
 
@@ -56,7 +57,8 @@ const drawReducerHI = (state = initialState, action) => {
                     ...state.cards,
                     [action.card]: getNewCard(state.deck)
                 },
-                deck: state.deck
+                deck: state.deck,
+                calculated: false
             }
         case HI_DONE_DISCARDING_SMALL:
             return {
@@ -110,7 +112,8 @@ const drawReducerHI = (state = initialState, action) => {
         case HI_SET_WINNINGS_LINES_SMALL:
             return {
                 ...state,
-                winningLines: action.winningLines
+                winningLines: action.winningLines,
+                calculated: true
             }
         default:
             return state;

@@ -6,7 +6,7 @@ import {
     DEALING_BIG,
     FLIP_BIG,
     DEAL_NEW_BIG,
-    DEAL_BIG, SET_WINNINGS_LINES_BIG
+    DEAL_BIG, SET_WINNINGS_LINES_BIG, CALCULATED
 } from "../../constants/actionTypes";
 import {
     BLUE_CARD,
@@ -43,7 +43,8 @@ const initialState = {
         "16": CARD_HOLDER,
       },
     adReady: false,
-    winningLines: []
+    winningLines: [],
+    calculated: false,
 }
 
 
@@ -62,7 +63,8 @@ const drawReducerBig = (state = initialState, action) => {
                     ...state.cards,
                     [action.card]: getNewCard(state.deck)
                 },
-                deck: state.deck
+                deck: state.deck,
+                calculated: false
             }
         case DONE_DISCARDING_BIG:
             return {
@@ -116,7 +118,8 @@ const drawReducerBig = (state = initialState, action) => {
         case SET_WINNINGS_LINES_BIG:
             return {
                 ...state,
-                winningLines: action.winningLines
+                winningLines: action.winningLines,
+                calculated: true
             }
         default:
             return state;

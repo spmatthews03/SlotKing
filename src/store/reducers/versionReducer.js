@@ -3,9 +3,10 @@ import {
     HOLD_DRAW_ADD_WINNINGS,
     NEED_AD,
     BET,
-    SET_GAME,
     RULES_3X3,
-    RULES_4X4
+    RULES_4X4,
+    CLAIM_CHIPS,
+    SET_CLAIM_CHIP_TIME
 } from "../../constants/actionTypes";
 
 const initialState = {
@@ -13,7 +14,9 @@ const initialState = {
     credit: 5000,
     unlocked: false,
     rules_3x3_shown: false,
-    rules_4x4_shown: false
+    rules_4x4_shown: false,
+    claimChips: false,
+    claimChipsTime: new Date(),
 }
 
 
@@ -48,11 +51,6 @@ const versionReducer = (state = initialState, action) => {
                 ...state,
                 adReady: action.payload
             }
-        // case SOUND:
-        //     return {
-        //         ...state,
-        //         soundOn: !action.payload
-        //     }
         case RULES_3X3:
             return {
                 ...state,
@@ -62,6 +60,16 @@ const versionReducer = (state = initialState, action) => {
             return {
                 ...state,
                 rules_4x4_shown: true
+            }
+        case CLAIM_CHIPS:
+            return {
+                ...state,
+                claimChips: action.claim
+            }
+        case SET_CLAIM_CHIP_TIME:
+            return {
+                ...state,
+                claimChipsTime: new Date()
             }
         default:
             return state;

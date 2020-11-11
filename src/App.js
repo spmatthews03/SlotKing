@@ -5,20 +5,39 @@
  * @format
  * @flow
  */
-
+import React from 'react';
 import { createAppContainer } from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
+import {View} from 'react-native';
 import HomeScreen from './screens/HomeScreen';
 import MenuScreen from './screens/MenuScreen';
 import HoldAndDraw from './screens/games/StopVersion/HoldAndDraw';
 import HoldAndDrawHi from './screens/games/StopVersion/HoldAndDrawHi';
 import SplashScreen from './screens/SplashScreen';
 import admob, { MaxAdContentRating } from '@react-native-firebase/admob';
+import ClaimAdPanel from "./components/ClaimAdPanel";
+import {CLAIM_CHIPS} from "./constants/actionTypes";
+import { connect } from 'react-redux';
+import {isLastClaimLongerThanFourHours} from "./helpers/adHelper";
+
+
+const mapStateToProps = state => {
+  return{
+    claimChips: state.versionReducer.claimChips,
+    claimChipsTime: state.versionReducer.claimChipsTime
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setClaimChips: (claim) => dispatch({type: CLAIM_CHIPS, claim})
+  };
+};
 
 admob()
   .setRequestConfiguration({
     // Update all future requests suitable for parental guidance
-    maxAdContentRating: MaxAdContentRating.PG,
+    maxAdContentRating: MaxAdContentRating.T,
 
     // Indicates that you want your content treated as child-directed for purposes of COPPA.
     tagForChildDirectedTreatment: true,
@@ -31,13 +50,16 @@ admob()
     // Request config successfully set!
   });
 
-const stackNavigator = createStackNavigator({
+const SplashNavigator = createStackNavigator({
   Splash: {
-    screen:SplashScreen,
-    navigationOptions:{
+    screen: SplashScreen,
+    navigationOptions: {
       headerShown: false
     }
-  },
+  }
+});
+
+const GameNavigator = createStackNavigator({
   Home: {
     screen: HomeScreen,
     navigationOptions:{
@@ -60,5 +82,45 @@ const stackNavigator = createStackNavigator({
     },
   }
 });
+const SplashContainer = createAppContainer(SplashNavigator)
+const AppContainer = createAppContainer(GameNavigator);
 
-export default createAppContainer(stackNavigator);
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: true
+    }
+  }
+
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({loading: false});
+    }, 3000);
+
+    setInterval(() => {
+      if(isLastClaimLongerThanFourHours(this.props.claimChipsTime))
+        this.props.setClaimChips(true);
+    }, 30000)
+
+    if(isLastClaimLongerThanFourHours(this.props.claimChipsTime))
+      this.props.setClaimChips(true);
+  }
+
+  render() {
+    return (
+        <View style={{flex: 1}}>
+          <View style={{flex: 1}}>
+            {this.state.loading ?
+              <SplashContainer />
+              :
+              <AppContainer/>
+            }
+          </View>
+          <ClaimAdPanel/>
+        </View>
+    );
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

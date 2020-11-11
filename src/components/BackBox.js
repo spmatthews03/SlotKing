@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
- 
+
 import {View, Image} from 'react-native';
 import { TouchableOpacity } from 'react-native';
 import { CLOSE_BUTTON } from '../constants/imageConstants';
@@ -17,12 +17,20 @@ export default class BackBox extends Component {
 
   render() {
     return (
-        <View style={{justifyContent:'center', alignItems:'flex-start'}}>
-          <View style={{height:'80%', width:'45%'}}>
-            <TouchableOpacity onPress={this.handleBackButtonClick} style={{height:'70%', justifyContent:'center', alignItems:'center'}}>
+        <View>
+          {/*<View style={{height:'80%', width:'45%'}}>*/}
+            <TouchableOpacity onPress={this.handleBackButtonClick}
+                              style={{
+                                position:'absolute',
+                                top:10,
+                                left:20,
+                                width:50,
+                                height:50,
+                                justifyContent:'center',
+                                alignItems:'center'}}>
               <Image style={{height:'100%', resizeMode:'contain'}} source={CLOSE_BUTTON}/>
             </TouchableOpacity>
-          </View>
+          {/*</View>*/}
         </View>
     );
   }

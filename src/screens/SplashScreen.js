@@ -1,19 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { ImageBackground, StyleSheet, View, StatusBar, Image } from 'react-native';
-import { TABLE_SLOT_KING_LOGO, FLY_IN_DREAM_LOGO, BACKGROUND } from '../constants/imageConstants';
-import Spinner from 'react-native-loading-spinner-overlay';
+import {TABLE_SLOT_KING_LOGO, FLY_IN_DREAM_LOGO, BACKGROUND, LOGO_GIF} from '../constants/imageConstants';
 
-
-const SplashScreen = ({navigation}) => {
-    const [spinning, setNoSpinner] = React.useState(true);
-
-    useEffect(() => {
-        setTimeout(() => {
-            navigation.navigate('Home');
-            setNoSpinner(false)
-        }, 3000)
-    }, [])
-
+const SplashScreen = () => {
     return (
         <ImageBackground
         style={styles.backgroundImage}
@@ -24,11 +13,8 @@ const SplashScreen = ({navigation}) => {
                 <Image
                     style={{flex:1, width:'100%', height:'100%', resizeMode:'contain'}}
                     source={TABLE_SLOT_KING_LOGO}/>
-                <Spinner
-                    visible={spinning}
-                    textContent={'Loading...'}
-                    textStyle={{color:'white'}}
-                    />
+                <Image source={LOGO_GIF} style={{width: 100, height: 100}}/>
+
                 <View style={{flex:1, alignItems:'center', justifyContent:'flex-end'}}>
                     <View style={{width:'20%',height:'20%'}}>
                         <Image

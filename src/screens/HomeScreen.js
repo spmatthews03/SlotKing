@@ -1,12 +1,15 @@
 import React from 'react';
-import { ImageBackground, StyleSheet, View, StatusBar, TouchableOpacity, Image, Text, Modal } from 'react-native';
-import { TABLE_SLOT_KING_LOGO, PLAY_BUTTON_1, HOME_SCREEN_BACKGROUND, CLOSE_BUTTON, NO_BET_NO_WIN } from '../constants/imageConstants';
-import { Switch } from 'react-native-gesture-handler';
-import SwitchSelector from "react-native-switch-selector";
+import { ImageBackground, StyleSheet, View, StatusBar, TouchableOpacity, Image } from 'react-native';
+import { TABLE_SLOT_KING_LOGO, PLAY_BUTTON_1, HOME_SCREEN_BACKGROUND, NO_BET_NO_WIN } from '../constants/imageConstants';
 import { penClick } from '../helpers/sounds';
 import MenuFooter from "../components/footers/MenuFooter";
 
-export default class HomeScreen extends React.Component {
+
+class HomeScreen extends React.Component {
+
+    purchaseUpdateSubscription = null
+    purchaseErrorSubscription = null
+
 
     render() {
         const{navigate} = this.props.navigation;
@@ -21,7 +24,7 @@ export default class HomeScreen extends React.Component {
                 style={styles.backgroundImage}
                 source={HOME_SCREEN_BACKGROUND}>
                 <StatusBar hidden={true}/>
-                <View style={{flex:6, justifyContent:'center', alignItems:'center'}}>
+                <View style={{flex:7, justifyContent:'center', alignItems:'center'}}>
                     <View style={{flex:1, width:'100%', padding:20}}>
                         <Image
                             style={{flex:1, width:'100%', height:'100%', resizeMode:'contain'}}
@@ -46,6 +49,8 @@ export default class HomeScreen extends React.Component {
         );
     };
 }
+
+export default HomeScreen;
 
 const styles = StyleSheet.create({
     imageContainer:{

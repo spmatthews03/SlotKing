@@ -131,7 +131,7 @@ android {
         applicationId "com.slotking2"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
+        versionCode 9
         versionName "1.0"
         multiDexEnabled true
     }
@@ -191,6 +191,8 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules
+    implementation 'com.facebook.fresco:animated-gif:2.0.0'
+    compile project(':react-native-iap')
 
     if (enableHermes) {
       def hermesPath = "../../node_modules/hermesvm/android/";

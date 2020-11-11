@@ -10,26 +10,39 @@ import {
     HOLD_DRAW_BIG_BUTTON_HI
     } from '../constants/imageConstants';
 import {
-    SET_VERSION} from '../constants/actionTypes';
+    CLAIM_CHIPS,
+    SET_VERSION
+} from '../constants/actionTypes';
 import { penClick } from '../helpers/sounds';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import MenuFooter from "../components/footers/MenuFooter";
+import {isLastClaimLongerThanFourHours} from "../helpers/adHelper";
+import BackBox from "../components/BackBox";
 
 const mapStateToProps = state => {
     return{
-        unlocked: state.versionReducer.unlocked
+        unlocked: state.versionReducer.unlocked,
+        claimChips: state.versionReducer.claimChips,
+        claimChipsTime: state.versionReducer.claimChipsTime
     };
   };
 
 const mapDispatchToProps = dispatch => {
     return {
-        setGameVersion: (version, size) => dispatch({type: size, version})
+        setGameVersion: (version, size) => dispatch({type: size, version}),
+        setClaimChips: (claim) => dispatch({type: CLAIM_CHIPS, claim})
+
     };
   };
 
 class MenuScreen extends React.Component {
     static navigationOptions = {
         headerShown: false
+    }
+
+    componentDidMount() {
+        if(isLastClaimLongerThanFourHours(this.props.claimChipsTime))
+            this.props.setClaimChips(true);
     }
 
     setGame(game, version){
@@ -62,6 +75,9 @@ class MenuScreen extends React.Component {
                 style={styles.backgroundImage}
                 source={BACKGROUND}>
                 <StatusBar hidden={true}/>
+                <View style={{position:'absolute', top: 0, left: 0,width: 100, height: 100}}>
+                    <BackBox navigation={this.props.navigation}/>
+                </View>
                 <Image source={NO_BET_NO_WIN} style={{width:150, height:150, resizeMode:'contain'}}/>
                 <View style={{flex:1, justifyContent:'center', alignItems:'center'}}>
                     <Text style={styles.selectGameText}>Select A Game</Text>

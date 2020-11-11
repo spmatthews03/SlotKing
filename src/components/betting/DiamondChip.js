@@ -1,7 +1,16 @@
 import React, { useState } from 'react';
 
 import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
-import { DIAMOND_CHIP } from '../../constants/imageConstants';
+import {
+    DIAMOND_160,
+    DIAMOND_200,
+    DIAMOND_320,
+    DIAMOND_400,
+    DIAMOND_480,
+    DIAMOND_600,
+    DIAMOND_640,
+    DIAMOND_800,
+} from '../../constants/imageConstants';
 
 const DiamondChip = (props) => {
   const [on, setOn] = useState(props.chip);
@@ -11,15 +20,31 @@ const DiamondChip = (props) => {
     props.chipCallback(props.chipNum);
   }
 
+    function getDiamondImage() {
+        if(props.chipNum == "160")
+            return DIAMOND_160
+        else if(props.chipNum == "200")
+            return DIAMOND_200
+        else if(props.chipNum == "320")
+            return DIAMOND_320
+        else if(props.chipNum == "400")
+            return DIAMOND_400
+        else if(props.chipNum == "480")
+            return DIAMOND_480
+        else if(props.chipNum == "600")
+            return DIAMOND_600
+        else if(props.chipNum == "640")
+            return DIAMOND_640
+        else if(props.chipNum == "800")
+            return DIAMOND_800
+    }
+
   return (
       <View style={[styles.flexOneStyles, {opacity: on ? 1 : .5}]}>
           <TouchableOpacity onPress={() => chipToggle()} style={{flex:1}} >
               <Image
                   style={[styles.chipStyle]}
-                  source={DIAMOND_CHIP}/>
-              <View style={styles.totalBet}>
-                  <Text style={styles.totalBetText}>{props.chipNum}</Text>
-              </View>
+                  source={getDiamondImage()}/>
           </TouchableOpacity>
       </View>
   );
