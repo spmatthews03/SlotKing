@@ -11,24 +11,23 @@ const GoldChip = (props) => {
   }
 
   function getChipImage() {
-      if(props.chipNum == "16")
+      if(props.chipNum === "16")
         return CHIP_16
-      else if(props.chipNum == "20")
+      else if(props.chipNum === "20")
           return CHIP_20
-      else if(props.chipNum == "32")
+      else if(props.chipNum === "32")
           return CHIP_32
-      else if(props.chipNum == "40")
+      else if(props.chipNum === "40")
           return CHIP_40
-      else if(props.chipNum == "48")
+      else if(props.chipNum === "48")
           return CHIP_48
-      else if(props.chipNum == "60")
+      else if(props.chipNum === "60")
           return CHIP_60
-      else if(props.chipNum == "64")
+      else if(props.chipNum === "64")
           return CHIP_64
-      else if(props.chipNum == "80")
+      else if(props.chipNum === "80")
           return CHIP_80
   }
-
 
   return (
       <View style={[styles.flexOneStyles, {opacity: on ? 1 : .5}]}>
@@ -42,7 +41,7 @@ const GoldChip = (props) => {
 }
 export default GoldChip;
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
       chipStyle:{
         flex: 1,
         width: '100%',

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
- 
-import { StyleSheet, View, Text, Image, ImageBackground } from 'react-native';
+
+import { StyleSheet, View, Text, ImageBackground } from 'react-native';
 import BackBox from '../BackBox';
 import { HEADER_HI } from '../../constants/imageConstants';
 
@@ -21,14 +21,14 @@ export default class HoldAndDrawHeaderHI extends Component {
             <Text style={styles.creditValueText}>
               {"$" + this.props.credit}
             </Text>
-          </View>        
+          </View>
         </ImageBackground>
       </View>
     );
   }
 }
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   creditText: {
     fontSize:16,
     fontFamily:'PlayfairDisplay-Bold',

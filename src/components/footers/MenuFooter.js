@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import {View, Image, TouchableOpacity, Text} from 'react-native';
-import {BUY_CHIPS, TOTAL_BET_BUTTON} from "../../constants/imageConstants";
+import {View, Image, TouchableOpacity} from 'react-native';
+import {BUY_CHIPS} from "../../constants/imageConstants";
 import BuyModal from "../BuyModal";
 
 const MenuFooter = () => {
@@ -17,7 +17,6 @@ const MenuFooter = () => {
                 <BuyModal
                     isVisible={buyModalVisible}
                     setVisibility={() => {setBuyModalVisible(!buyModalVisible)}}/>
-                {/*<SettingsModal visible={settingsVisible} setVisible={setSettingsVisible} />*/}
                 <View style={{flex:4}}/>
                 <View style={{flex: 2, justifyContent:'center', alignItems:'center'}}>
                     <TouchableOpacity

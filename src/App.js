@@ -96,7 +96,7 @@ class App extends React.Component {
   componentDidMount() {
     setTimeout(() => {
       this.setState({loading: false});
-    }, 3000);
+    }, 5000);
 
     setInterval(() => {
       if(isLastClaimLongerThanFourHours(this.props.claimChipsTime))

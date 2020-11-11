@@ -9,13 +9,13 @@ import { buttonClick } from '../../../helpers/sounds';
 
 const mapDispatchToProps = dispatch => {
     return {
-        dealFaceDownFunction: (card, version) => {version == '3x3' ? dispatch({type: HI_DEALING_SMALL, card}) : dispatch({type:HI_DEALING_BIG, card})},
-        dealNewCardFunction: (card, version) => {version == '3x3' ? dispatch({type: HI_DEAL_NEW_SMALL, card}) : dispatch({type:HI_DEAL_NEW_BIG, card})}
+        dealFaceDownFunction: (card, version) => {version === '3x3' ? dispatch({type: HI_DEALING_SMALL, card}) : dispatch({type:HI_DEALING_BIG, card})},
+        dealNewCardFunction: (card, version) => {version === '3x3' ? dispatch({type: HI_DEAL_NEW_SMALL, card}) : dispatch({type:HI_DEAL_NEW_BIG, card})}
     };
 };
 
 const mapStateToProps = state => {
-    if(state.versionReducer.version == '3x3'){
+    if(state.versionReducer.version === '3x3'){
         return{
             version: state.versionReducer.version,
             winningLines: state.drawReducerHI.winningLines

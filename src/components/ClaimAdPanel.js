@@ -4,11 +4,11 @@ import SlidingUpPanel from 'rn-sliding-up-panel';
 import {useDispatch, useSelector} from "react-redux";
 import {CLAIM_CHIPS, HOLD_DRAW_ADD_WINNINGS, NEED_AD, SET_CLAIM_CHIP_TIME} from "../constants/actionTypes";
 import {Image} from "react-native-elements";
-import {CLAIM_BANNER, CLAIM_BUTTON, CLAIM_FOOTER, TOTAL_BET_BUTTON} from "../constants/imageConstants";
+import {CLAIM_BANNER, CLAIM_BUTTON, CLAIM_FOOTER} from "../constants/imageConstants";
 import {RewardedAd, RewardedAdEventType, TestIds} from '@react-native-firebase/admob';
 
 // const adUnitId = __DEV__ ? TestIds.REWARDED : 'ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy';
-const adUnitId = TestIds.REWARDED;
+const adUnitId = "ca-app-pub-6259743779729717~8049864962";
 
 const ClaimAdPanel = () => {
     let slidingPanel = createRef();

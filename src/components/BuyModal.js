@@ -27,8 +27,6 @@ const itemSkus = Platform.select({
 const BuyModal = (props) => {
     const [products, setProducts] = useState();
     const [log, setLog] = useState();
-    let purchaseUpdateSubscription = null
-    let purchaseErrorSubscription = null
     const dispatch = useDispatch();
 
     useEffect(() => {

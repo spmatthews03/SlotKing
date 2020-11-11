@@ -22,15 +22,12 @@ const HoldAndDrawFooterHI = (props) => {
     const version = useSelector(state => state.versionReducer.version);
 
     let image_source;
-    let rulesshown;
-    if(version == '3x3') {
+    if(version === '3x3') {
         image_source = HOLD_DRAW_BUTTON_HI;
-        // rulesshown = useSelector(state => state.versionReducer.rules_3x3_shown)
 
     }
     else {
         image_source = HOLD_DRAW_BIG_BUTTON_HI;
-        // rulesshown = useSelector(state => state.versionReducer.rules_4x4_shown)
     }
 
     const needAd = useSelector(state => state.versionReducer.adReady);
@@ -74,7 +71,7 @@ const HoldAndDrawFooterHI = (props) => {
         };
     }, []);
 
-    if(props.credit < 250 && needAd != true){
+    if(props.credit < 250 && needAd !== true){
         dispatch({type: NEED_AD, payload: true})
     }
 

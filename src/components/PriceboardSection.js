@@ -48,7 +48,7 @@ const PriceboardSection = (props) => {
 export default PriceboardSection;
 
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
     piecesText: {
         fontSize:18,
         color: 'gold',

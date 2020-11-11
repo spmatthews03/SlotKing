@@ -23,8 +23,8 @@ export default class ButtonBar extends Component {
                 <View style={[styles.flexOneStyles, {justifyContent: 'center', alignItems:'center'}]}>
                     <TouchableOpacity
                         onPress={() => this.props.flip(this.props.total_bet)}
-                        disabled={this.props.total_bet == 0 ? true : false}
-                        style={{width:'70%', opacity:this.props.total_bet == 0 ? 0.2 : 1} }>
+                        disabled={this.props.total_bet === 0}
+                        style={{width:'70%', opacity:this.props.total_bet === 0 ? 0.2 : 1} }>
                         <Image
                             style={styles.bottomButtonsStyle}
                             source={PLAY_BUTTON_2}/>

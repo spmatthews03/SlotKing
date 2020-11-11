@@ -18,7 +18,6 @@ export default class BackBox extends Component {
   render() {
     return (
         <View>
-          {/*<View style={{height:'80%', width:'45%'}}>*/}
             <TouchableOpacity onPress={this.handleBackButtonClick}
                               style={{
                                 position:'absolute',
@@ -30,7 +29,6 @@ export default class BackBox extends Component {
                                 alignItems:'center'}}>
               <Image style={{height:'100%', resizeMode:'contain'}} source={CLOSE_BUTTON}/>
             </TouchableOpacity>
-          {/*</View>*/}
         </View>
     );
   }

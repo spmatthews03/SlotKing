@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {Image, ImageBackground, Modal, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import React from 'react';
+import {Image, Modal, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {
     CLOSE_BUTTON, FLY_IN_DREAM_LOGO, PRICEBOARD_7,
     PRICEBOARD_777,
@@ -17,7 +17,7 @@ const PriceboardModal = (props) => {
     let toWin;
     let betPerLine;
 
-    if(version == '3x3') {
+    if(version === '3x3') {
         priceboard = priceboard_3x3;
         toWin = {
             small : '2x',
@@ -128,7 +128,7 @@ const PriceboardModal = (props) => {
                                     payoutSmall={priceboard["card_cherry"].payout_small}/>
                             </View>
                             <View style={{flex:1}}>
-                                {version == '4x4' ?
+                                {version === '4x4' ?
                                     <PriceboardSection
                                         image={PRICEBOARD_WILD}
                                         pieces={1}
@@ -157,7 +157,7 @@ const PriceboardModal = (props) => {
 
 export default PriceboardModal;
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
         padding:100
@@ -165,10 +165,7 @@ var styles = StyleSheet.create({
     modalView: {
         width: '100%',
         height: '100%',
-        // margin: 20,
         backgroundColor: '#0f2636',
-        // borderRadius: 20,
-        // borderColor:'#ae8625',
         borderWidth:1,
         padding: 15,
         alignItems: "center",

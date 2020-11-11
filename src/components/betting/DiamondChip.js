@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Image, TouchableOpacity } from 'react-native';
 import {
     DIAMOND_160,
     DIAMOND_200,
@@ -21,21 +21,21 @@ const DiamondChip = (props) => {
   }
 
     function getDiamondImage() {
-        if(props.chipNum == "160")
+        if(props.chipNum === "160")
             return DIAMOND_160
-        else if(props.chipNum == "200")
+        else if(props.chipNum === "200")
             return DIAMOND_200
-        else if(props.chipNum == "320")
+        else if(props.chipNum === "320")
             return DIAMOND_320
-        else if(props.chipNum == "400")
+        else if(props.chipNum === "400")
             return DIAMOND_400
-        else if(props.chipNum == "480")
+        else if(props.chipNum === "480")
             return DIAMOND_480
-        else if(props.chipNum == "600")
+        else if(props.chipNum === "600")
             return DIAMOND_600
-        else if(props.chipNum == "640")
+        else if(props.chipNum === "640")
             return DIAMOND_640
-        else if(props.chipNum == "800")
+        else if(props.chipNum === "800")
             return DIAMOND_800
     }
 
@@ -51,7 +51,7 @@ const DiamondChip = (props) => {
 }
 export default DiamondChip;
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
       chipStyle:{
         flex: 1,
         width: '100%',

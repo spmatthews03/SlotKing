@@ -27,7 +27,7 @@ export default class HoldAndDrawHeader extends Component {
   }
 }
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   creditText: {
     fontSize:16,
     fontFamily:'PlayfairDisplay-Bold',

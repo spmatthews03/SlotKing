@@ -1,8 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react';
-import {View, Image, TouchableOpacity, Text, Alert} from 'react-native';
+import {View, Image, TouchableOpacity, Alert} from 'react-native';
 import {
-    PLAY_BUTTON_2,
-    HOLD_DRAW_BUTTON_HI,
     BUY_CHIPS,
     FOOTER_PRICEBOARD,
     FOOTER_RULES, FOOTER_AD, HOLD_DRAW_BUTTON, HOLD_DRAW_BIG_BUTTON
@@ -17,14 +15,14 @@ import PriceboardModal from "../PriceboardModal";
 import BuyModal from "../BuyModal";
 
 // const adUnitId = __DEV__ ? TestIds.REWARDED : 'ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy';
-const adUnitId = TestIds.REWARDED;
+const adUnitId = "ca-app-pub-6259743779729717~8049864962";
 
 const HoldAndDrawFooter = (props) => {
     const version = useSelector(state => state.versionReducer.version);
 
     let image_source;
     let rulesshown;
-    if(version == '3x3') {
+    if(version === '3x3') {
         image_source = HOLD_DRAW_BUTTON;
         rulesshown = useSelector(state => state.versionReducer.rules_3x3_shown)
 

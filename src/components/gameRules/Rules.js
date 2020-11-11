@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Image, Modal, StyleSheet, Text, TouchableOpacity, View, ScrollView} from "react-native";
 import {
     BAR_CARD, CHERRY_CARD,
@@ -10,7 +10,6 @@ import {
     WILD_CARD
 } from "../../constants/imageConstants";
 import {useDispatch, useSelector} from "react-redux";
-import Swiper from "react-native-swiper";
 import {RULES_3X3, RULES_4X4} from "../../constants/actionTypes";
 
 const Rules = (props) => {
@@ -18,7 +17,7 @@ const Rules = (props) => {
     const dispatch = useDispatch();
 
     function versionSwiper(){
-        if(gameVersion == "3x3"){
+        if(gameVersion === "3x3"){
             return(
                 <View style={{flex:1, justifyContent: 'center', alignItems:'center'}}>
                     <ScrollView
@@ -167,7 +166,7 @@ const Rules = (props) => {
 
     function closeRules() {
         props.setModalVisibility();
-        if(gameVersion == "3x3")
+        if(gameVersion === "3x3")
             dispatch({type: RULES_3X3})
         else
             dispatch({type: RULES_4X4})
@@ -207,7 +206,7 @@ const Rules = (props) => {
 
 export default Rules;
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
         padding:100

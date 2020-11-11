@@ -7,13 +7,13 @@ import { HI_DONE_DISCARDING_SMALL, HI_DONE_FLIPPING_SMALL, HI_DONE_DISCARDING_BI
 
 const mapDispatchToProps = dispatch => {
   return {
-      finishedDiscarding: (version) => {version == '3x3' ? dispatch({type: HI_DONE_DISCARDING_SMALL}) : dispatch({type: HI_DONE_DISCARDING_BIG})},
-      finishedFlipping: (version) => {version == '3x3' ? dispatch({type:HI_DONE_FLIPPING_SMALL}) : dispatch({type:HI_DONE_FLIPPING_BIG})}
+      finishedDiscarding: (version) => {version === '3x3' ? dispatch({type: HI_DONE_DISCARDING_SMALL}) : dispatch({type: HI_DONE_DISCARDING_BIG})},
+      finishedFlipping: (version) => {version === '3x3' ? dispatch({type:HI_DONE_FLIPPING_SMALL}) : dispatch({type:HI_DONE_FLIPPING_BIG})}
   };
 };
 
 const mapStateToProps = state => {
-  if(state.versionReducer.version == '3x3') {
+  if(state.versionReducer.version === '3x3') {
     return{
         gameState: state.drawReducerHI.gameState,
         cards: state.drawReducerHI.cards,
@@ -22,7 +22,7 @@ const mapStateToProps = state => {
   } else {
     return{
         gameState: state.drawReducerBigHI.gameState,
-        cards: state.drawReducerBigHI.cards, 
+        cards: state.drawReducerBigHI.cards,
         version: state.versionReducer.version
     }
   }
@@ -34,15 +34,15 @@ class CanvasHI extends Component {
     }
 
     componentDidUpdate(prevProps){
-      if(this.props.gameState == gameStates.DISCARDING){
+      if(this.props.gameState === gameStates.DISCARDING){
         this.props.finishedDiscarding(this.props.version);
-      } else if(this.props.gameState == gameStates.FLIPPING){
+      } else if(this.props.gameState === gameStates.FLIPPING){
         this.props.finishedFlipping(this.props.version);
       }
     }
- 
+
     render() {
-      if(this.props.version == '3x3'){
+      if(this.props.version === '3x3'){
         return (
             (<View style={{flex:4}}>
               <View style={{flex:1, paddingHorizontal:20}}>

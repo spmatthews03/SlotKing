@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Image, TouchableOpacity, Animated } from 'react-native';
+import { View, TouchableOpacity, Animated } from 'react-native';
 import { connect } from 'react-redux';
 import {gameStates} from '../../../constants/gameStates';
 import { getCardImage } from '../../../helpers/dealer';
@@ -9,13 +9,13 @@ import { buttonClick } from '../../../helpers/sounds';
 
 const mapDispatchToProps = dispatch => {
     return {
-        dealFaceDownFunction: (card, version) => {version == '3x3' ? dispatch({type: DEALING_SMALL, card}) : dispatch({type:DEALING_BIG, card})},
-        dealNewCardFunction: (card, version) => {version == '3x3' ? dispatch({type: DEAL_NEW_SMALL, card}) : dispatch({type:DEAL_NEW_BIG, card})}
+        dealFaceDownFunction: (card, version) => {version === '3x3' ? dispatch({type: DEALING_SMALL, card}) : dispatch({type:DEALING_BIG, card})},
+        dealNewCardFunction: (card, version) => {version === '3x3' ? dispatch({type: DEAL_NEW_SMALL, card}) : dispatch({type:DEAL_NEW_BIG, card})}
     };
 };
 
 const mapStateToProps = state => {
-    if(state.versionReducer.version == '3x3'){
+    if(state.versionReducer.version === '3x3'){
         return{
             version: state.versionReducer.version,
             winningLines: state.drawReducer.winningLines
