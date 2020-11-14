@@ -86,7 +86,7 @@ class MenuScreen extends React.Component {
                     <Text style={styles.roomText}>Standard Room</Text>
                     <View style={{flex:1, flexDirection:'row'}}>
                         <View style={{flex:1}}>
-                            <View style={{flex:1, justifyContent:'center', alignItems:'center', padding:20}}>
+                            <View style={{flex:1, justifyContent:'center', alignItems:'center', padding:'5%'}}>
                                 <TouchableOpacity
                                     style={{width:'100%', justifyContent: 'center'}}
                                     onPress={()=> this.navigateToGame('HoldAndDraw','3x3')}>
@@ -97,7 +97,7 @@ class MenuScreen extends React.Component {
                             </View>
                         </View>
                         <View style={{flex:1}}>
-                            <View style={{flex:1, justifyContent:'center', alignItems:'center', padding:20}}>
+                            <View style={{flex:1, justifyContent:'center', alignItems:'center', padding:'5%'}}>
                                 <TouchableOpacity
                                     style={{width:'100%', justifyContent: 'center'}}
                                     onPress={()=> this.navigateToGame('HoldAndDraw','4x4')}>
@@ -111,22 +111,22 @@ class MenuScreen extends React.Component {
                     <Text style={styles.roomText}>Hi-Limit Room</Text>
                     <View style={{flex:1, flexDirection:'row'}}>
                         <View style={{flex:1}}>
-                            <View style={{flex:1, justifyContent:'center', alignItems:'center', padding:20}}>
+                            <View style={{flex:1, justifyContent:'center', alignItems:'center', padding:'5%'}}>
                                 <TouchableOpacity
                                     disabled={!this.props.unlocked}
                                     style={{width:'100%', justifyContent: 'center'}}
                                     onPress={()=> this.navigateToGame('HoldAndDrawHI','3x3')}>
                                     <ImageBackground
-                                        style={{width:'100%', height:'100%'}}
+                                        style={{width:'100%', height:'100%', justifyContent: 'center', alignItems:'center'}}
                                         imageStyle={{opacity: !this.props.unlocked ? 0.4 : 1}}
                                         resizeMode={'contain'}
                                         source={HOLD_DRAW_BUTTON_HI}>
                                         {!this.props.unlocked ?
-                                            <View style={{width:40, height:40, position:'absolute', top:10, right:25, justifyContent:'center', alignItems:'center'}}>
+                                            <View style={{width:50, height:50, justifyContent:'center', alignItems:'center'}}>
                                                 <TouchableOpacity
                                                     onPress={() => this.showLockedAlert()}
-                                                    style={{}}>
-                                                    <Icon name="lock" size={30} color="gold"/>
+                                                    style={{opacity:.75}}>
+                                                    <Icon name="lock" size={40} color="gold"/>
                                                 </TouchableOpacity>
                                             </View>: null }
                                     </ImageBackground>
@@ -134,22 +134,22 @@ class MenuScreen extends React.Component {
                             </View>
                         </View>
                         <View style={{flex:1}}>
-                            <View style={{flex:1, justifyContent:'center', alignItems:'center', padding:20}}>
+                            <View style={{flex:1, justifyContent:'center', alignItems:'center', padding:'5%'}}>
                                 <TouchableOpacity
                                     disabled={!this.props.unlocked}
                                     style={{width:'100%', justifyContent: 'center'}}
                                     onPress={()=> this.navigateToGame('HoldAndDrawHI','4x4')}>
                                     <ImageBackground
-                                        style={{width:'100%', height:'100%'}}
+                                        style={{width:'100%', height:'100%', justifyContent: 'center', alignItems:'center'}}
                                         imageStyle={{opacity: !this.props.unlocked ? 0.4 : 1}}
                                         resizeMode={'contain'}
                                         source={HOLD_DRAW_BIG_BUTTON_HI}>
                                         {!this.props.unlocked ?
-                                            <View style={{width:40, height:40, position:'absolute', top:10, right:25, justifyContent:'center', alignItems:'center'}}>
+                                            <View style={{width:50, height:50, justifyContent:'center', alignItems:'center'}}>
                                                 <TouchableOpacity
                                                     onPress={() => this.showLockedAlert()}
-                                                    style={{}}>
-                                                    <Icon name="lock" size={30} color="gold"/>
+                                                    style={{opacity:.75}}>
+                                                    <Icon name="lock" size={40} color="gold"/>
                                                 </TouchableOpacity>
                                             </View>: null }
                                     </ImageBackground>
@@ -158,7 +158,7 @@ class MenuScreen extends React.Component {
                         </View>
                     </View>
                 </View>
-                <MenuFooter/>
+                <MenuFooter navigation={this.props.navigation.navigate}/>
             </ImageBackground>
         );
     };

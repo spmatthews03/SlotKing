@@ -1,4 +1,4 @@
-package com.slotking2;
+package com.slotking;
 
 import com.facebook.react.ReactActivity;
 
@@ -10,6 +10,6 @@ public class MainActivity extends ReactActivity {
      */
     @Override
     protected String getMainComponentName() {
-        return "SlotKing2";
+        return "SlotKing";
     }
 }

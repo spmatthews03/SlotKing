@@ -1,4 +1,4 @@
-package com.slotking2;
+package com.slotking;
 
 import android.app.Application;
 import android.util.Log;
@@ -14,6 +14,8 @@ import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 import com.BV.LinearGradient.LinearGradientPackage; // <--- This!
 import com.dooboolab.RNIap.RNIapPackage;
+//import com.facebook.react.BuildConfig;
+
 
 import java.util.Arrays;
 import java.util.List;

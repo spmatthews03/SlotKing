@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Image, Text, TouchableOpacity } from 'react-native';
+import { View, Image, Text, TouchableOpacity, ImageBackground } from 'react-native';
 import {styles} from '../../screens/games/StopVersion/styles';
 import { TOTAL_BET_BUTTON, PLAY_BUTTON_2 } from '../../constants/imageConstants';
 
@@ -10,15 +10,19 @@ export default class ButtonBar extends Component {
             <View
                 style={styles.buttonBar}>
                 <View style={styles.flexOneStyles}>
-                    <TouchableOpacity
-                    disabled={true}>
-                        <Image style={styles.bottomButtonsStyle}
-                            source={TOTAL_BET_BUTTON}/>
-                        <View
-                            style={styles.totalBet}>
-                            <Text style={styles.totalBetText}>{"TOTAL BET\n" + this.props.total_bet}</Text>
-                        </View>
-                    </TouchableOpacity>
+                    <View style={{width:'70%', alignSelf:'center'}}>
+                        <TouchableOpacity
+                            disabled={true}>
+                            <ImageBackground style={styles.bottomButtonsStyle}
+                                             imageStyle={{width:'100%', height:'100%', resizeMode:'contain'}}
+                                source={TOTAL_BET_BUTTON}>
+                            <View
+                                style={{width:'100%', justifyContent:'center', alignItems:'center'}}>
+                                <Text adjustsFontSizeToFit={true} numberOfLines={2} style={styles.totalBetText}>{"TOTAL BET\n" + this.props.total_bet}</Text>
+                            </View>
+                            </ImageBackground>
+                        </TouchableOpacity>
+                    </View>
                 </View>
                 <View style={[styles.flexOneStyles, {justifyContent: 'center', alignItems:'center'}]}>
                     <TouchableOpacity

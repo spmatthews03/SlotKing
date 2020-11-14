@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {Image, Modal, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {Image, Modal, StyleSheet, Text, TouchableOpacity, View, Alert} from "react-native";
 import {
     CLOSE_BUTTON,
     PURCHASE_10000,
     PURCHASE_50000
 } from "../constants/imageConstants";
 import RNIap, {
+    InAppPurchase,
     purchaseErrorListener,
     purchaseUpdatedListener,
     type ProductPurchase,
@@ -24,13 +25,26 @@ const itemSkus = Platform.select({
         '50000_coins'
     ]
 });
-const BuyModal = (props) => {
+const BuyModal = (navigation) => {
+    const navigator = navigation.navigation;
     const [products, setProducts] = useState();
     const [log, setLog] = useState();
     const dispatch = useDispatch();
+    let purchaseCoinsUpdate;
+    let purchaseCoinsError;
 
     useEffect(() => {
         setUpStore();
+        return() => {
+            if(purchaseCoinsUpdate){
+                purchaseCoinsUpdate.remove();
+                purchaseCoinsUpdate = null;
+            }
+            if (purchaseCoinsError) {
+                purchaseCoinsError.remove();
+                purchaseCoinsError = null;
+            }
+            RNIap.endConnection();};
     }, [])
 
     async function dispatchConsumable(productId) {
@@ -38,60 +52,34 @@ const BuyModal = (props) => {
             dispatch({type:HOLD_DRAW_ADD_WINNINGS, payload: 10000});
         else
             dispatch({type:HOLD_DRAW_ADD_WINNINGS, payload: 50000});
+        navigator.goBack();
     }
 
     async function setUpStore() {
 
         await RNIap.initConnection().then(() => {
-            console.log()
             getProducts();
-            // we make sure that "ghost" pending payment are removed
-            // (ghost = failed pending payment that are still marked as pending in Google's native Vending module cache)
+            RNIap.consumeAllItemsAndroid();
             RNIap.flushFailedPurchasesCachedAsPendingAndroid().catch(() => {
-                // exception can happen here if:
-                // - there are pending purchases that are still pending (we can't consume a pending purchase)
-                // in any case, you might not want to do anything special with the error
             }).then(() => {
                 setLog(log + "Connection Successful");
 
-                this.purchaseUpdateSubscription = purchaseUpdatedListener((purchase: InAppPurchase | SubscriptionPurchase | ProductPurchase ) => {
-                    console.log('purchaseUpdatedListener', purchase);
+                purchaseCoinsUpdate = purchaseUpdatedListener(async (purchase: InAppPurchase | ProductPurchase ) => {
                     const receipt = purchase.transactionReceipt;
-                    setLog(log + receipt);
 
                     if (receipt) {
-                        dispatchConsumable(purchase.productId)
-                            .then( async (deliveryResult) => {
-                                setLog(log + "dispatched!!!!!!");
-                                if (true) {
-                                    // Tell the store that you have delivered what has been paid for.
-                                    // Failure to do this will result in the purchase being refunded on Android and
-                                    // the purchase event will reappear on every relaunch of the app until you succeed
-                                    // in doing the below. It will also be impossible for the user to purchase consumables
-                                    // again until you do this.
-                                    if (Platform.OS === 'ios') {
-                                        await RNIap.finishTransactionIOS(purchase.transactionId);
-                                    } else if (Platform.OS === 'android') {
-                                        // If consumable (can be purchased again)
-                                        await RNIap.consumePurchaseAndroid(purchase.purchaseToken);
-                                        // If not consumable
-                                        await RNIap.acknowledgePurchaseAndroid(purchase.purchaseToken);
-                                    }
-
-                                    // From react-native-iap@4.1.0 you can simplify above `method`. Try to wrap the statement with `try` and `catch` to also grab the `error` message.
-                                    // If consumable (can be purchased again)
-                                    await RNIap.finishTransaction(purchase, true);
-                                    // If not consumable
-                                    await RNIap.finishTransaction(purchase, false);
-                                } else {
-                                    // Retry / conclude the purchase is fraudulent, etc...
-                                }
-                            });
+                        try{
+                            await RNIap.finishTransaction(purchase,true);
+                        } catch(err) {
+                            console.warn('Acknowledge Error:', err);
+                        }
+                        dispatchConsumable(purchase.productId);
                     }
                 });
 
-                this.purchaseErrorSubscription = purchaseErrorListener((error: PurchaseError) => {
+                purchaseCoinsError = purchaseErrorListener((error: PurchaseError) => {
                     console.warn('purchaseErrorListener', error);
+                    Alert.alert('Purchasing Error. Try again in a little while.');
                 });
             })
         })
@@ -101,7 +89,6 @@ const BuyModal = (props) => {
         try{
             const products: Products[] = await RNIap.getProducts(itemSkus);
             setProducts(products);
-            console.log(products);
         } catch (e) {
             console.log("Error Retrieving Products");
         }
@@ -116,51 +103,42 @@ const BuyModal = (props) => {
     }
 
     return (
-        <Modal
-            animationType="slide"
-            transparent={true}
-            visible={props.isVisible}
-            onRequestClose={() => {
-                props.setVisibility();
-            }}
-        >
-            <View style={styles.centeredView}>
-                <View style={styles.modalView}>
-                    <View style={{height:75, justifyContent:'center', alignItems:'center'}}>
-                        <Text style={styles.priceboardText}>Purchase Chips</Text>
-                    </View>
-                    <View style={{width:'100%', flex:1}}>
-                        <View style={{flex:1, justifyContent: 'center', alignItems:'center'}}>
-                            <TouchableOpacity
-                                style={{width:200, height:200, padding:3, justifyContent:'center'}}
-                                onPress={() => getChips('10000_coins')}>
-                                <Image
-                                    style={{width:'100%', height:'100%', resizeMode:'contain'}}
-                                    source={PURCHASE_10000}/>
-                            </TouchableOpacity>
-                        </View>
-                        <View style={{flex:1, justifyContent: 'center', alignItems:'center'}}>
-                            <TouchableOpacity
-                                style={{width:200, height:200, padding:3, justifyContent:'center'}}
-                                onPress={() => getChips('50000_coins')}>
-                                <Image
-                                    style={{width:'100%', height:'100%', resizeMode:'contain'}}
-                                    source={PURCHASE_50000}/>
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-                    <View style={{height:40, width:40}}>
+        <View style={styles.centeredView}>
+            <View style={styles.modalView}>
+                <View style={{height:75, justifyContent:'center', alignItems:'center'}}>
+                    <Text style={styles.priceboardText}>Purchase Chips</Text>
+                </View>
+                <View style={{width:'100%', flex:1}}>
+                    <View style={{flex:1, justifyContent: 'center', alignItems:'center'}}>
                         <TouchableOpacity
-                            onPress={() => {
-                                props.setVisibility();
-                            }}
-                        >
-                            <Image style={{width:'100%',height:'100%', resizeMode:'contain'}} source={CLOSE_BUTTON}/>
+                            style={{width:200, height:200, padding:3, justifyContent:'center'}}
+                            onPress={() => getChips('10000_coins')}>
+                            <Image
+                                style={{width:'100%', height:'100%', resizeMode:'contain'}}
+                                source={PURCHASE_10000}/>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={{flex:1, justifyContent: 'center', alignItems:'center'}}>
+                        <TouchableOpacity
+                            style={{width:200, height:200, padding:3, justifyContent:'center'}}
+                            onPress={() => getChips('50000_coins')}>
+                            <Image
+                                style={{width:'100%', height:'100%', resizeMode:'contain'}}
+                                source={PURCHASE_50000}/>
                         </TouchableOpacity>
                     </View>
                 </View>
+                <View style={{height:40, width:40}}>
+                    <TouchableOpacity
+                        onPress={() => {
+                            navigator.goBack();
+                        }}
+                    >
+                        <Image style={{width:'100%',height:'100%', resizeMode:'contain'}} source={CLOSE_BUTTON}/>
+                    </TouchableOpacity>
+                </View>
             </View>
-        </Modal>
+        </View>
     )
 }
 

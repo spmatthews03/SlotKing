@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "92147546431",
-    "firebase_url": "https://mythic-evening-195116.firebaseio.com",
-    "project_id": "mythic-evening-195116",
-    "storage_bucket": "mythic-evening-195116.appspot.com"
+    "project_number": "205556111485",
+    "firebase_url": "https://slotking.firebaseio.com",
+    "project_id": "slotking",
+    "storage_bucket": "slotking.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:92147546431:android:157806de542b410142bb8a",
+        "mobilesdk_app_id": "1:205556111485:android:7fce7b9f3f6ce170f53914",
         "android_client_info": {
-          "package_name": "com.slotking2"
+          "package_name": "com.slotking"
         }
       },
       "oauth_client": [
         {
-          "client_id": "92147546431-fvugohcpmi67hekvqghquoj4olm9bgfg.apps.googleusercontent.com",
+          "client_id": "205556111485-hm6b4rqt9lq7n2b16kqj1m7v0ij17qgi.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDzGd1ASeSeX_ZE4J2K6zCkYayqZGEki1A"
+          "current_key": "AIzaSyDaz_dqfVY4PTRwV1r3o66-czdfYZUxQJQ"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "92147546431-srmsi24jgm9jsjivnc38omd1i65u9rmp.apps.googleusercontent.com",
+              "client_id": "205556111485-hm6b4rqt9lq7n2b16kqj1m7v0ij17qgi.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

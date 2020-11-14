@@ -11,24 +11,24 @@ const PriceboardSection = (props) => {
                 source={props.image}/>
         </View>
         <View style={{flex: 1, paddingLeft: 3}}>
-            <Text style={styles.piecesText}>
+            <Text adjustsFontSizeToFit={true} numberOfLines={1}  style={styles.piecesText}>
                 {props.pieces} pcs in deck
             </Text>
             {props.toWin ?
                 <View>
                     <View style={{flexDirection: 'row', alignItems:'center'}}>
-                        <Text style={styles.toWinText}>
+                        <Text adjustsFontSizeToFit={true} numberOfLines={1} style={styles.toWinText}>
                             {props.toWin.big} =
                         </Text>
-                        <Text style={styles.payoutText}>
+                        <Text adjustsFontSizeToFit={true} numberOfLines={1} style={styles.payoutText}>
                             ${props.lineBet * props.payoutBig}
                         </Text>
                     </View>
                     <View style={{flexDirection: 'row'}}>
-                        <Text style={styles.toWinText}>
+                        <Text adjustsFontSizeToFit={true} numberOfLines={1} style={styles.toWinText}>
                             {props.toWin.small} =
                         </Text>
-                        <Text style={styles.payoutText}>
+                        <Text adjustsFontSizeToFit={true} numberOfLines={1}  style={styles.payoutText}>
                             ${props.lineBet * props.payoutSmall}
                         </Text>
                     </View>

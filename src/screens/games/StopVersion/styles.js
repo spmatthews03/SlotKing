@@ -15,10 +15,10 @@ const styles = StyleSheet.create({
       height: undefined
     },
     bottomButtonsStyle:{
-      // flex: 1,
       width: '100%',
       height: '100%',
       resizeMode: 'contain',
+        justifyContent:'center'
     },
     flexOneStyles:{
       flex: 1,
@@ -28,7 +28,9 @@ const styles = StyleSheet.create({
       fontSize: 18,
       fontFamily: 'PlayfairDisplay-Bold',
       color: 'white',
-      textAlign: 'center'
+      textAlign: 'center',
+        textAlignVertical:'center',
+    padding:'5%'
     },
     flipText: {
       fontSize: 20,

@@ -35,12 +35,12 @@ android_library(
 
 android_build_config(
     name = "build_config",
-    package = "com.slotking2",
+    package = "com.slotking",
 )
 
 android_resource(
     name = "res",
-    package = "com.slotking2",
+    package = "com.slotking",
     res = "src/main/res",
 )
 

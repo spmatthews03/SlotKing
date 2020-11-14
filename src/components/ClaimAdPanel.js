@@ -7,8 +7,7 @@ import {Image} from "react-native-elements";
 import {CLAIM_BANNER, CLAIM_BUTTON, CLAIM_FOOTER} from "../constants/imageConstants";
 import {RewardedAd, RewardedAdEventType, TestIds} from '@react-native-firebase/admob';
 
-// const adUnitId = __DEV__ ? TestIds.REWARDED : 'ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy';
-const adUnitId = "ca-app-pub-6259743779729717~8049864962";
+const adUnitId = __DEV__ ? TestIds.REWARDED : "ca-app-pub-6259743779729717/5047828884";
 
 const ClaimAdPanel = () => {
     let slidingPanel = createRef();
@@ -18,7 +17,6 @@ const ClaimAdPanel = () => {
 
     const rewarded = useRef(RewardedAd.createForAdRequest(adUnitId, {
         requestNonPersonalizedAdsOnly: true,
-        keywords: ['fashion', 'clothing'],
     }));
 
 

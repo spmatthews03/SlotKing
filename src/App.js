@@ -19,6 +19,7 @@ import ClaimAdPanel from "./components/ClaimAdPanel";
 import {CLAIM_CHIPS} from "./constants/actionTypes";
 import { connect } from 'react-redux';
 import {isLastClaimLongerThanFourHours} from "./helpers/adHelper";
+import BuyModal from "./components/BuyModal";
 
 
 const mapStateToProps = state => {
@@ -77,6 +78,12 @@ const GameNavigator = createStackNavigator({
   },
   HoldAndDrawHI: {
     screen: HoldAndDrawHi,
+    navigationOptions: {
+      headerShown: false
+    },
+  },
+  BuyModal: {
+    screen: BuyModal,
     navigationOptions: {
       headerShown: false
     },

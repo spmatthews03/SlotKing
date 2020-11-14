@@ -128,10 +128,10 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.slotking2"
+        applicationId "com.slotking"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 9
+        versionCode 14
         versionName "1.0"
         multiDexEnabled true
     }
@@ -192,6 +192,8 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules
     implementation 'com.facebook.fresco:animated-gif:2.0.0'
+    implementation 'com.google.android.gms:play-services-ads:19.5.0'
+
     compile project(':react-native-iap')
 
     if (enableHermes) {

@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react';
-import { View, Image, TouchableOpacity, Text } from 'react-native';
+import {View, Image, TouchableOpacity, Text, Alert} from 'react-native';
 import {
     PLAY_BUTTON_2,
     HOLD_DRAW_BUTTON_HI,
@@ -16,7 +16,7 @@ import Rules from "../gameRules/Rules";
 import PriceboardModal from "../PriceboardModal";
 import BuyModal from "../BuyModal";
 
-const adUnitId = __DEV__ ? TestIds.REWARDED : 'ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy';
+const adUnitId = __DEV__ ? TestIds.REWARDED : 'ca-app-pub-6259743779729717/6744053933';
 
 const HoldAndDrawFooterHI = (props) => {
     const version = useSelector(state => state.versionReducer.version);
@@ -39,27 +39,27 @@ const HoldAndDrawFooterHI = (props) => {
 
     const rewarded = useRef(RewardedAd.createForAdRequest(adUnitId, {
         requestNonPersonalizedAdsOnly: true,
-        keywords: ['fashion', 'clothing'],
       }));
 
 
     useEffect(() => {
         const eventListener = rewarded.current.onAdEvent((type, error, reward) => {
-        if (type === RewardedAdEventType.LOADED) {
-            setLoaded(true);
-        }
+            if (type === RewardedAdEventType.LOADED) {
+                setLoaded(true);
+            }
 
-        if (type === RewardedAdEventType.EARNED_REWARD) {
-            let payload = 500;
-            dispatch({type:HOLD_DRAW_ADD_WINNINGS, payload})
-            console.log('User earned reward of ', reward);
-            dispatch({type: NEED_AD, payload: false});
-            setLoaded(false);
-        }
+            if (type === RewardedAdEventType.EARNED_REWARD) {
+                let payload = 500;
+                dispatch({type:HOLD_DRAW_ADD_WINNINGS, payload})
+                console.log('User earned reward of ', reward);
+                dispatch({type: NEED_AD, payload: false});
+                setLoaded(false);
+            }
 
-        if(type === "closed") {
-            rewarded.current.load();
-        }
+            if(type === "closed") {
+                rewarded.current.load();
+                rewardAlert();
+            }
         });
 
         // Start loading the rewarded ad straight away
@@ -75,6 +75,14 @@ const HoldAndDrawFooterHI = (props) => {
         dispatch({type: NEED_AD, payload: true})
     }
 
+    function rewardAlert() {
+        Alert.alert('Congratulations!', 'You just earned 500 coins!', [
+            {
+                text: 'Ok',
+            },
+        ]);
+    }
+
     return (
         <View style={{flex:.7, backgroundColor:'#280000', flexDirection:'row', padding:8, justifyContent:'center'}}>
             <Rules
@@ -84,10 +92,6 @@ const HoldAndDrawFooterHI = (props) => {
                 totalBet={props.totalBet}
                 isVisible={priceboardVisible}
                 setPriceboardVisibility={() => {setPriceboardVisible(!priceboardVisible)}}/>
-            <BuyModal
-                isVisible={buyModalVisible}
-                setVisibility={() => {setBuyModalVisible(!buyModalVisible)}}/>
-
             <View style={{flex:1,flexDirection:'row'}}>
                 <View style={{flex:1}}>
 
@@ -98,7 +102,7 @@ const HoldAndDrawFooterHI = (props) => {
                 <View style={{flex: 2, justifyContent:'center', alignItems:'center'}}>
                     <TouchableOpacity
                         style={{width:'100%', padding:3, justifyContent:'center'}}
-                        onPress={() => {setBuyModalVisible(true)}}>
+                        onPress={() => {props.navigation.navigate('BuyModal')}}>
                         <Image
                             style={{width:'100%', height:'100%', resizeMode:'contain'}}
                             source={BUY_CHIPS}/>

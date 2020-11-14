@@ -7,10 +7,6 @@ import MenuFooter from "../components/footers/MenuFooter";
 
 class HomeScreen extends React.Component {
 
-    purchaseUpdateSubscription = null
-    purchaseErrorSubscription = null
-
-
     render() {
         const{navigate} = this.props.navigation;
 
@@ -44,7 +40,7 @@ class HomeScreen extends React.Component {
                         </View>
                     </View>
                 </View>
-                <MenuFooter />
+                <MenuFooter navigation={navigate} />
             </ImageBackground>
         );
     };

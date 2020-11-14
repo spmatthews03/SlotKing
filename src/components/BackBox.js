@@ -23,8 +23,8 @@ export default class BackBox extends Component {
                                 position:'absolute',
                                 top:10,
                                 left:20,
-                                width:50,
-                                height:50,
+                                width:40,
+                                height:40,
                                 justifyContent:'center',
                                 alignItems:'center'}}>
               <Image style={{height:'100%', resizeMode:'contain'}} source={CLOSE_BUTTON}/>

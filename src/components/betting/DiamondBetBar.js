@@ -13,7 +13,7 @@ const DiamondBetBar = (props) => {
       let chip = Object.keys(props.chips)[i];
         total = total + parseInt(chip);
         if(total <= props.credit)
-            chipBarArray.push(<DiamondChip chip={props.chips[chip]} chipCallback={props.parentCallback} chipNum={chip}/>);
+            chipBarArray.push(<DiamondChip key={chip} chip={props.chips[chip]} chipCallback={props.parentCallback} chipNum={chip}/>);
         else {
             if(props.chips[chip])
                 props.parentCallback(chip);

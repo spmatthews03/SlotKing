@@ -137,8 +137,8 @@ const HoldAndDraw = (navigation) => {
     return(
       <View style={{flex:1}}>
         <View style={{flex:1.5}}>
-          {gameState === gameStates.NEW_GAME ? null :
-            <WinningsBar totalbet={bet} winnings={winnings}/>
+          {gameState === gameStates.NEW_GAME || !calculated ? null :
+              <WinningsBar totalbet={bet} winnings={winnings}/>
           }
         </View>
         <View
