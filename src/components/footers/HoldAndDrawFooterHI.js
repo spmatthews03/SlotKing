@@ -1,12 +1,9 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {View, Image, TouchableOpacity, Text, Alert} from 'react-native';
 import {
-    PLAY_BUTTON_2,
     HOLD_DRAW_BUTTON_HI,
-    HOLD_DRAW_BUTTON,
-    HOLD_DRAW_BIG_BUTTON, BUY_CHIPS, FOOTER_AD, FOOTER_RULES, FOOTER_PRICEBOARD, HOLD_DRAW_BIG_BUTTON_HI
+    BUY_CHIPS, FOOTER_AD, FOOTER_RULES, FOOTER_PRICEBOARD, HOLD_DRAW_BIG_BUTTON_HI
 } from '../../constants/imageConstants';
-import { styles } from '../../screens/games/StopVersion/styles';
 import { useSelector, useDispatch } from 'react-redux';
 import {
     HOLD_DRAW_ADD_WINNINGS,
@@ -16,7 +13,7 @@ import Rules from "../gameRules/Rules";
 import PriceboardModal from "../PriceboardModal";
 import BuyModal from "../BuyModal";
 
-const adUnitId = __DEV__ ? TestIds.REWARDED : 'ca-app-pub-6259743779729717/6744053933';
+const adUnitId = __DEV__ ? TestIds.REWARDED : 'ca-app-pub-6259743779729717/9443498763';
 
 const HoldAndDrawFooterHI = (props) => {
     const version = useSelector(state => state.versionReducer.version);
@@ -35,12 +32,10 @@ const HoldAndDrawFooterHI = (props) => {
     const [loaded, setLoaded] = useState(false);
     const [modalVisible, setModalVisible] = useState(false);
     const [priceboardVisible, setPriceboardVisible] = useState(false);
-    const [buyModalVisible, setBuyModalVisible] = useState(false);
 
     const rewarded = useRef(RewardedAd.createForAdRequest(adUnitId, {
         requestNonPersonalizedAdsOnly: true,
       }));
-
 
     useEffect(() => {
         const eventListener = rewarded.current.onAdEvent((type, error, reward) => {
@@ -61,11 +56,7 @@ const HoldAndDrawFooterHI = (props) => {
                 rewardAlert();
             }
         });
-
-        // Start loading the rewarded ad straight away
         rewarded.current.load();
-
-        // Unsubscribe from events on unmount
         return () => {
             eventListener();
         };

@@ -140,16 +140,16 @@ const HoldAndDrawHi = (navigation) => {
           }
         </View>
         <View
-          style={[styles.buttonBar, {alignItems:"center", justifyContent:"center"}]}>
+            style={[styles.flexOneStyles, {alignItems:"center", justifyContent:"center"}]}>
           <TouchableOpacity
             onPress={() => deal()}
-            style={[styles.flexOneStyles]}>
+            style={{width:'40%'}}>
             <Image
               style={styles.bottomButtonsStyle}
               source={PLAY_BUTTON_2}/>
             <View
               style={styles.dealButton}>
-              <Text style={styles.dealText}>{"DEAL"}</Text>
+              <Text adjustsFontSizeToFit={true} numberOfLines={1} style={styles.dealText}>{"DEAL"}</Text>
             </View>
           </TouchableOpacity>
         </View>
@@ -164,16 +164,16 @@ const HoldAndDrawHi = (navigation) => {
           <DiscardBar/>
         </View>
         <View
-          style={[styles.buttonBar, {alignItems:"center", justifyContent:"center"}]}>
+            style={[styles.flexOneStyles, {alignItems:"center", justifyContent:"center"}]}>
           <TouchableOpacity
             onPress={() => draw()}
-            style={[styles.flexOneStyles]}>
+            style={{width:'40%'}}>
             <Image
               style={styles.bottomButtonsStyle}
               source={PLAY_BUTTON_2}/>
             <View
               style={styles.dealButton}>
-              <Text style={styles.dealText}>{"DRAW"}</Text>
+              <Text adjustsFontSizeToFit={true} numberOfLines={1} style={styles.dealText}>{"DRAW"}</Text>
             </View>
           </TouchableOpacity>
         </View>

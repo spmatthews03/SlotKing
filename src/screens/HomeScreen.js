@@ -1,11 +1,109 @@
 import React from 'react';
-import { ImageBackground, StyleSheet, View, StatusBar, TouchableOpacity, Image } from 'react-native';
+import {ImageBackground, StyleSheet, View, StatusBar, TouchableOpacity, Image, Alert} from 'react-native';
 import { TABLE_SLOT_KING_LOGO, PLAY_BUTTON_1, HOME_SCREEN_BACKGROUND, NO_BET_NO_WIN } from '../constants/imageConstants';
 import { penClick } from '../helpers/sounds';
+import { connect } from 'react-redux';
 import MenuFooter from "../components/footers/MenuFooter";
+import RNIap, {
+    InAppPurchase,
+    purchaseErrorListener,
+    purchaseUpdatedListener,
+    type ProductPurchase,
+    type PurchaseError
+} from 'react-native-iap';
+import {CLAIM_CHIPS, HOLD_DRAW_ADD_WINNINGS} from "../constants/actionTypes";
+
+let purchaseCoinsUpdate;
+let purchaseCoinsError;
+
+const itemSkus = Platform.select({
+    ios: [
+        'com.slotking.10000_coins',
+        'com.slotking.50000_coins'
+    ],
+    android: [
+        '10000_coins',
+        '50000_coins'
+    ]
+});
+
+const mapStateToProps = state => {
+    return{
+        // nothing
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        dispatchConsumableNow: (amount) => dispatch({type: HOLD_DRAW_ADD_WINNINGS, payload: amount}),
+
+    };
+};
+
 
 
 class HomeScreen extends React.Component {
+    constructor(props) {
+        super();
+        this.state = {
+            products: []
+        }
+    }
+
+    async componentDidMount() {
+        try {
+            const result = await RNIap.initConnection();
+            await RNIap.flushFailedPurchasesCachedAsPendingAndroid();
+            const products: Products[] = await RNIap.getProducts(itemSkus)
+            this.setState({products: products});
+            console.log('result: ', result);
+            console.log('Products: ', products);
+        } catch (e) {
+            console.warn(err.code, err.message);
+        }
+
+        purchaseCoinsUpdate = purchaseUpdatedListener(async (purchase: InAppPurchase | ProductPurchase ) => {
+            const receipt = purchase.transactionReceipt;
+
+            if (receipt) {
+                try{
+                    await RNIap.finishTransaction(purchase, true);
+                    this.dispatchConsumable(purchase.productId);
+                } catch(err) {
+                    console.warn('Acknowledge Error:', err);
+                    Alert.alert('Purchase is taking longer than usual. You should see your chips arrive shortly,' +
+                        'otherwise contact our development team.');
+                }
+            }
+        });
+
+        purchaseCoinsError = purchaseErrorListener((error: PurchaseError) => {
+            console.warn('purchaseErrorListener', error);
+            Alert.alert('Purchasing Error. Try again in a little while.');
+        });
+
+    }
+
+    componentWillUnmount() {
+        if(purchaseCoinsUpdate){
+            purchaseCoinsUpdate.remove();
+            purchaseCoinsUpdate = null;
+        }
+        if (purchaseCoinsError) {
+            purchaseCoinsError.remove();
+            purchaseCoinsError = null;
+        }
+        RNIap.endConnection();
+    }
+
+    dispatchConsumable(productId) {
+        if(productId === '10000_coins')
+            this.props.dispatchConsumableNow(10000);
+        else
+            this.props.dispatchConsumableNow(50000);
+        this.props.navigation.goBack();
+    }
+
 
     render() {
         const{navigate} = this.props.navigation;
@@ -46,7 +144,7 @@ class HomeScreen extends React.Component {
     };
 }
 
-export default HomeScreen;
+export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
 
 const styles = StyleSheet.create({
     imageContainer:{

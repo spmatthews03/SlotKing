@@ -1,102 +1,20 @@
-import React, {useEffect, useState} from 'react';
-import {Image, Modal, StyleSheet, Text, TouchableOpacity, View, Alert} from "react-native";
+import React from 'react';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {
     CLOSE_BUTTON,
     PURCHASE_10000,
     PURCHASE_50000
 } from "../constants/imageConstants";
-import RNIap, {
-    InAppPurchase,
-    purchaseErrorListener,
-    purchaseUpdatedListener,
-    type ProductPurchase,
-    type PurchaseError
-} from 'react-native-iap';
-import {useDispatch} from "react-redux";
-import {HOLD_DRAW_ADD_WINNINGS} from "../constants/actionTypes";
+import RNIap from 'react-native-iap';
 
-const itemSkus = Platform.select({
-    ios: [
-        'com.slotking2.10000_coins',
-        'com.slotking2.50000_coins'
-    ],
-    android: [
-        '10000_coins',
-        '50000_coins'
-    ]
-});
+
 const BuyModal = (navigation) => {
     const navigator = navigation.navigation;
-    const [products, setProducts] = useState();
-    const [log, setLog] = useState();
-    const dispatch = useDispatch();
-    let purchaseCoinsUpdate;
-    let purchaseCoinsError;
-
-    useEffect(() => {
-        setUpStore();
-        return() => {
-            if(purchaseCoinsUpdate){
-                purchaseCoinsUpdate.remove();
-                purchaseCoinsUpdate = null;
-            }
-            if (purchaseCoinsError) {
-                purchaseCoinsError.remove();
-                purchaseCoinsError = null;
-            }
-            RNIap.endConnection();};
-    }, [])
-
-    async function dispatchConsumable(productId) {
-        if(productId === '10000_coins')
-            dispatch({type:HOLD_DRAW_ADD_WINNINGS, payload: 10000});
-        else
-            dispatch({type:HOLD_DRAW_ADD_WINNINGS, payload: 50000});
-        navigator.goBack();
-    }
-
-    async function setUpStore() {
-
-        await RNIap.initConnection().then(() => {
-            getProducts();
-            RNIap.consumeAllItemsAndroid();
-            RNIap.flushFailedPurchasesCachedAsPendingAndroid().catch(() => {
-            }).then(() => {
-                setLog(log + "Connection Successful");
-
-                purchaseCoinsUpdate = purchaseUpdatedListener(async (purchase: InAppPurchase | ProductPurchase ) => {
-                    const receipt = purchase.transactionReceipt;
-
-                    if (receipt) {
-                        try{
-                            await RNIap.finishTransaction(purchase,true);
-                        } catch(err) {
-                            console.warn('Acknowledge Error:', err);
-                        }
-                        dispatchConsumable(purchase.productId);
-                    }
-                });
-
-                purchaseCoinsError = purchaseErrorListener((error: PurchaseError) => {
-                    console.warn('purchaseErrorListener', error);
-                    Alert.alert('Purchasing Error. Try again in a little while.');
-                });
-            })
-        })
-    }
-
-    async function getProducts(){
-        try{
-            const products: Products[] = await RNIap.getProducts(itemSkus);
-            setProducts(products);
-        } catch (e) {
-            console.log("Error Retrieving Products");
-        }
-    }
 
     async function getChips(productId){
         try{
             await RNIap.requestPurchase(productId, false);
+            navigator.goBack();
         } catch (e) {
             console.log("Error Retrieving" + productId + " chips");
         }
@@ -152,10 +70,7 @@ var styles = StyleSheet.create({
     modalView: {
         width: '100%',
         height: '100%',
-        // margin: 20,
         backgroundColor: '#0f2636',
-        // borderRadius: 20,
-        // borderColor:'#ae8625',
         borderWidth:1,
         padding: 15,
         alignItems: "center",
@@ -170,7 +85,6 @@ var styles = StyleSheet.create({
     },
     priceboardText: {
         fontFamily:'PlayfairDisplay-Bold',
-        // color:'#f7ef8a',
         color:'white',
         fontSize:38
     },

@@ -14,7 +14,7 @@ import Rules from "../gameRules/Rules";
 import PriceboardModal from "../PriceboardModal";
 import BuyModal from "../BuyModal";
 
-const adUnitId = __DEV__ ? TestIds.REWARDED : 'ca-app-pub-6259743779729717/6744053933';
+const adUnitId = __DEV__ ? TestIds.REWARDED : 'ca-app-pub-6259743779729717/9443498763';
 
 const HoldAndDrawFooter = (props) => {
     const version = useSelector(state => state.versionReducer.version);
@@ -36,14 +36,10 @@ const HoldAndDrawFooter = (props) => {
     const [loaded, setLoaded] = useState(false);
     const [modalVisible, setModalVisible] = useState(!rulesshown);
     const [priceboardVisible, setPriceboardVisible] = useState(false);
-    const [buyModalVisible, setBuyModalVisible] = useState(false);
-
-
 
     const rewarded = useRef(RewardedAd.createForAdRequest(adUnitId, {
         requestNonPersonalizedAdsOnly: true,
       }));
-
 
     useEffect(() => {
         const eventListener = rewarded.current.onAdEvent((type, error, reward) => {
@@ -64,11 +60,7 @@ const HoldAndDrawFooter = (props) => {
                 rewardAlert();
             }
         });
-
-        // Start loading the rewarded ad straight away
         rewarded.current.load();
-
-        // Unsubscribe from events on unmount
         return () => {
             eventListener();
         };

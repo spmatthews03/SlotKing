@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
       textAlign: 'center'
     },
     dealText: {
-      fontSize: 20,
+      fontSize: 40,
       fontFamily: 'PlayfairDisplay-Bold',
       color: 'white',
       textAlign: 'center'
@@ -58,6 +58,7 @@ const styles = StyleSheet.create({
       bottom: 0,
       justifyContent: 'center',
       alignItems: 'center',
+        padding:'10%'
     },
     totalBet: {
       position: 'absolute',
