@@ -87,8 +87,11 @@ const HoldAndDraw = (navigation) => {
         dispatch({type: WINNING_LINES, winningLines});
       }
     }
-    return() => {dispatch({type: SET_ROOM, payload: null})};
   },[gameState])
+
+  useEffect(() => {
+    return() => dispatch({type: SET_ROOM, payload: null})
+  }, [])
 
   useEffect(() => {
     setTotalBet(calculateTotalBet(chips));
