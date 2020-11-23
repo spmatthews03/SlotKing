@@ -16,7 +16,7 @@ import HoldAndDrawHi from './screens/games/StopVersion/HoldAndDrawHi';
 import SplashScreen from './screens/SplashScreen';
 import admob, { MaxAdContentRating } from '@react-native-firebase/admob';
 import ClaimAdPanel from "./components/ClaimAdPanel";
-import {CLAIM_CHIPS} from "./constants/actionTypes";
+import {CLAIM_CHIPS, SET_ROOM} from "./constants/actionTypes";
 import { connect } from 'react-redux';
 import {isLastClaimLongerThanFourHours} from "./helpers/adHelper";
 import BuyModal from "./components/BuyModal";
@@ -33,7 +33,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setClaimChips: (claim) => dispatch({type: CLAIM_CHIPS, claim})
+    setClaimChips: (claim) => dispatch({type: CLAIM_CHIPS, claim}),
+    setRoomNull: () => dispatch({type: SET_ROOM, payload: null})
   };
 };
 
@@ -103,6 +104,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    this.props.setRoomNull();
     setTimeout(() => {
       this.setState({loading: false});
     }, 5000);

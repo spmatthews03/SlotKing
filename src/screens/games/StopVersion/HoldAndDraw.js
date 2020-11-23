@@ -90,10 +90,6 @@ const HoldAndDraw = (navigation) => {
   },[gameState])
 
   useEffect(() => {
-    return() => dispatch({type: SET_ROOM, payload: null})
-  }, [])
-
-  useEffect(() => {
     setTotalBet(calculateTotalBet(chips));
   },[chips])
 

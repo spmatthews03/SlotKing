@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {View, Image, TouchableOpacity} from 'react-native';
 import {BUY_CHIPS} from "../../constants/imageConstants";
 import BuyModal from "../BuyModal";
@@ -6,7 +6,7 @@ import BuyModal from "../BuyModal";
 const MenuFooter = (props) => {
 
     return (
-        <View style={{flex:.7, backgroundColor:'#0f2636', flexDirection:'row', padding:8, justifyContent:'center'}}>
+        <View style={{flex:.7, backgroundColor:'#0d212d', flexDirection:'row', padding:8, justifyContent:'center'}}>
             <View style={{flex:1, justifyContent:'center', flexDirection:'row'}}>
                 <View style={{flex:1}}>
                     <Image

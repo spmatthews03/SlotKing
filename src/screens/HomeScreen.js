@@ -11,7 +11,7 @@ import RNIap, {
     type ProductPurchase,
     type PurchaseError
 } from 'react-native-iap';
-import {CLAIM_CHIPS, HOLD_DRAW_ADD_WINNINGS} from "../constants/actionTypes";
+import {CLAIM_CHIPS, HOLD_DRAW_ADD_WINNINGS, SET_ROOM} from "../constants/actionTypes";
 
 let purchaseCoinsUpdate;
 let purchaseCoinsError;
@@ -36,7 +36,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         dispatchConsumableNow: (amount) => dispatch({type: HOLD_DRAW_ADD_WINNINGS, payload: amount}),
-
+        setRoomStandard: () => dispatch({type: SET_ROOM, payload: 'standard'})
     };
 };
 
@@ -51,6 +51,7 @@ class HomeScreen extends React.Component {
     }
 
     async componentDidMount() {
+        this.props.setRoomStandard();
         try {
             const result = await RNIap.initConnection();
             await RNIap.flushFailedPurchasesCachedAsPendingAndroid();
