@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Image, ImageBackground, StatusBar, Text, TouchableOpacity, View } from 'react-native';
+import {SafeAreaView, Image, ImageBackground, StatusBar, Text, TouchableOpacity, View } from 'react-native';
 import HoldAndDrawHeader from '../../../components/stoppedComponents/HoldAndDrawHeader';
 import Canvas from '../../../components/stoppedComponents/canvas/Canvas';
 import { useDispatch, useSelector } from 'react-redux';
@@ -199,6 +199,7 @@ const HoldAndDraw = (navigation) => {
       source={BACKGROUND}
     >
       <StatusBar hidden={true} />
+      <SafeAreaView style={{flex:1}}>
       <HoldAndDrawHeader credit={credit} navigation={navigator}/>
       <View style={{ flex: 6, flexDirection: 'row' }}>
         <View style={{ flex: 4, paddingVertical:10}}>
@@ -211,6 +212,7 @@ const HoldAndDraw = (navigation) => {
         </View>
       </View>
       <HoldAndDrawFooter credit={credit} state={gameState} navigation={navigator} version={version} totatlBet={totalBet}/>
+      </SafeAreaView>
     </ImageBackground>
   );
 }
