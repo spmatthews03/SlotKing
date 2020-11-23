@@ -25,12 +25,12 @@ const styles = StyleSheet.create({
       padding: 5
     },
     totalBetText: {
-      fontSize: 18,
+      fontSize: 16,
       fontFamily: 'PlayfairDisplay-Bold',
       color: 'white',
       textAlign: 'center',
         textAlignVertical:'center',
-    padding:'5%'
+    paddingHorizontal:'5%'
     },
     flipText: {
       fontSize: 20,

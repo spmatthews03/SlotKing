@@ -10,7 +10,7 @@ import {
     HOLD_DRAW_BIG_BUTTON_HI
     } from '../constants/imageConstants';
 import {
-    CLAIM_CHIPS,
+    CLAIM_CHIPS, SET_ROOM,
     SET_VERSION
 } from '../constants/actionTypes';
 import { penClick } from '../helpers/sounds';
@@ -30,8 +30,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         setGameVersion: (version, size) => dispatch({type: size, version}),
-        setClaimChips: (claim) => dispatch({type: CLAIM_CHIPS, claim})
-
+        setClaimChips: (claim) => dispatch({type: CLAIM_CHIPS, claim}),
+        setGameRoom: (room) => dispatch({type:SET_ROOM, payload: room})
     };
   };
 
@@ -47,7 +47,11 @@ class MenuScreen extends React.Component {
 
     setGame(game, version){
         this.props.setGameVersion(version, SET_VERSION)
-
+        if(game === "HoldAndDraw") {
+            this.props.setGameRoom('standard')
+        } else {
+            this.props.setGameRoom('hi')
+        }
     }
 
     navigateToGame = (game,version) => {

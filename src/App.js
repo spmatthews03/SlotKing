@@ -8,7 +8,7 @@
 import React from 'react';
 import { createAppContainer } from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
-import {View} from 'react-native';
+import {View, SafeAreaView} from 'react-native';
 import HomeScreen from './screens/HomeScreen';
 import MenuScreen from './screens/MenuScreen';
 import HoldAndDraw from './screens/games/StopVersion/HoldAndDraw';
@@ -20,12 +20,14 @@ import {CLAIM_CHIPS} from "./constants/actionTypes";
 import { connect } from 'react-redux';
 import {isLastClaimLongerThanFourHours} from "./helpers/adHelper";
 import BuyModal from "./components/BuyModal";
+import {SafeAreaProvider} from "react-native-safe-area-context";
 
 
 const mapStateToProps = state => {
   return{
     claimChips: state.versionReducer.claimChips,
-    claimChipsTime: state.versionReducer.claimChipsTime
+    claimChipsTime: state.versionReducer.claimChipsTime,
+    room: state.versionReducer.room
   };
 };
 
@@ -114,18 +116,29 @@ class App extends React.Component {
       this.props.setClaimChips(true);
   }
 
+  getBackgroundForView = () => {
+    let room = this.props.room;
+    if(room) {
+      return room === 'standard' ? '#0d212d' : '#280000';
+    } else {
+      return 'black';
+    }
+  }
+
   render() {
     return (
-        <View style={{flex: 1}}>
-          <View style={{flex: 1}}>
-            {this.state.loading ?
-              <SplashContainer />
-              :
-              <AppContainer/>
-            }
+        <SafeAreaProvider>
+          <View style={{flex: 1,backgroundColor: this.getBackgroundForView()}}>
+            <SafeAreaView style={{flex: 1}}>
+              {this.state.loading ?
+                <SplashContainer />
+                :
+                <AppContainer/>
+              }
+              <ClaimAdPanel/>
+            </SafeAreaView>
           </View>
-          <ClaimAdPanel/>
-        </View>
+        </SafeAreaProvider>
     );
   }
 }

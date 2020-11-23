@@ -79,3 +79,4 @@ export const RULES_4X4 = 'RULES_4X4';
 export const CLAIM_CHIPS = 'CLAIM_CHIPS';
 export const SET_CLAIM_CHIP_TIME = 'SET_CLAIM_CHIP_TIME';
 export const CALCULATED = 'CALCULATED';
+export const SET_ROOM = 'SET_ROOM';

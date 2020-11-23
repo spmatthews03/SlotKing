@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Image, ImageBackground, StatusBar, Text, TouchableOpacity, View } from 'react-native';
+import {SafeAreaView, Image, ImageBackground, StatusBar, Text, TouchableOpacity, View } from 'react-native';
 import HoldAndDrawHeader from '../../../components/stoppedComponents/HoldAndDrawHeader';
 import Canvas from '../../../components/stoppedComponents/canvas/Canvas';
 import { useDispatch, useSelector } from 'react-redux';
@@ -23,7 +23,7 @@ import {
   DISCARD_SMALL,
   SET_WINNINGS_LINES_SMALL,
   SET_WINNINGS_LINES_BIG,
-  BET
+  BET, SET_ROOM
 } from '../../../constants/actionTypes';
 import { BACKGROUND, TABLE_SLOT_KING_LOGO, PLAY_BUTTON_2 } from '../../../constants/imageConstants';
 import { cardDeal, coinThud, win } from '../../../helpers/sounds';
@@ -87,6 +87,7 @@ const HoldAndDraw = (navigation) => {
         dispatch({type: WINNING_LINES, winningLines});
       }
     }
+    return() => {dispatch({type: SET_ROOM, payload: null})};
   },[gameState])
 
   useEffect(() => {
@@ -199,6 +200,7 @@ const HoldAndDraw = (navigation) => {
       source={BACKGROUND}
     >
       <StatusBar hidden={true} />
+      <SafeAreaView style={{flex:1}}>
       <HoldAndDrawHeader credit={credit} navigation={navigator}/>
       <View style={{ flex: 6, flexDirection: 'row' }}>
         <View style={{ flex: 4, paddingVertical:10}}>
@@ -211,6 +213,7 @@ const HoldAndDraw = (navigation) => {
         </View>
       </View>
       <HoldAndDrawFooter credit={credit} state={gameState} navigation={navigator} version={version} totatlBet={totalBet}/>
+      </SafeAreaView>
     </ImageBackground>
   );
 }

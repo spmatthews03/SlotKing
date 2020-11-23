@@ -1,5 +1,5 @@
 import React from 'react';
-import {ImageBackground, StyleSheet, View, StatusBar, TouchableOpacity, Image, Alert} from 'react-native';
+import {SafeAreaView, ImageBackground, StyleSheet, View, StatusBar, TouchableOpacity, Image } from 'react-native';
 import { TABLE_SLOT_KING_LOGO, PLAY_BUTTON_1, HOME_SCREEN_BACKGROUND, NO_BET_NO_WIN } from '../constants/imageConstants';
 import { penClick } from '../helpers/sounds';
 import { connect } from 'react-redux';
@@ -118,6 +118,7 @@ class HomeScreen extends React.Component {
                 style={styles.backgroundImage}
                 source={HOME_SCREEN_BACKGROUND}>
                 <StatusBar hidden={true}/>
+                <SafeAreaView style={{flex:1}}>
                 <View style={{flex:7, justifyContent:'center', alignItems:'center'}}>
                     <View style={{flex:1, width:'100%', padding:20}}>
                         <Image
@@ -139,6 +140,7 @@ class HomeScreen extends React.Component {
                     </View>
                 </View>
                 <MenuFooter navigation={navigate} />
+                </SafeAreaView>
             </ImageBackground>
         );
     };

@@ -1,13 +1,18 @@
 import React, {useEffect,createRef,useState,useRef} from 'react';
-import {View, Alert, TouchableOpacity, Text, ImageBackground, StyleSheet} from 'react-native';
+import {View, Alert, TouchableOpacity, ImageBackground, StyleSheet, Dimensions} from 'react-native';
 import SlidingUpPanel from 'rn-sliding-up-panel';
 import {useDispatch, useSelector} from "react-redux";
 import {CLAIM_CHIPS, HOLD_DRAW_ADD_WINNINGS, NEED_AD, SET_CLAIM_CHIP_TIME} from "../constants/actionTypes";
 import {Image} from "react-native-elements";
 import {CLAIM_BANNER, CLAIM_BUTTON, CLAIM_FOOTER} from "../constants/imageConstants";
 import {RewardedAd, RewardedAdEventType, TestIds} from '@react-native-firebase/admob';
+import SafeAreaView, {getInset} from "react-native-safe-area-view";
 
 const adUnitId = __DEV__ ? TestIds.REWARDED : "ca-app-pub-6259743779729717/7388181067";
+
+const {width, height} = Dimensions.get('window');
+const topPadding = getInset('top', false);
+const bottomPadding = getInset('bottom', false);
 
 const ClaimAdPanel = () => {
     let slidingPanel = createRef();
@@ -81,6 +86,7 @@ const ClaimAdPanel = () => {
                 backdropOpacity={.5}
                 height={150}
                 ref={c => slidingPanel = c}>
+                <SafeAreaView style={{flex:1}}>
                 <View style={styles.container}>
                     <ImageBackground source={CLAIM_BANNER} style={styles.backgroundImage} imageStyle={{width:'100%', resizeMode:'cover'}}>
                         <TouchableOpacity
@@ -94,6 +100,7 @@ const ClaimAdPanel = () => {
                         </TouchableOpacity>
                     </ImageBackground>
                 </View>
+                </SafeAreaView>
             </SlidingUpPanel>
         </View>
     )
@@ -105,7 +112,7 @@ const ClaimAdPanel = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#0f2636',
+        top:50,
         // alignItems: 'center',
         justifyContent: 'center',
         borderTopColor:'goldenrod',
