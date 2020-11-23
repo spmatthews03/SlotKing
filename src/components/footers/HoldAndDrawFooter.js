@@ -87,7 +87,7 @@ const HoldAndDrawFooter = (props) => {
     }
 
     return (
-        <View style={{flex:.7, backgroundColor:'#0f2636', flexDirection:'row', padding:8, justifyContent:'center'}}>
+        <View style={{flex:.7, backgroundColor:'#0d212d', flexDirection:'row', padding:8, justifyContent:'center'}}>
             <Rules
                 isVisible={modalVisible}
                 setModalVisibility={() => {setModalVisible(!modalVisible)}}/>

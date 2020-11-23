@@ -6,7 +6,8 @@ import {
     RULES_3X3,
     RULES_4X4,
     CLAIM_CHIPS,
-    SET_CLAIM_CHIP_TIME
+    SET_CLAIM_CHIP_TIME,
+    SET_ROOM
 } from "../../constants/actionTypes";
 
 const initialState = {
@@ -17,6 +18,7 @@ const initialState = {
     rules_4x4_shown: false,
     claimChips: false,
     claimChipsTime: new Date(),
+    room: null
 }
 
 
@@ -70,6 +72,11 @@ const versionReducer = (state = initialState, action) => {
             return {
                 ...state,
                 claimChipsTime: new Date()
+            }
+        case SET_ROOM:
+            return {
+                ...state,
+                room: action.payload
             }
         default:
             return state;

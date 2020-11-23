@@ -23,7 +23,7 @@ import {
   DISCARD_SMALL,
   SET_WINNINGS_LINES_SMALL,
   SET_WINNINGS_LINES_BIG,
-  BET
+  BET, SET_ROOM
 } from '../../../constants/actionTypes';
 import { BACKGROUND, TABLE_SLOT_KING_LOGO, PLAY_BUTTON_2 } from '../../../constants/imageConstants';
 import { cardDeal, coinThud, win } from '../../../helpers/sounds';
@@ -87,6 +87,7 @@ const HoldAndDraw = (navigation) => {
         dispatch({type: WINNING_LINES, winningLines});
       }
     }
+    return dispatch({type: SET_ROOM, payload: null})
   },[gameState])
 
   useEffect(() => {

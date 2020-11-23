@@ -26,7 +26,8 @@ import {SafeAreaProvider} from "react-native-safe-area-context";
 const mapStateToProps = state => {
   return{
     claimChips: state.versionReducer.claimChips,
-    claimChipsTime: state.versionReducer.claimChipsTime
+    claimChipsTime: state.versionReducer.claimChipsTime,
+    room: state.versionReducer.room
   };
 };
 
@@ -115,10 +116,19 @@ class App extends React.Component {
       this.props.setClaimChips(true);
   }
 
+  getBackgroundForView = () => {
+    let room = this.props.room;
+    if(room) {
+      return room === 'standard' ? '#0d212d' : '#280000';
+    } else {
+      return 'black';
+    }
+  }
+
   render() {
     return (
         <SafeAreaProvider>
-          <View style={{flex: 1,backgroundColor:'#0f2636'}}>
+          <View style={{flex: 1,backgroundColor: this.getBackgroundForView()}}>
             <SafeAreaView style={{flex: 1}}>
               {this.state.loading ?
                 <SplashContainer />
