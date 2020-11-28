@@ -1,5 +1,5 @@
 import React from 'react';
-import {SafeAreaView, ImageBackground, StyleSheet, View, StatusBar, TouchableOpacity, Image } from 'react-native';
+import {SafeAreaView, ImageBackground, StyleSheet, View, StatusBar, TouchableOpacity, Alert, Image } from 'react-native';
 import { TABLE_SLOT_KING_LOGO, PLAY_BUTTON_1, HOME_SCREEN_BACKGROUND, NO_BET_NO_WIN } from '../constants/imageConstants';
 import { penClick } from '../helpers/sounds';
 import { connect } from 'react-redux';
@@ -80,7 +80,6 @@ class HomeScreen extends React.Component {
 
         purchaseCoinsError = purchaseErrorListener((error: PurchaseError) => {
             console.warn('purchaseErrorListener', error);
-            Alert.alert('Purchasing Error. Try again in a little while.');
         });
 
     }

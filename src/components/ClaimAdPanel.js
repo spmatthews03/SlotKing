@@ -10,10 +10,6 @@ import SafeAreaView, {getInset} from "react-native-safe-area-view";
 
 const adUnitId = __DEV__ ? TestIds.REWARDED : "ca-app-pub-6259743779729717/7388181067";
 
-const {width, height} = Dimensions.get('window');
-const topPadding = getInset('top', false);
-const bottomPadding = getInset('bottom', false);
-
 const ClaimAdPanel = () => {
     let slidingPanel = createRef();
     let dispatch = useDispatch();
@@ -112,7 +108,7 @@ const ClaimAdPanel = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        top:50,
+        top: Platform.OS === 'android' ? 0 : 50,
         // alignItems: 'center',
         justifyContent: 'center',
         borderTopColor:'goldenrod',
