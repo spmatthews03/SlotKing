@@ -27,12 +27,20 @@
 		141BA836256ADC2E003E7C6C /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 141BA829256ADC2E003E7C6C /* Roboto-Thin.ttf */; };
 		141BA837256ADC2E003E7C6C /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 141BA82A256ADC2E003E7C6C /* Roboto-Black.ttf */; };
 		141BA838256ADC2E003E7C6C /* Roboto-RegularItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 141BA82B256ADC2E003E7C6C /* Roboto-RegularItalic.ttf */; };
-		1423A355256AD54D00A38D47 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1423A34E256AD54D00A38D47 /* GoogleService-Info.plist */; };
-		1423A356256AD54D00A38D47 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1423A34F256AD54D00A38D47 /* LaunchScreen.xib */; };
 		1423A357256AD54D00A38D47 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1423A351256AD54D00A38D47 /* main.m */; };
 		1423A358256AD54D00A38D47 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1423A352256AD54D00A38D47 /* Images.xcassets */; };
 		1423A359256AD54D00A38D47 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1423A353256AD54D00A38D47 /* AppDelegate.m */; };
 		1423A364256AD59700A38D47 /* Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1423A363256AD59700A38D47 /* Dummy.swift */; };
+		148B490E259AB2CC00F2D184 /* low_credit.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 148B4905259AB2CC00F2D184 /* low_credit.mp3 */; };
+		148B490F259AB2CC00F2D184 /* mouse_click.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 148B4906259AB2CC00F2D184 /* mouse_click.mp3 */; };
+		148B4910259AB2CC00F2D184 /* pen_on.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 148B4907259AB2CC00F2D184 /* pen_on.mp3 */; };
+		148B4911259AB2CC00F2D184 /* button_click.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 148B4908259AB2CC00F2D184 /* button_click.mp3 */; };
+		148B4912259AB2CC00F2D184 /* pen_off.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 148B4909259AB2CC00F2D184 /* pen_off.mp3 */; };
+		148B4913259AB2CC00F2D184 /* coins_thud.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 148B490A259AB2CC00F2D184 /* coins_thud.mp3 */; };
+		148B4914259AB2CC00F2D184 /* card_deal.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 148B490B259AB2CC00F2D184 /* card_deal.mp3 */; };
+		148B4915259AB2CC00F2D184 /* coin_set.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 148B490C259AB2CC00F2D184 /* coin_set.mp3 */; };
+		148B4916259AB2CC00F2D184 /* coins_thud2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 148B490D259AB2CC00F2D184 /* coins_thud2.mp3 */; };
+		148B4919259AB41A00F2D184 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 148B4918259AB41A00F2D184 /* GoogleService-Info.plist */; };
 		DD4394AE6F6517DF82221B54 /* libPods-SlotKing.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D76FFB8628C7229E92E393 /* libPods-SlotKing.a */; };
 /* End PBXBuildFile section */
 
@@ -66,14 +74,22 @@
 		141BA82A256ADC2E003E7C6C /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
 		141BA82B256ADC2E003E7C6C /* Roboto-RegularItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-RegularItalic.ttf"; sourceTree = "<group>"; };
 		1423A34D256AD54D00A38D47 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		1423A34E256AD54D00A38D47 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		1423A350256AD54D00A38D47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		1423A351256AD54D00A38D47 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1423A352256AD54D00A38D47 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1423A353256AD54D00A38D47 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		1423A354256AD54D00A38D47 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1423A362256AD59700A38D47 /* SlotKing-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SlotKing-Bridging-Header.h"; sourceTree = "<group>"; };
 		1423A363256AD59700A38D47 /* Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dummy.swift; sourceTree = "<group>"; };
+		148B4905259AB2CC00F2D184 /* low_credit.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = low_credit.mp3; sourceTree = "<group>"; };
+		148B4906259AB2CC00F2D184 /* mouse_click.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = mouse_click.mp3; sourceTree = "<group>"; };
+		148B4907259AB2CC00F2D184 /* pen_on.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pen_on.mp3; sourceTree = "<group>"; };
+		148B4908259AB2CC00F2D184 /* button_click.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = button_click.mp3; sourceTree = "<group>"; };
+		148B4909259AB2CC00F2D184 /* pen_off.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pen_off.mp3; sourceTree = "<group>"; };
+		148B490A259AB2CC00F2D184 /* coins_thud.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = coins_thud.mp3; sourceTree = "<group>"; };
+		148B490B259AB2CC00F2D184 /* card_deal.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = card_deal.mp3; sourceTree = "<group>"; };
+		148B490C259AB2CC00F2D184 /* coin_set.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = coin_set.mp3; sourceTree = "<group>"; };
+		148B490D259AB2CC00F2D184 /* coins_thud2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = coins_thud2.mp3; sourceTree = "<group>"; };
+		148B4918259AB41A00F2D184 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		15B1BB3D7F2242CFB5965398 /* PlayfairDisplay-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "PlayfairDisplay-Regular.ttf"; path = "../assets/fonts/Playfair_Display/PlayfairDisplay-Regular.ttf"; sourceTree = "<group>"; };
 		1A1BE3BF0AD448379DBCEDC2 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Regular.ttf"; path = "../assets/fonts/Roboto/Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		1AF5A764BB5E429EABDE7639 /* Roboto-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Black.ttf"; path = "../src/assets/fonts/Roboto/Roboto-Black.ttf"; sourceTree = "<group>"; };
@@ -177,11 +193,11 @@
 		1423A34C256AD54D00A38D47 /* SlotKing */ = {
 			isa = PBXGroup;
 			children = (
+				148B4918259AB41A00F2D184 /* GoogleService-Info.plist */,
+				148B4904259AB2CC00F2D184 /* raw */,
 				141BA81E256ADC2E003E7C6C /* Roboto */,
 				141BA80D256ADBE6003E7C6C /* Playfair_Display */,
 				1423A34D256AD54D00A38D47 /* AppDelegate.h */,
-				1423A34E256AD54D00A38D47 /* GoogleService-Info.plist */,
-				1423A34F256AD54D00A38D47 /* LaunchScreen.xib */,
 				1423A351256AD54D00A38D47 /* main.m */,
 				1423A352256AD54D00A38D47 /* Images.xcassets */,
 				1423A353256AD54D00A38D47 /* AppDelegate.m */,
@@ -190,6 +206,23 @@
 				1423A362256AD59700A38D47 /* SlotKing-Bridging-Header.h */,
 			);
 			path = SlotKing;
+			sourceTree = "<group>";
+		};
+		148B4904259AB2CC00F2D184 /* raw */ = {
+			isa = PBXGroup;
+			children = (
+				148B4905259AB2CC00F2D184 /* low_credit.mp3 */,
+				148B4906259AB2CC00F2D184 /* mouse_click.mp3 */,
+				148B4907259AB2CC00F2D184 /* pen_on.mp3 */,
+				148B4908259AB2CC00F2D184 /* button_click.mp3 */,
+				148B4909259AB2CC00F2D184 /* pen_off.mp3 */,
+				148B490A259AB2CC00F2D184 /* coins_thud.mp3 */,
+				148B490B259AB2CC00F2D184 /* card_deal.mp3 */,
+				148B490C259AB2CC00F2D184 /* coin_set.mp3 */,
+				148B490D259AB2CC00F2D184 /* coins_thud2.mp3 */,
+			);
+			name = raw;
+			path = ../../android/app/src/main/res/raw;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
@@ -335,7 +368,7 @@
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = CBD32CYLA6;
+						DevelopmentTeam = QB73WQJ5T4;
 						LastSwiftMigration = 1220;
 					};
 				};
@@ -370,23 +403,31 @@
 				141BA81B256ADBE6003E7C6C /* PlayfairDisplay-BlackItalic.ttf in Resources */,
 				141BA82D256ADC2E003E7C6C /* Roboto-Light.ttf in Resources */,
 				141BA837256ADC2E003E7C6C /* Roboto-Black.ttf in Resources */,
+				148B490E259AB2CC00F2D184 /* low_credit.mp3 in Resources */,
+				148B4910259AB2CC00F2D184 /* pen_on.mp3 in Resources */,
 				141BA81A256ADBE6003E7C6C /* PlayfairDisplay-Black.ttf in Resources */,
 				141BA82F256ADC2E003E7C6C /* Roboto-MediumItalic.ttf in Resources */,
+				148B4915259AB2CC00F2D184 /* coin_set.mp3 in Resources */,
+				148B4914259AB2CC00F2D184 /* card_deal.mp3 in Resources */,
 				141BA816256ADBE6003E7C6C /* PlayfairDisplay-BoldItalic.ttf in Resources */,
 				141BA817256ADBE6003E7C6C /* PlayfairDisplay-RegularItalic.ttf in Resources */,
 				141BA834256ADC2E003E7C6C /* Roboto-BlackItalic.ttf in Resources */,
+				148B4919259AB41A00F2D184 /* GoogleService-Info.plist in Resources */,
 				141BA819256ADBE6003E7C6C /* OFL.txt in Resources */,
 				141BA818256ADBE6003E7C6C /* PlayfairDisplay-Regular.ttf in Resources */,
+				148B4913259AB2CC00F2D184 /* coins_thud.mp3 in Resources */,
 				141BA831256ADC2E003E7C6C /* Roboto-BoldItalic.ttf in Resources */,
+				148B490F259AB2CC00F2D184 /* mouse_click.mp3 in Resources */,
 				141BA832256ADC2E003E7C6C /* Roboto-LightItalic.ttf in Resources */,
 				141BA836256ADC2E003E7C6C /* Roboto-Thin.ttf in Resources */,
 				141BA833256ADC2E003E7C6C /* LICENSE.txt in Resources */,
 				1423A358256AD54D00A38D47 /* Images.xcassets in Resources */,
+				148B4911259AB2CC00F2D184 /* button_click.mp3 in Resources */,
+				148B4912259AB2CC00F2D184 /* pen_off.mp3 in Resources */,
 				141BA838256ADC2E003E7C6C /* Roboto-RegularItalic.ttf in Resources */,
+				148B4916259AB2CC00F2D184 /* coins_thud2.mp3 in Resources */,
 				141BA82C256ADC2E003E7C6C /* Roboto-Medium.ttf in Resources */,
 				141BA82E256ADC2E003E7C6C /* Roboto-Regular.ttf in Resources */,
-				1423A356256AD54D00A38D47 /* LaunchScreen.xib in Resources */,
-				1423A355256AD54D00A38D47 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -525,17 +566,6 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXVariantGroup section */
-		1423A34F256AD54D00A38D47 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1423A350256AD54D00A38D47 /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -544,9 +574,9 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = CBD32CYLA6;
+				DEVELOPMENT_TEAM = QB73WQJ5T4;
 				INFOPLIST_FILE = SlotKing/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -554,7 +584,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.slotking;
+				PRODUCT_BUNDLE_IDENTIFIER = com.flyindream.slotking;
 				PRODUCT_NAME = SlotKing;
 				SWIFT_OBJC_BRIDGING_HEADER = "SlotKing/SlotKing-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -571,8 +601,8 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = CBD32CYLA6;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = QB73WQJ5T4;
 				INFOPLIST_FILE = SlotKing/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -580,7 +610,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.slotking;
+				PRODUCT_BUNDLE_IDENTIFIER = com.flyindream.slotking;
 				PRODUCT_NAME = SlotKing;
 				SWIFT_OBJC_BRIDGING_HEADER = "SlotKing/SlotKing-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
