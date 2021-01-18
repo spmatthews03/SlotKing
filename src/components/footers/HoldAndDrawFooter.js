@@ -14,7 +14,12 @@ import Rules from "../gameRules/Rules";
 import PriceboardModal from "../PriceboardModal";
 import BuyModal from "../BuyModal";
 
-const adUnitId = __DEV__ ? TestIds.REWARDED : 'ca-app-pub-6259743779729717/9443498763';
+let adUnitId;
+if(Platform.OS === 'android')
+    adUnitId = __DEV__ ? TestIds.REWARDED : "ca-app-pub-6259743779729717/9443498763";
+else
+    adUnitId = __DEV__ ? TestIds.REWARDED : "ca-app-pub-6259743779729717/1540069966";
+
 
 const HoldAndDrawFooter = (props) => {
     const version = useSelector(state => state.versionReducer.version);

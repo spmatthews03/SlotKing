@@ -8,7 +8,11 @@ import {CLAIM_BANNER, CLAIM_BUTTON, CLAIM_FOOTER} from "../constants/imageConsta
 import {RewardedAd, RewardedAdEventType, TestIds} from '@react-native-firebase/admob';
 import SafeAreaView, {getInset} from "react-native-safe-area-view";
 
-const adUnitId = __DEV__ ? TestIds.REWARDED : "ca-app-pub-6259743779729717/7388181067";
+let adUnitId;
+if(Platform.OS === 'android')
+    adUnitId = __DEV__ ? TestIds.REWARDED : "ca-app-pub-6259743779729717/7388181067";
+else
+    adUnitId = __DEV__ ? TestIds.REWARDED : "ca-app-pub-6259743779729717/6184880220";
 
 const ClaimAdPanel = () => {
     let slidingPanel = createRef();

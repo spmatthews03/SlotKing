@@ -31,7 +31,7 @@ const versionReducer = (state = initialState, action) => {
             }
         case HOLD_DRAW_ADD_WINNINGS:
             let totalCredit = state.credit + action.payload;
-            if(!state.unlocked && totalCredit > 9600){
+            if(!state.unlocked && totalCredit > 10000){
                 return {
                     ...state,
                     credit: totalCredit,
