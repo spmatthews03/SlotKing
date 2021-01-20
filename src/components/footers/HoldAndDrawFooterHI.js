@@ -15,9 +15,9 @@ import BuyModal from "../BuyModal";
 
 let adUnitId;
 if(Platform.OS === 'android')
-    adUnitId = __DEV__ ? TestIds.REWARDED : "ca-app-pub-6259743779729717/9443498763";
+    adUnitId = __DEV__ ? TestIds.REWARDED : "ca-app-pub-6222036433324153/6334761297";
 else
-    adUnitId = __DEV__ ? TestIds.REWARDED : "ca-app-pub-6259743779729717/1540069966";
+    adUnitId = __DEV__ ? TestIds.REWARDED : "ca-app-pub-6222036433324153/7701374356";
 
 const HoldAndDrawFooterHI = (props) => {
     const version = useSelector(state => state.versionReducer.version);

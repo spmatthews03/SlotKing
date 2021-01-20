@@ -10,9 +10,9 @@ import SafeAreaView, {getInset} from "react-native-safe-area-view";
 
 let adUnitId;
 if(Platform.OS === 'android')
-    adUnitId = __DEV__ ? TestIds.REWARDED : "ca-app-pub-6259743779729717/7388181067";
+    adUnitId = __DEV__ ? TestIds.REWARDED : "ca-app-pub-6222036433324153/9344068011";
 else
-    adUnitId = __DEV__ ? TestIds.REWARDED : "ca-app-pub-6259743779729717/6184880220";
+    adUnitId = __DEV__ ? TestIds.REWARDED : "ca-app-pub-6222036433324153/5343460867";
 
 const ClaimAdPanel = () => {
     let slidingPanel = createRef();
