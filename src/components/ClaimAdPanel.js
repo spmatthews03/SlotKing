@@ -38,12 +38,12 @@ const ClaimAdPanel = () => {
                 dispatch({type: NEED_AD, payload: false});
                 dispatch({type: CLAIM_CHIPS, claim: false})
                 setLoaded(false);
+                rewardAlert();
             }
 
             if(type === "closed") {
                 rewarded.current.load();
                 dispatch({type: SET_CLAIM_CHIP_TIME});
-                rewardAlert();
             }
         });
 
