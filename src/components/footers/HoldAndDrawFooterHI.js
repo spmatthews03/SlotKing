@@ -53,11 +53,11 @@ const HoldAndDrawFooterHI = (props) => {
                 console.log('User earned reward of ', reward);
                 dispatch({type: NEED_AD, payload: false});
                 setLoaded(false);
+                rewardAlert();
             }
 
             if(type === "closed") {
                 rewarded.current.load();
-                rewardAlert();
             }
         });
         rewarded.current.load();
