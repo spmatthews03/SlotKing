@@ -18,8 +18,8 @@ let purchaseCoinsError;
 
 const itemSkus = Platform.select({
     ios: [
-        'com.slotking.10000_coins',
-        'com.slotking.50000_coins'
+        '10000_coins',
+        '50000_coins'
     ],
     android: [
         '10000_coins',
@@ -54,13 +54,20 @@ class HomeScreen extends React.Component {
         this.props.setRoomStandard();
         try {
             const result = await RNIap.initConnection();
-            await RNIap.flushFailedPurchasesCachedAsPendingAndroid();
-            const products: Products[] = await RNIap.getProducts(itemSkus)
+            if (Platform.OS === 'android')
+                await RNIap.flushFailedPurchasesCachedAsPendingAndroid();
+        } catch (e) {
+            console.error("Error setting up connection", e)
+        }
+        try{
+            console.warn("Below are the SKUS");
+            console.warn("SKUS: ", itemSkus);
+            const products = await RNIap.getProducts(itemSkus);
             this.setState({products: products});
             console.log('result: ', result);
             console.log('Products: ', products);
-        } catch (e) {
-            console.warn(err.code, err.message);
+        } catch (err) {
+            console.error("Error getting products",err);
         }
 
         purchaseCoinsUpdate = purchaseUpdatedListener(async (purchase: InAppPurchase | ProductPurchase ) => {
